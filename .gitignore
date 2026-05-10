@@ -1,9 +1,13 @@
-# Build artefacts
+# Override global .gitignore_global which ignores build/ entirely —
+# this project ships the rendered PDF as a versioned artefact.
+!build/
+!build/build.py
+!build/octatrack-mk1-manual.pdf
+!build/.gitkeep
+
+# Build artefacts that should stay local
 build/manual.html
 build/preview-*.png
-!build/.gitkeep
-# Note: build/octatrack-mk1-manual.pdf is committed as the published artefact.
-# Other PDFs (drafts, previews) stay ignored:
 build/preview*.pdf
 build/draft*.pdf
 
@@ -23,3 +27,10 @@ venv/
 TODO.md
 NOTES.md
 drafts/
+
+# Secrets and per-project tooling (never commit)
+.secrets
+.env
+.env.*
+.mcp.json
+node_modules/
