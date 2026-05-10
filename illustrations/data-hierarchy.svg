@@ -1,0 +1,178 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 540" role="img" aria-labelledby="t-hier">
+  <title id="t-hier">The Octatrack data hierarchy</title>
+
+  <defs>
+    <style>
+      .lvl       { fill: #FBF8F1; stroke: #15110D; stroke-width: 1.2; }
+      .lvl-accent{ fill: #F2E2D3; stroke: #C84A1A; stroke-width: 1.2; }
+      .lvl-ink   { fill: #15110D; stroke: #15110D; stroke-width: 1.2; }
+      .arrow     { stroke: #15110D; stroke-width: 1.2; fill: none; marker-end: url(#arr); }
+      .arrow-soft{ stroke: #6B635A; stroke-width: 1; fill: none; marker-end: url(#arrSoft); stroke-dasharray: 3 3; }
+      .arrow-bind{ stroke: #C84A1A; stroke-width: 1.5; fill: none; }
+
+      .name      { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700;
+                   fill: #15110D; text-anchor: middle; }
+      .name-light{ font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700;
+                   fill: #FBF8F1; text-anchor: middle; }
+      .meta      { font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 500;
+                   fill: #6B635A; text-anchor: middle; letter-spacing: 0.04em; }
+      .meta-light{ font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 500;
+                   fill: #C8C0B5; text-anchor: middle; letter-spacing: 0.04em; }
+      .ann       { font-family: 'Inter', sans-serif; font-size: 8.5px; font-weight: 500;
+                   fill: #3A332C; }
+      .ann-accent{ font-family: 'Inter', sans-serif; font-size: 8.5px; font-weight: 600;
+                   fill: #8E2F0E; }
+      .legend    { font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 600;
+                   fill: #15110D; letter-spacing: 0.1em; text-transform: uppercase; }
+    </style>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#15110D"/>
+    </marker>
+    <marker id="arrSoft" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#6B635A"/>
+    </marker>
+  </defs>
+
+  <!-- ============================== -->
+  <!-- LEVEL 1: Card                  -->
+  <!-- ============================== -->
+  <g transform="translate(330,30)">
+    <rect class="lvl-ink" x="0" y="0" width="100" height="40" rx="3"/>
+    <text class="name-light" x="50" y="20">CF CARD</text>
+    <text class="meta-light" x="50" y="32">FAT32 · holds sets</text>
+  </g>
+  <line class="arrow" x1="380" y1="70" x2="380" y2="92"/>
+
+  <!-- ============================== -->
+  <!-- LEVEL 2: Set                   -->
+  <!-- ============================== -->
+  <g transform="translate(310,94)">
+    <rect class="lvl" x="0" y="0" width="140" height="46" rx="3"/>
+    <text class="name" x="70" y="20">SET</text>
+    <text class="meta" x="70" y="34">root folder · audio pool · projects</text>
+  </g>
+  <line class="arrow" x1="380" y1="140" x2="380" y2="162"/>
+
+  <!-- ============================== -->
+  <!-- LEVEL 3: Project               -->
+  <!-- ============================== -->
+  <g transform="translate(290,164)">
+    <rect class="lvl" x="0" y="0" width="180" height="56" rx="3"/>
+    <text class="name" x="90" y="22">PROJECT</text>
+    <text class="meta" x="90" y="36">16 banks · 128 static slots</text>
+    <text class="meta" x="90" y="48">128 flex slots · 8 recorders</text>
+  </g>
+
+  <!-- side: audio pool reference -->
+  <g transform="translate(80,170)">
+    <rect class="lvl-accent" x="0" y="0" width="160" height="42" rx="3"/>
+    <text class="name" x="80" y="20" fill="#8E2F0E">AUDIO POOL</text>
+    <text class="meta" x="80" y="34">samples · shared by set</text>
+  </g>
+  <path class="arrow-soft" d="M 240 191 C 270 191 270 191 290 191"/>
+  <text class="ann" x="252" y="186" text-anchor="middle">references</text>
+
+  <line class="arrow" x1="380" y1="220" x2="380" y2="244"/>
+
+  <!-- ============================== -->
+  <!-- LEVEL 4: Bank                  -->
+  <!-- ============================== -->
+  <g transform="translate(305,246)">
+    <rect class="lvl" x="0" y="0" width="150" height="46" rx="3"/>
+    <text class="name" x="75" y="20">BANK A…P</text>
+    <text class="meta" x="75" y="34">16 patterns · 4 parts</text>
+  </g>
+
+  <!-- ============================== -->
+  <!-- LEVEL 5: Pattern AND Part      -->
+  <!-- (the binding pair)             -->
+  <!-- ============================== -->
+  <line class="arrow" x1="350" y1="292" x2="190" y2="332"/>
+  <line class="arrow" x1="410" y1="292" x2="570" y2="332"/>
+
+  <!-- Pattern -->
+  <g transform="translate(110,332)">
+    <rect class="lvl" x="0" y="0" width="170" height="62" rx="3"/>
+    <text class="name" x="85" y="22">PATTERN</text>
+    <text class="meta" x="85" y="38">trigs · p-locks · scale</text>
+    <text class="meta" x="85" y="50">conditions · tempo</text>
+  </g>
+
+  <!-- Part -->
+  <g transform="translate(490,332)">
+    <rect class="lvl" x="0" y="0" width="170" height="62" rx="3"/>
+    <text class="name" x="85" y="22">PART</text>
+    <text class="meta" x="85" y="38">machines · slot picks</text>
+    <text class="meta" x="85" y="50">FX · scenes · LFOs</text>
+  </g>
+
+  <!-- the binding line between Pattern and Part -->
+  <path class="arrow-bind" d="M 280 363 L 490 363" marker-end="url(#arrAccent)"/>
+  <defs>
+    <marker id="arrAccent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#C84A1A"/>
+    </marker>
+  </defs>
+  <text class="ann-accent" x="385" y="357" text-anchor="middle">a pattern binds to one part</text>
+  <text class="ann" x="385" y="376" text-anchor="middle">parts are shared by all patterns in the bank</text>
+
+  <!-- ============================== -->
+  <!-- LEVEL 6: Scene · Track · Slot  -->
+  <!-- (children of part)             -->
+  <!-- ============================== -->
+  <line class="arrow" x1="540" y1="394" x2="540" y2="424"/>
+  <line class="arrow" x1="600" y1="394" x2="660" y2="424"/>
+  <line class="arrow" x1="490" y1="394" x2="430" y2="424"/>
+
+  <!-- Scene -->
+  <g transform="translate(370,426)">
+    <rect class="lvl" x="0" y="0" width="120" height="42" rx="3"/>
+    <text class="name" x="60" y="20">SCENE</text>
+    <text class="meta" x="60" y="34">16 per part</text>
+  </g>
+
+  <!-- Track + Machine -->
+  <g transform="translate(500,426)">
+    <rect class="lvl" x="0" y="0" width="120" height="42" rx="3"/>
+    <text class="name" x="60" y="20">TRACK</text>
+    <text class="meta" x="60" y="34">8 audio · 8 MIDI</text>
+  </g>
+
+  <!-- Slot -->
+  <g transform="translate(630,426)">
+    <rect class="lvl" x="0" y="0" width="120" height="42" rx="3"/>
+    <text class="name" x="60" y="20">SLOT</text>
+    <text class="meta" x="60" y="34">static · flex</text>
+  </g>
+
+  <!-- ============================== -->
+  <!-- LEVEL 7: Machine + Sample      -->
+  <!-- ============================== -->
+  <line class="arrow" x1="560" y1="468" x2="560" y2="490"/>
+  <g transform="translate(490,492)">
+    <rect class="lvl" x="0" y="0" width="140" height="36" rx="3"/>
+    <text class="name" x="70" y="22">MACHINE</text>
+  </g>
+
+  <!-- ============================== -->
+  <!-- LEFT GUTTER LEGEND             -->
+  <!-- ============================== -->
+  <g transform="translate(40,432)">
+    <text class="legend" x="0" y="0">DOWN-ARROW</text>
+    <text class="ann" x="0" y="14">"contains"</text>
+    <line class="arrow" x1="0" y1="22" x2="34" y2="22"/>
+
+    <text class="legend" x="0" y="46">DASH-ARROW</text>
+    <text class="ann" x="0" y="60">"references"</text>
+    <line class="arrow-soft" x1="0" y1="68" x2="34" y2="68"/>
+
+    <text class="legend" x="0" y="92">ORANGE-ARROW</text>
+    <text class="ann" x="0" y="106">"binds to"</text>
+    <line class="arrow-bind" x1="0" y1="114" x2="34" y2="114"/>
+  </g>
+
+  <!-- footer note -->
+  <text x="380" y="528" class="meta" text-anchor="middle">
+    parts and patterns are siblings of the bank — neither contains the other
+  </text>
+</svg>

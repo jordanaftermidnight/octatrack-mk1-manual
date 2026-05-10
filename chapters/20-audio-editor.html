@@ -1,0 +1,181 @@
+<section class="chapter" data-running="20 · Audio editor">
+  <span class="running-title">20 · Audio editor</span>
+  <div class="chapter-header">
+    <div class="eyebrow">Part VII · Sampling &amp; the audio editor</div>
+    <div class="chapter-no">Chapter 20</div>
+    <h1 class="chapter-title">Audio editor</h1>
+    <p class="lead" style="max-width: 130mm;">
+      The Audio Editor is where you trim, loop, slice, and analyse
+      samples. Two main pages: TRIM for boundary editing and SLICE for
+      slice-grid creation.
+    </p>
+  </div>
+
+  <h2>Accessing the editor</h2>
+
+  <p>
+    From the Sample Manager (PROJECT → SAMPLE MANAGER), select a
+    sample and press <kbd>YES</kbd>. The editor opens with the
+    sample's waveform displayed on the LCD.
+  </p>
+
+  <p>
+    Or from a track: hold <kbd class="fn">FUNCTION</kbd> + <kbd>BANK</kbd>
+    (EDIT) with the active track selected and a Flex/Static machine
+    loaded. This opens the editor for the track's current sample.
+  </p>
+
+  <h2>TRIM page</h2>
+
+  <p>
+    TRIM lets you set the sample's start and end points (the bounds of
+    playback) and loop points (for sustained playback).
+  </p>
+
+  <table class="key-table">
+    <thead><tr><th>Knob</th><th>Function</th></tr></thead>
+    <tbody>
+      <tr><td>A</td><td>TRIM IN — start point of the sample</td></tr>
+      <tr><td>B</td><td>TRIM OUT — end point of the sample</td></tr>
+      <tr><td>C</td><td>LOOP IN — loop start point</td></tr>
+      <tr><td>D</td><td>LOOP OUT — loop end point</td></tr>
+      <tr><td>E</td><td>Zoom level</td></tr>
+      <tr><td>F</td><td>Cursor position (for fine-tuning)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Why trim points matter</h3>
+
+  <p>
+    Trim points are saved <em>with the slot list</em>, not with the
+    sample file itself. So one audio file can have multiple slots
+    pointing to it with different trim/loop settings. The audio file
+    is shared; the playback bounds are slot-specific.
+  </p>
+
+  <p>
+    Practical use: a single 30-second loop file can be referenced by
+    16 different Flex slots, each trimmed to a different 2-second
+    section. One file, 16 different one-bar loops accessible per slot.
+  </p>
+
+  <h3>Auto-trim</h3>
+
+  <p>
+    The TRIM page menu offers auto-trim functions:
+  </p>
+
+  <ul class="tight">
+    <li><strong>Auto trim</strong> — find silence at start/end and
+        trim to non-silent boundaries</li>
+    <li><strong>Auto loop</strong> — find a clean loop point in the
+        sample (zero-crossings, period analysis)</li>
+    <li><strong>Normalize</strong> — boost the sample's level to
+        maximum without clipping</li>
+  </ul>
+
+  <h2>SLICE page</h2>
+
+  <p>
+    Slicing divides a sample into up to 64 named regions, each
+    individually addressable as a "slice number" via the STRT
+    parameter (chapter 16) or via SLICES trig mode (chapter 11).
+  </p>
+
+  <h3>Creating slices</h3>
+
+  <p>
+    From the SLICE page menu:
+  </p>
+
+  <ul class="tight">
+    <li><strong>Auto-slice (grid)</strong> — divide the sample into N
+        equal regions (4, 8, 16, 32, 64). Most common for drum loops.</li>
+    <li><strong>Auto-slice (transients)</strong> — analyse the audio
+        and place slice boundaries at detected transients. Threshold
+        adjustable.</li>
+    <li><strong>Manual slice</strong> — place slice points by ear
+        with the cursor</li>
+  </ul>
+
+  <h3>Editing slices</h3>
+
+  <ul class="tight">
+    <li>Adjust slice boundaries with the cursor + knob A</li>
+    <li>Each slice's individual length can be tweaked</li>
+    <li>Delete unwanted slices or merge adjacent ones</li>
+    <li>Save the slice grid back to the slot</li>
+  </ul>
+
+  <h3>Playing slices</h3>
+
+  <p>
+    Once sliced, a sample's slices can be played by:
+  </p>
+
+  <ul class="tight">
+    <li>SLICES trig mode — each trig key plays a different slice</li>
+    <li>STRT p-locks — set per step in TRACKS mode for sequenced
+        slicing</li>
+    <li>LFO-modulated STRT — LFO cycles through slice numbers for
+        random or rhythmic slicing</li>
+  </ul>
+
+  <h2>Sample chain workflow</h2>
+
+  <p>
+    A "sample chain" is multiple short samples concatenated into one
+    file, then sliced. Useful for getting more sounds into a single
+    track with one slot.
+  </p>
+
+  <p>
+    Build a chain externally (in a DAW) — one drum hit per equal
+    time-segment, e.g. eight 0.5-second segments forming a 4-second
+    file. Import the chain into a Flex slot. Auto-slice 8 ways. Now
+    each trig in SLICES mode plays a different drum hit, all from one
+    slot, one sample.
+  </p>
+
+  <h2>Resampling</h2>
+
+  <p>
+    Resampling = recording the OT's own output back into a recorder
+    buffer, then loading that buffer as a new sample. This is how you
+    "freeze" a complex performance into a single sample, freeing up
+    tracks.
+  </p>
+
+  <p>
+    Steps:
+  </p>
+
+  <ol class="tight">
+    <li>Set up a track with a Flex machine and the recorder buffer
+        of another track as its source (via SRC3 setting in Recording
+        Setup)</li>
+    <li>Configure recording with QREC for clean alignment</li>
+    <li>Trigger recording while the source is playing</li>
+    <li>Save the resulting buffer to the Audio Pool</li>
+    <li>Load the saved sample as a new Flex slot — replacing the
+        original tracks</li>
+  </ol>
+
+  <p>
+    Resampling is essential for live performance: a complex four-
+    track drum arrangement can be flattened to one Flex slot, freeing
+    three tracks for other use.
+  </p>
+
+  <div class="callout tip">
+    <span class="callout-label">Tip · zero-crossing for clean loops</span>
+    <p>
+      Loop points work best at zero-crossings — points where the
+      waveform crosses the centre line. The OT's loop-finder tries to
+      identify these automatically, but for tricky material you may
+      need to manually nudge to a zero-crossing. Click + cursor near
+      the suspected point; zoom in; find the cleanest crossing within
+      a few samples. The result is artifact-free looping.
+    </p>
+  </div>
+</section>

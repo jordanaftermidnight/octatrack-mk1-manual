@@ -1,0 +1,173 @@
+<section class="chapter" data-running="16 · PLAYBACK &amp; AMP pages">
+  <span class="running-title">16 · PLAYBACK &amp; AMP pages</span>
+  <div class="chapter-header">
+    <div class="eyebrow">Part VI · Sound shaping</div>
+    <div class="chapter-no">Chapter 16</div>
+    <h1 class="chapter-title">PLAYBACK &amp; AMP pages</h1>
+    <p class="lead" style="max-width: 130mm;">
+      The first two parameter pages: PLAYBACK shapes how the sample
+      plays; AMP shapes its envelope and level.
+    </p>
+  </div>
+
+  <h2>PLAYBACK page</h2>
+
+  <p>
+    The PLAYBACK page exposes six parameters. For Static and Flex
+    machines they're broadly equivalent, with Flex offering a wider
+    range on several:
+  </p>
+
+  <table class="key-table">
+    <thead><tr><th>Knob</th><th>Param</th><th>Range</th><th>Function</th></tr></thead>
+    <tbody>
+      <tr><td>A</td><td><span class="param">SLOT</span></td><td>0–127</td><td>Sample slot for this track</td></tr>
+      <tr><td>B</td><td><span class="param">PTCH</span></td><td>±64 (Flex), ±24 (Static)</td><td>Pitch in semitones</td></tr>
+      <tr><td>C</td><td><span class="param">STRT</span></td><td>0–127 / slice</td><td>Sample start point (or slice number)</td></tr>
+      <tr><td>D</td><td><span class="param">LEN</span></td><td>0–127</td><td>Length of playback from start point</td></tr>
+      <tr><td>E</td><td><span class="param">RATE</span></td><td>±64</td><td>Playback rate (negative = reverse on Flex)</td></tr>
+      <tr><td>F</td><td><span class="param">LOOP</span></td><td>OFF / ON</td><td>Loop the playback within the start/length window</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Pitch and rate together</h3>
+
+  <p>
+    Pitch and rate are independent on Flex tracks (with TIMESTRETCH on)
+    but coupled on Static. For Static, changing pitch changes rate
+    (you're slowing the file down, which lowers pitch). For Flex with
+    TIMESTRETCH off, same coupling. With TIMESTRETCH on, you can pitch
+    without time-shifting, or vice versa.
+  </p>
+
+  <h3>Sample start, length, loop</h3>
+
+  <p>
+    These three define the playback window within the sample:
+  </p>
+
+  <ul class="tight">
+    <li>STRT = 0 plays from the file's beginning</li>
+    <li>LEN = max plays the full length of the file from STRT</li>
+    <li>LOOP ON loops the start/length window indefinitely (until the
+        next trig or until the AMP envelope releases)</li>
+  </ul>
+
+  <p>
+    P-locking STRT per step is the technique behind glitch and stutter
+    effects: 16 trigs on a sample, each with a different STRT lock,
+    plays 16 different fragments of the file as a sliced loop.
+  </p>
+
+  <h3>Slice mode</h3>
+
+  <p>
+    When a Flex sample has a slice grid defined (chapter 30), STRT
+    becomes a <em>slice number</em> selector instead of a position.
+    P-locking STRT then chooses which slice each step plays.
+  </p>
+
+  <p>
+    SLICES trig mode (chapter 11) automatically locks STRT to the trig
+    number's slice — but you can also do it manually via p-locks in
+    TRACKS mode.
+  </p>
+
+  <h2>AMP page</h2>
+
+  <p>
+    The AMP page shapes the track's amplitude envelope and overall
+    level:
+  </p>
+
+  <table class="key-table">
+    <thead><tr><th>Knob</th><th>Param</th><th>Range</th><th>Function</th></tr></thead>
+    <tbody>
+      <tr><td>A</td><td><span class="param">ATK</span></td><td>0–127</td><td>Attack time</td></tr>
+      <tr><td>B</td><td><span class="param">HOLD</span></td><td>0–128</td><td>Hold time at full level (128 = infinite)</td></tr>
+      <tr><td>C</td><td><span class="param">REL</span></td><td>0–128</td><td>Release time</td></tr>
+      <tr><td>D</td><td><span class="param">VOL</span></td><td>0–127</td><td>Track output level</td></tr>
+      <tr><td>E</td><td><span class="param">BAL</span></td><td>±64</td><td>Stereo balance (pan)</td></tr>
+      <tr><td>F</td><td><span class="param">XVOL</span></td><td>0–127 / ±127</td><td>Crossfader-controlled volume offset (see chapter 23)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>The envelope shape</h3>
+
+  <p>
+    The OT's amplitude envelope is AHR (Attack-Hold-Release). No
+    sustain stage — HOLD substitutes for sustain by holding peak level
+    for a fixed duration before releasing.
+  </p>
+
+  <p>
+    HOLD = 128 means infinite hold — the envelope reaches peak and
+    stays there until a new trig fires (or the track is muted, or
+    something else interrupts). This is the OT's "sustain" mode.
+  </p>
+
+  <h3>Relationship to sample length</h3>
+
+  <p>
+    The envelope and the sample's natural length are independent. A
+    short envelope on a long sample cuts the sample short; a long
+    envelope on a short sample lets the sample play through and then
+    holds silence (with potential filter/FX tails) for the remaining
+    envelope time.
+  </p>
+
+  <h3>XVOL — the crossfader-controlled level</h3>
+
+  <p>
+    XVOL is a level offset that responds to the crossfader. With XVOL
+    set to a positive value and the fader in scene-locked positions,
+    the track's effective volume becomes VOL + (XVOL × fader_position).
+  </p>
+
+  <p>
+    The mechanism is more deeply useful with scenes — see chapter 23
+    for the full crossfader integration. For now: XVOL is the
+    parameter you scene-lock when you want the crossfader to fade a
+    track in or out.
+  </p>
+
+  <div class="callout note">
+    <span class="callout-label">Note · the XVOL trap</span>
+    <p>
+      XVOL <em>multiplies</em> with VOL. A track with VOL = 0 cannot be
+      brought up by XVOL — XVOL of any value × VOL of 0 = 0. To use
+      XVOL for "fade in", set VOL to a non-zero value first, then
+      scene-lock XVOL across the fader. Or use scene-lock on VOL
+      directly. This is one of the OT's most-encountered "why doesn't
+      this work?" issues.
+    </p>
+  </div>
+
+  <h2>Practical AMP page recipes</h2>
+
+  <div class="recipe">
+    <h4>Recipe — kick stab</h4>
+    <p>
+      ATK = 0, HOLD = 4, REL = 12. Short, percussive, no tail. Good
+      for short-sample drums and bass stabs.
+    </p>
+  </div>
+
+  <div class="recipe">
+    <h4>Recipe — pad swell</h4>
+    <p>
+      ATK = 30, HOLD = 0, REL = 50. Slow attack, gradual release. The
+      sample fades in and gently fades out — useful for ambient pads
+      from a long sample.
+    </p>
+  </div>
+
+  <div class="recipe">
+    <h4>Recipe — sustained drone</h4>
+    <p>
+      ATK = 0, HOLD = 128, REL = 0. The envelope holds infinitely.
+      One trig produces continuous sound until something interrupts.
+      Use with LOOP ON on PLAYBACK for true sustain.
+    </p>
+  </div>
+</section>

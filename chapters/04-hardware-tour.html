@@ -1,0 +1,417 @@
+<section class="chapter" data-running="4 · Top panel anatomy">
+  <span class="running-title">4 · Top panel anatomy</span>
+  <div class="chapter-header">
+    <div class="eyebrow">Part II · Hardware tour</div>
+    <div class="chapter-no">Chapter 4</div>
+    <h1 class="chapter-title">Top panel anatomy</h1>
+    <p class="lead" style="max-width: 130mm;">
+      Every control on the MK1 faceplate, numbered to match the official manual.
+      By the end of this chapter no key on the surface should be unfamiliar.
+    </p>
+  </div>
+
+  <p>
+    The diagram below uses the same numbering as the official Octatrack User
+    Manual, OS&nbsp;1.40A. Numbers 1–9 cover knobs, the LCD, and indicator LEDs.
+    Numbers 10–22 cover the function keys, navigation, parameter row, and
+    transport. Numbers 23–26 cover the scenes, crossfader, and time-signature
+    cluster. The 16 trig keys at the bottom are not individually numbered in
+    the official scheme — they're treated as a single control (the bottom
+    band), with secondary labelling reproduced verbatim.
+  </p>
+
+  <figure>
+    <object data="../illustrations/panel-front.svg" type="image/svg+xml" style="width: 100%; max-width: 175mm;">
+      Top panel diagram (SVG)
+    </object>
+    <figcaption>
+      <span class="label">Figure 4.1</span>
+      Top panel of the Octatrack MK1, schematic. Numbering matches the
+      official OS&nbsp;1.40A manual, sec.&nbsp;3.1. Buttons in red
+      (REC&nbsp;AB/CD, transport REC) are red on the actual unit; orange-
+      filled trigs (2 / 5 / 9 / 13) are example active steps.
+    </figcaption>
+  </figure>
+
+  <h2 style="margin-top: 1.4em;">Knobs, the screen, indicator LEDs (1–9)</h2>
+
+  <h3>1 · Headphones volume control</h3>
+  <p>
+    Top-left knob, marked <em>Volume</em> on the faceplate. Sets the level at
+    the rear-panel headphones jack. On the MK1 it is dedicated to the
+    headphones output and does not affect the main outs — track levels
+    are set in the Mixer page (per-track) and the master output is set with
+    <kbd class="fn">FUNCTION</kbd>+<kbd>LEVEL</kbd> (callout&nbsp;7).
+  </p>
+
+  <h3>2 · Audio Record LEDs (A&nbsp;–&nbsp;B and C&nbsp;–&nbsp;D)</h3>
+  <p>
+    Two horizontal rows of small LEDs to the right of the volume knob, labelled
+    <kbd>A &mdash; B</kbd> and <kbd>C &mdash; D</kbd>. They show the signal
+    strength on the corresponding rear-panel input pair. Pre-fader: they
+    indicate what's arriving at the converters, not what the recording-setup
+    gain stage is doing with it. Use the rightmost (red) LED as a clip
+    indicator and back the source off if it lights on peaks.
+  </p>
+  <p>
+    A second function: when the Recording Setup menu is open, these LEDs
+    also indicate the <em>source selection</em> for the recorder trigs —
+    a useful confirmation that the recorder is listening to the source you
+    expect.
+  </p>
+
+  <h3>3 · Audio Record buttons (REC AB / REC CD)</h3>
+  <p>
+    The two large round red buttons. There is one record button per audio
+    input pair: the left one captures pair AB, the right one captures pair CD.
+    Pressed alone (in the standard PERSONALIZE configuration) they begin
+    sampling immediately into the active recorder buffer. With
+    <kbd class="fn">FUNCTION</kbd> they open the corresponding Recording
+    Setup page; with a <kbd>TRACK</kbd> key held they record into that
+    specific track's recorder.
+  </p>
+
+  <h3>4 · Track buttons (T1–T8)</h3>
+  <p>
+    The eight small round buttons flanking the LCD: <kbd>T1</kbd> through
+    <kbd>T4</kbd> in a column to the left of the screen, <kbd>T5</kbd>
+    through <kbd>T8</kbd> in a column to the right. Each has a track-status
+    LED beside it.
+  </p>
+  <p>
+    The official manual's description, in summary:
+  </p>
+  <ul class="tight">
+    <li>Press a <kbd>TRACK</kbd> button to <strong>focus</strong> on that track.</li>
+    <li><kbd>TRACK</kbd>+<kbd>AUDIO RECORD</kbd> records into <em>that</em> track's recorder.</li>
+    <li><kbd class="fn">FUNCTION</kbd>+<kbd>TRACK</kbd> mutes the selected track.</li>
+    <li><kbd>CUE</kbd>+<kbd>TRACK</kbd> routes the selected track to the cue bus.</li>
+  </ul>
+  <p>
+    The track LEDs show three states simultaneously: which track is the
+    focus, which tracks are muted, and which tracks are routed to cue. Their
+    colour and brightness convey the combination — the full table is in
+    Appendix&nbsp;A's LED-state legend.
+  </p>
+
+  <h3>5 · LCD</h3>
+  <p>
+    128 × 64 pixel monochrome graphical interface. The MK1's screen is fixed-
+    contrast — there is no backlight intensity control. Cleaning: a
+    microfibre cloth and very mild isopropyl. The display has been observed
+    to develop horizontal banding on units beyond a decade old; this is
+    cosmetic and does not affect function.
+  </p>
+  <p>
+    The screen divides into three regions: the <strong>title bar</strong>
+    (active track number, mode indicator, transport state, BPM), the
+    <strong>main pane</strong> (large knob arcs and parameter values), and
+    the <strong>label strip</strong> at the bottom (six four-letter
+    parameter labels mapping to data-entry knobs A&ndash;F). When a parameter
+    is locked on the active step, the corresponding label inverts.
+  </p>
+
+  <h3>6 · Card Status LED</h3>
+  <p>
+    A small LED near the top edge of the panel, beside the Compact Flash
+    label. Lights during card activity (read or write). If it stays lit
+    continuously for more than a few seconds without action, the OT is
+    busy with a long save or a scan; do not power-cycle until it returns
+    to dark.
+  </p>
+
+  <h3>7 · LEVEL</h3>
+  <p>
+    The larger grey knob to the right of the LCD. Sets the overall volume
+    level of the <em>active track</em> (post-FX, pre-crossfader). Its
+    function changes by context:
+  </p>
+  <ul class="tight">
+    <li>Normal play: active-track level.</li>
+    <li><kbd class="fn">FUNCTION</kbd>+<kbd>LEVEL</kbd>: <strong>main
+        output volume</strong> — the closest thing to a master fader the
+        OT has on the front panel.</li>
+    <li>With a <kbd>TRIG</kbd> held in grid edit: sets the trig's
+        conditional value.</li>
+    <li>In TEMPO mode: sets project tempo.</li>
+  </ul>
+
+  <h3>8 · TEMPO</h3>
+  <p>
+    Single button on the right side, between the encoder cluster and the
+    scene controls. Pressed alone it brings up the Tempo menu. The
+    <kbd>TEMPO</kbd> LED above the button flashes at the current BPM —
+    so even with the menu closed, the panel tells you the tempo at a
+    glance. Tap-tempo: hold <kbd class="fn">FUNCTION</kbd> and tap
+    <kbd>TEMPO</kbd> repeatedly.
+  </p>
+
+  <h3>9 · Data-entry knobs (A B C / D E F)</h3>
+  <p>
+    Six endless encoders in a 2×3 grid: <kbd>A</kbd>&nbsp;<kbd>B</kbd>&nbsp;<kbd>C</kbd>
+    in the top row, <kbd>D</kbd>&nbsp;<kbd>E</kbd>&nbsp;<kbd>F</kbd> in the
+    bottom row. Each one edits whichever parameter the LCD's bottom label
+    strip currently assigns to it. Push any knob while turning to scroll
+    in <em>coarse</em> increments — useful for jumping past large value
+    ranges. Pushing without turning is ignored by most pages; a few
+    sub-screens use it as enter.
+  </p>
+
+  <h2>The function block (10–18)</h2>
+
+  <h3>10 · MIXER</h3>
+  <p>
+    Opens the Mixer menu, where input/output settings, per-track levels,
+    and the cue/solo states are accessed. <kbd class="fn">FUNCTION</kbd>+<kbd>MIXER</kbd>
+    opens the <strong>Project</strong> menu — the topmost level of the
+    OT's data hierarchy, where you save, load, format, and switch
+    projects.
+  </p>
+
+  <h3>11 · MIDI</h3>
+  <p>
+    Toggles MIDI editing mode. When the <kbd>MIDI</kbd> LED is lit, the
+    eight track keys select MIDI tracks rather than audio tracks; the
+    parameter row's labels change to <kbd>NOTE</kbd>, <kbd>ARP</kbd>,
+    <kbd>LFO</kbd>, <kbd>CTRL&nbsp;1</kbd>, <kbd>CTRL&nbsp;2</kbd>; and
+    the encoders edit MIDI parameters.
+  </p>
+  <p>
+    When the Recording Setup menu is open, the <kbd>MIDI</kbd> LED
+    becomes a second-purpose indicator: it shows the signal strength of
+    the <em>internal</em> sample source as well as which internal source
+    is selected for the recorder trigs.
+  </p>
+  <p>
+    <kbd class="fn">FUNCTION</kbd>+<kbd>MIDI</kbd> opens the <strong>Parts</strong>
+    menu. When a Pickup machine is loaded on the active track, the same
+    combination performs a number of Pickup-specific commands (covered
+    in chapter 25).
+  </p>
+
+  <h3>12 · FUNCTION</h3>
+  <p>
+    The universal modifier. Held with any other key it accesses that key's
+    secondary action. Secondary labels are printed on the faceplate in
+    red, beneath or beside their primary labels. Treat <kbd>FUNCTION</kbd>
+    as the OT's Shift key; once you've memorised twenty or so combos, the
+    panel feels much more compact than it looks.
+  </p>
+
+  <h3>13 · CUE</h3>
+  <p>
+    <kbd>CUE</kbd>+<kbd>TRACK</kbd> routes that track to the CUE outputs;
+    its primary purpose is headphone pre-listen, with a secondary use as
+    an independent stereo pair when Studio Mode is enabled (see
+    chapter 5, callout 10). <kbd class="fn">FUNCTION</kbd>+<kbd>CUE</kbd>
+    becomes <strong>RELOAD</strong> — restores the active part's
+    parameters from the saved state, useful as a safety net before
+    destructive edits.
+  </p>
+
+  <h3>14 · PATTERN</h3>
+  <p>
+    Held alone, turns the trig row into a 16-pattern selector for the
+    active bank. Releasing without pressing a trig dismisses the selector
+    without changing the pattern. <kbd class="fn">FUNCTION</kbd>+<kbd>PATTERN</kbd>
+    opens the <strong>Arranger</strong>.
+  </p>
+
+  <h3>15 · BANK</h3>
+  <p>
+    Held alone, turns the trig row into a 16-bank selector (A–P). Each
+    bank holds 16 patterns and 4 parts. <kbd class="fn">FUNCTION</kbd>+<kbd>BANK</kbd>
+    opens <strong>EDIT</strong> mode — the per-pattern edit menu.
+  </p>
+
+  <h3>16 · ENTER · YES</h3>
+  <p>
+    Round button beneath the parameter row, with an LED indicator above it.
+    Confirms menu actions. Has a long tail of secondary uses across other
+    contexts:
+    <kbd>TRIG</kbd>+<kbd>YES</kbd> previews a step (with all parameter
+    locks) on the MAIN bus;
+    <kbd>TRACK PARAM</kbd>+<kbd>YES</kbd> randomises the active page's
+    parameters (an OS&nbsp;1.40 addition).
+  </p>
+
+  <h3>17 · EXIT · NO</h3>
+  <p>
+    Round button beneath ENTER. Cancels menu actions, exits sub-screens.
+    Mirrors the secondary actions of YES with the inverse semantic:
+    <kbd>TRACK PARAM</kbd>+<kbd>NO</kbd> reloads the active page's
+    parameters from the saved part — together with YES it functions as
+    a per-page A/B comparison.
+    <kbd class="fn">FUNCTION</kbd>+<kbd>NO</kbd> erases parameter locks
+    at the playhead during live record.
+  </p>
+
+  <h3>18 · Arrow keys</h3>
+  <p>
+    Cluster of four small round buttons in a + arrangement: ▲ ▼ ◀ ▶.
+    Cursor navigation in menus, parameter scaling on some pages, and
+    sequencer page-turn (LEFT and RIGHT cycle through the four pages of
+    a 64-step pattern). With <kbd class="fn">FUNCTION</kbd>: LEFT and
+    RIGHT shift trigs left or right within the page — a quick way to
+    reorganise a beat without redrawing it.
+  </p>
+
+  <h2>Parameter row, transport (19–22)</h2>
+
+  <h3>19 · Parameter pages</h3>
+  <p>
+    Five rectangular buttons in a row above the transport. Each one selects
+    a parameter page that the data-entry knobs A–F then edit. On audio
+    tracks: <kbd>PLAYBACK</kbd>, <kbd>AMP</kbd>, <kbd>LFO</kbd>,
+    <kbd>EFFECT 1</kbd>, <kbd>EFFECT 2</kbd>. On MIDI tracks (with the
+    MIDI LED lit): <kbd>NOTE</kbd>, <kbd>ARP</kbd>, <kbd>LFO</kbd>,
+    <kbd>CTRL 1</kbd>, <kbd>CTRL 2</kbd>.
+  </p>
+  <p>
+    The <kbd>SETUP</kbd> band beneath the row indicates the secondary
+    state: holding <kbd class="fn">FUNCTION</kbd> while pressing any of
+    these five opens that page's <em>setup</em> screen — where, for
+    example, you assign which sample slot a track plays from, or which
+    effect occupies the FX2 slot.
+  </p>
+
+  <h3>20 · COPY (REC)</h3>
+  <p>
+    The transport <kbd>REC</kbd> button. Primary function: arms recording
+    into the sequencer. <kbd>REC</kbd>+<kbd>PLAY</kbd> enters live-record
+    mode; adding <kbd class="fn">FUNCTION</kbd> enters quantised
+    live-record. Secondary function (with <kbd class="fn">FUNCTION</kbd>):
+    <strong>COPY</strong> — the universal copy-to-clipboard operator,
+    contextual to whatever is currently held (steps, patterns, parts,
+    scenes, samples, slots).
+  </p>
+
+  <h3>21 · CLEAR (PLAY)</h3>
+  <p>
+    The transport <kbd>PLAY</kbd> button. Primary function: starts and
+    stops the sequencer. Secondary function: <strong>CLEAR</strong> —
+    the universal clear/empty operator, contextual to whatever is held.
+    <kbd class="fn">FUNCTION</kbd>+<kbd>PLAY</kbd> additionally resets
+    the sequencer to step 1 before starting.
+  </p>
+
+  <h3>22 · PASTE (STOP)</h3>
+  <p>
+    The transport <kbd>STOP</kbd> button. Stops the sequencer; pressed
+    twice in quick succession also silences any active reverb and delay
+    tails immediately. Secondary function: <strong>PASTE</strong> —
+    the universal paste-from-clipboard operator. Together, the
+    Copy/Clear/Paste triad is the OT's standard editing toolkit.
+  </p>
+
+  <h2>Scenes, crossfader, scale (23–26)</h2>
+
+  <h3>23 · SCENE A · MUTE</h3>
+  <p>
+    Round button at the lower-right area, to the left of the crossfader.
+    Held alone, it turns the trig row into a 16-scene selector for
+    assigning which scene the A end of the crossfader maps to. Note that
+    SCENE A is an <em>assigner</em>, not a switcher — it sets <em>which
+    scene</em> the fader's A end controls; it does not jump scenes.
+    With <kbd class="fn">FUNCTION</kbd> it becomes <strong>MUTE</strong>
+    for its assigned scene — useful for instant bypass without moving
+    the fader.
+  </p>
+
+  <h3>24 · CROSSFADER</h3>
+  <p>
+    The horizontal slider between the two scene buttons. Morphs between
+    the two scenes assigned to its A and B ends. Every parameter on the
+    device that supports a scene lock can be morphed by it.
+  </p>
+  <p>
+    On MK1 the crossfader is an <em>optical</em> sensor riding a
+    mechanical track; on MK2 it is contactless. The mechanical nature of
+    MK1's fader means it can develop dust-related crackle over time —
+    curable with a careful disassembly and a clean (covered in
+    Appendix&nbsp;G's troubleshooting tree).
+  </p>
+
+  <div class="callout note">
+    <span class="callout-label">Note · the crossfader's actual behaviour</span>
+    <p>
+      Newcomers often expect the crossfader to behave like a DJ-mixer
+      crossfader — fading <em>between</em> two stems on its A and B ends.
+      The Octatrack's fader does not work that way. It morphs between
+      two <strong>parameter snapshots</strong>; whether those snapshots
+      correspond to "two different mixes" depends entirely on what you
+      locked into Scene&nbsp;A and Scene&nbsp;B.
+    </p>
+  </div>
+
+  <h3>25 · SCENE B · MUTE</h3>
+  <p>
+    Mirror of Scene A on the right side of the crossfader. Assigns which
+    scene the fader's B end maps to. With <kbd class="fn">FUNCTION</kbd>:
+    mute Scene B.
+  </p>
+
+  <h3>26 · SCALE SETUP</h3>
+  <p>
+    Small button at the far right with four LEDs (<kbd>1:4</kbd>
+    <kbd>2:4</kbd> <kbd>3:4</kbd> <kbd>4:4</kbd>) above it indicating the
+    current step's relationship to the master scale. Held alone (or
+    pressed) it opens the per-track length, master length, and time-scale
+    settings — covered in chapter 17.
+  </p>
+
+  <h2>The play surface — 16 trig keys</h2>
+
+  <p>
+    The bottom row of the panel is sixteen large round buttons numbered
+    1–16, each with an LED above it and a dual label below: a letter
+    (A–P) and a track number (T1–T8, repeated twice across the row).
+    Trigs 1–8 are grouped under <strong>Track Trigs</strong>; trigs 9–16
+    under <strong>Sample / MIDI Trigs</strong>.
+  </p>
+
+  <p>
+    Their primary function depends on the active <em>trig mode</em>
+    (chapter 18):
+  </p>
+  <ul class="tight">
+    <li><strong>TRACKS mode</strong> — drop sequencer trigs on the
+        active track's pattern.</li>
+    <li><strong>CHROMATIC</strong> — play the active sample at twelve
+        different pitches across the row.</li>
+    <li><strong>SLICES</strong> — trigger the active sample's slice
+        points (up to 64 slices, paged across the trig row).</li>
+    <li><strong>SLOTS</strong> — switch the active track's sample slot.</li>
+    <li><strong>QUICK MUTE</strong> — instant per-track mute toggling.</li>
+    <li><strong>DELAY CONTROL</strong> — temporary delay-send modulator.</li>
+  </ul>
+
+  <p>
+    The letters A–P are referenced when <kbd>BANK</kbd> is held (each
+    bank is named by its letter); the track numbers T1–T8 are used in
+    MIDI mode for direct track addressing from external keyboards.
+  </p>
+
+  <h2>Backlighting and labelling on MK1 vs MK2</h2>
+
+  <p>
+    The MK1's keys are <em>not individually backlit</em> — only the
+    per-track and per-trig LEDs above the buttons illuminate. Secondary
+    functions (the <kbd class="fn">FUNCTION</kbd>+key actions) are
+    silkscreen-printed in red on the faceplate, in small type, and are
+    quite easy to miss. The button-combo encyclopedia in Appendix&nbsp;A
+    reproduces every label; photocopying that appendix and keeping it
+    next to the unit while you learn is a perfectly reasonable thing to
+    do.
+  </p>
+
+  <p>
+    The MK2 adds a separate row of dedicated track-select keys, an
+    <kbd>ARR</kbd> button, a <kbd>PROJ</kbd> button, an <kbd>AED</kbd>
+    button (audio editor), a <kbd>MIX</kbd> button, and a third record
+    button (<kbd>REC&nbsp;3</kbd>) that captures internal sources
+    directly. On MK1 each of these is reached by a combination of the
+    buttons described above; the relevant combos are noted at the start
+    of each chapter where they apply.
+  </p>
+</section>

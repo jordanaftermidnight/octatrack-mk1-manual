@@ -1,0 +1,185 @@
+<section class="chapter" data-running="11 · Trig modes">
+  <span class="running-title">11 · Trig modes</span>
+  <div class="chapter-header">
+    <div class="eyebrow">Part IV · The sequencer</div>
+    <div class="chapter-no">Chapter 11</div>
+    <h1 class="chapter-title">Trig modes</h1>
+    <p class="lead" style="max-width: 130mm;">
+      The 16 trig keys do six different jobs depending on the active
+      trig mode. Switching modes is the difference between drawing a
+      sequence, playing a chromatic scale, triggering slices, or muting
+      tracks live.
+    </p>
+  </div>
+
+  <h2>Switching modes</h2>
+
+  <p>
+    Hold <kbd class="fn">FUNCTION</kbd> and press the UP/DOWN arrow keys
+    to cycle through trig modes. The current mode is shown in the LCD
+    title bar.
+  </p>
+
+  <p>
+    The six modes:
+  </p>
+
+  <h2>1. TRACKS mode (default)</h2>
+
+  <p>
+    Each trig key represents a step in the active track's pattern.
+    Pressing a trig adds or removes that step. This is the "draw the
+    sequence" mode you spend most of your time in.
+  </p>
+
+  <p>
+    Sub-behaviours:
+  </p>
+  <ul class="tight">
+    <li><kbd>TRIG</kbd> alone — toggle step on/off</li>
+    <li><kbd>TRIG</kbd> hold — set p-locks, microtiming, conditions</li>
+    <li><kbd class="fn">FUNCTION</kbd>+<kbd>TRIG</kbd> — trigless lock</li>
+    <li><kbd>YES</kbd>+<kbd>TRIG</kbd> — preview the step (with locks)</li>
+    <li><kbd>CUE</kbd>+<kbd>TRIG</kbd> — preview to the CUE bus</li>
+  </ul>
+
+  <h2>2. CHROMATIC mode</h2>
+
+  <p>
+    The 16 trig keys become a one-octave keyboard. Pressing a trig
+    plays the active sample at a corresponding pitch — trig 1 = root
+    note, trig 2 = root+1 semitone, and so on. Trig 13 is the octave;
+    trigs 14–16 extend three semitones into the next octave.
+  </p>
+
+  <p>
+    Useful for:
+  </p>
+  <ul class="tight">
+    <li>Playing pitched samples (bass, leads, single-cycle waveforms)</li>
+    <li>Live sample-pitching during performance</li>
+    <li>Pattern composition by recording chromatic input into Live
+        Record (chapter 12)</li>
+  </ul>
+
+  <p>
+    The base pitch is the sample's natural pitch as set on the
+    PLAYBACK page. Octave shifting is via
+    <kbd class="fn">FUNCTION</kbd>+UP/DOWN within CHROMATIC mode (not
+    the trig-mode switcher — UP/DOWN alone shift octaves once you're
+    in CHROMATIC).
+  </p>
+
+  <h2>3. SLICES mode</h2>
+
+  <p>
+    Each trig key plays a different slice of the active sample.
+    Available with Flex machines that have a slice grid defined
+    (chapter 30 — audio editor SLICE page).
+  </p>
+
+  <p>
+    Trig 1 plays slice 1, trig 2 plays slice 2, etc. The OT supports up
+    to 64 slices per sample, displayed across four pages (LEFT/RIGHT
+    arrows page through the slice ranges). The current page is shown
+    on the LCD.
+  </p>
+
+  <p>
+    Use cases:
+  </p>
+  <ul class="tight">
+    <li>Beat slicing — chop a drum loop into 8 or 16 slices, play any
+        permutation</li>
+    <li>Vocal cutting — slice a phrase into syllables, retrigger any
+        in any order</li>
+    <li>Build new patterns by slicing and recording slice trigs into
+        Live Record</li>
+  </ul>
+
+  <h2>4. SLOTS mode</h2>
+
+  <p>
+    Each trig key selects a different sample slot for the active track.
+    Trig 1 = slot 1, trig 2 = slot 2, etc.
+  </p>
+
+  <p>
+    SLOTS mode is fast for switching between samples during performance
+    or for recording slot changes into Live Record (giving a track
+    that plays a different sample on each step).
+  </p>
+
+  <p>
+    Combined with the <em>sample slot lock</em> (chapter 21), SLOTS
+    mode is how you build pattern-driven sample variation without
+    multiple tracks.
+  </p>
+
+  <h2>5. QUICK MUTE mode</h2>
+
+  <p>
+    Each trig key toggles mute for one of the eight tracks. Trigs 1–8
+    correspond to tracks 1–8; trigs 9–16 are inactive.
+  </p>
+
+  <p>
+    QUICK MUTE is a performance mode for live arrangement-building —
+    drop tracks in and out without using <kbd class="fn">FUNCTION</kbd>+TRACK
+    combinations. It's the fastest way to mute multiple tracks
+    simultaneously (just slap multiple trigs).
+  </p>
+
+  <p>
+    A muted track in QUICK MUTE shows on the trig row as a dim LED;
+    unmuted tracks show as bright LEDs.
+  </p>
+
+  <h2>6. DELAY CONTROL mode</h2>
+
+  <p>
+    The most performance-oriented mode. Each trig key, when held,
+    momentarily sends the active track's audio through a delay effect
+    at a different feedback amount and time setting per trig. Release
+    the trig and the effect goes back to its base value.
+  </p>
+
+  <p>
+    The default mapping:
+  </p>
+  <ul class="tight">
+    <li>Trigs 1–4: increasing delay time, low feedback</li>
+    <li>Trigs 5–8: medium delay, medium feedback</li>
+    <li>Trigs 9–12: longer delay, more feedback</li>
+    <li>Trigs 13–16: extreme settings (long, near-self-oscillating)</li>
+  </ul>
+
+  <p>
+    DELAY CONTROL is configured per project; the exact mapping is
+    editable. It's the OT's answer to "instant delay throw" without
+    needing to scene-lock or p-lock — just hold a trig.
+  </p>
+
+  <div class="callout tip">
+    <span class="callout-label">Tip · DELAY CONTROL with FX2 reverb</span>
+    <p>
+      Because DELAY CONTROL momentarily routes through the delay,
+      pairing it with a reverb on FX2 produces "delay-into-reverb"
+      throws that decay naturally when you release the trig. The result
+      is dub-style throws without parameter-lock setup.
+    </p>
+  </div>
+
+  <h2>Mode persistence</h2>
+
+  <p>
+    Trig mode is a per-track state. Switching tracks does not change the
+    mode. Switching projects resets to TRACKS mode.
+  </p>
+
+  <p>
+    The most common mistake: forgetting you're in CHROMATIC or SLICES
+    mode and trying to add trigs to a pattern. The trigs play sound but
+    don't write to the pattern. Always check the LCD title bar.
+  </p>
+</section>

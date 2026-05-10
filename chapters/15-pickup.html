@@ -1,0 +1,200 @@
+<section class="chapter" data-running="15 · Pickup machine">
+  <span class="running-title">15 · Pickup machine</span>
+  <div class="chapter-header">
+    <div class="eyebrow">Part V · Machines</div>
+    <div class="chapter-no">Chapter 15</div>
+    <h1 class="chapter-title">Pickup machine</h1>
+    <p class="lead" style="max-width: 130mm;">
+      The Octatrack's live looper. Pickup is the trickiest machine to
+      learn — its state model is unfamiliar — but once internalised
+      it's the OT's most powerful performance tool.
+    </p>
+  </div>
+
+  <h2>What Pickup does</h2>
+
+  <p>
+    A Pickup machine records audio (from a chosen input or internal
+    source) into its own internal buffer, then plays back what it
+    captured. It's a looper: capture, then loop.
+  </p>
+
+  <p>
+    Pickup's distinguishing feature is its <em>tempo-locked</em>
+    behaviour. Unlike a generic looper that captures whatever length
+    you press for, Pickup quantises capture and playback to the
+    project's bar/beat grid. This is what makes it useful in
+    sequence-based performance: the loop you capture <em>fits</em>
+    into the rest of your patterns.
+  </p>
+
+  <h2>Master and Slave Pickups</h2>
+
+  <p>
+    Pickup machines come in two flavours, set per track on the Setup
+    page:
+  </p>
+
+  <ul class="tight">
+    <li><strong>Master Pickup</strong> — the first Pickup loop in a
+        project. Sets the loop length for all subsequent Pickup
+        loops in the same project.</li>
+    <li><strong>Slave Pickup</strong> — every Pickup track after the
+        first. Locks to the master's length; allows multi-track
+        looping with synchronised lengths.</li>
+  </ul>
+
+  <p>
+    Typical use: T1 = Master Pickup, T2/T3 = Slave Pickups.
+    Recording on T1 sets the bar count for everything; T2 and T3
+    capture loops of identical length, layered.
+  </p>
+
+  <h2>The state machine</h2>
+
+  <figure>
+    <object data="../illustrations/pickup-states.svg" type="image/svg+xml" style="width: 100%; max-width: 140mm;">
+      Pickup state diagram
+    </object>
+    <figcaption>
+      <span class="label">Figure 15.1</span>
+      Pickup's playback states. Transitions are triggered by the
+      one-shot trig (Yes + trig) or by scene changes.
+    </figcaption>
+  </figure>
+
+  <p>
+    Pickup tracks are always in one of these states:
+  </p>
+
+  <ul class="tight">
+    <li><strong>EMPTY</strong> — no audio captured. Track is silent.</li>
+    <li><strong>RECORDING</strong> — capturing audio into the buffer.
+        Track plays back the audio currently being recorded (overdub
+        possible).</li>
+    <li><strong>PLAYING</strong> — looping the captured audio.</li>
+    <li><strong>STOPPED</strong> — buffer holds audio but track is
+        silent.</li>
+    <li><strong>OVERDUBBING</strong> — playing AND recording over the
+        existing loop (additive layering).</li>
+  </ul>
+
+  <h2>Triggering Pickup</h2>
+
+  <p>
+    Pickup's trigs are <em>one-shot trigs</em>: they fire once and
+    then disarm. Set with <kbd>YES</kbd> + trig key. When the
+    sequencer reaches a one-shot trig on a Pickup track, it triggers
+    the next state transition:
+  </p>
+
+  <ul class="tight">
+    <li>EMPTY → RECORDING</li>
+    <li>RECORDING → PLAYING (after the bar count completes)</li>
+    <li>PLAYING → OVERDUBBING (next one-shot)</li>
+    <li>OVERDUBBING → PLAYING</li>
+    <li>STOPPED → PLAYING</li>
+    <li>PLAYING → STOPPED (FUNCTION + one-shot)</li>
+  </ul>
+
+  <p>
+    The sequence isn't entirely automatic — the <em>next</em>
+    one-shot determines what happens next. With careful pattern
+    design, you can sequence a series of state transitions across a
+    long pattern.
+  </p>
+
+  <h2>Pickup recording length</h2>
+
+  <p>
+    The bar count (loop length) is set by the master Pickup track. The
+    options:
+  </p>
+
+  <ul class="tight">
+    <li>1 bar, 2 bars, 4 bars, 8 bars, 16 bars (preset values)</li>
+    <li>"Inf" — record until you press stop, then quantise to the
+        nearest bar</li>
+  </ul>
+
+  <p>
+    Slave Pickups always capture the master's length. If the master is
+    set to 4 bars, every slave records exactly 4 bars even if you
+    press the trigger early.
+  </p>
+
+  <h2>Source selection</h2>
+
+  <p>
+    Pickup records from a chosen source, set on the Setup page:
+  </p>
+
+  <ul class="tight">
+    <li>Input AB or CD — record live external audio</li>
+    <li>The MAIN bus (post-mixer) — record the OT's full mix</li>
+    <li>The CUE bus — record a curated sub-mix</li>
+    <li>One specific track's output — capture just that track</li>
+  </ul>
+
+  <p>
+    Recording from MAIN or CUE creates resampling-style loopers — the
+    OT records its own output back onto a track, layered with whatever
+    you played live.
+  </p>
+
+  <h2>FUNCTION combinations on Pickup</h2>
+
+  <p>
+    With a Pickup machine on the active track, several
+    <kbd class="fn">FUNCTION</kbd>+key combinations gain Pickup-specific
+    behaviour:
+  </p>
+
+  <ul class="tight">
+    <li><kbd class="fn">FUNCTION</kbd> + <kbd>MIDI</kbd> (PART) — opens
+        Pickup-specific options</li>
+    <li><kbd class="fn">FUNCTION</kbd> + one-shot trig — clear and
+        re-arm that trig</li>
+    <li><kbd class="fn">FUNCTION</kbd> + <kbd>STOP</kbd> — stop all
+        Pickup tracks immediately</li>
+  </ul>
+
+  <h2>Performance recipes</h2>
+
+  <div class="recipe">
+    <h4>Recipe — basic looper</h4>
+    <ol class="tight">
+      <li>Load a Pickup machine on T1, set as Master, source = Input AB,
+          length = 4 bars.</li>
+      <li>Plug a microphone or instrument into rear input AB.</li>
+      <li>Place a one-shot trig on step 1 of T1's pattern.</li>
+      <li>Press play. T1 records 4 bars of input. After 4 bars it
+          enters PLAYING and loops.</li>
+      <li>Place another one-shot trig on a later step. When the
+          sequencer hits it, T1 enters OVERDUB. Play more, the layer
+          adds. After 4 bars it's back in PLAYING.</li>
+    </ol>
+  </div>
+
+  <div class="recipe">
+    <h4>Recipe — multi-track stacking</h4>
+    <p>
+      With T1 as Master and T2/T3 as Slaves, you can layer three
+      independent loops at the same bar length. Each track captures and
+      plays independently — record bass on T1, melody on T2, ambient
+      drone on T3, all at 4 bars, all looping in sync.
+    </p>
+  </div>
+
+  <div class="callout secret">
+    <span class="callout-label">Hidden · resampling tricks</span>
+    <p>
+      Set Pickup's source to MAIN bus and place trigs that capture the
+      OT's own output. Effectively this samples the live mix —
+      including all current FX, scene morphs, and other tracks' audio.
+      Record 4 bars of an evolving scene, then loop and modulate with
+      filter/pitch p-locks. The "OT sampling itself" workflow is one
+      of the deepest performance techniques on the machine.
+    </p>
+  </div>
+</section>

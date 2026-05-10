@@ -1,0 +1,171 @@
+<section class="chapter" data-running="12 · Live record &amp; preview">
+  <span class="running-title">12 · Live record &amp; preview</span>
+  <div class="chapter-header">
+    <div class="eyebrow">Part IV · The sequencer</div>
+    <div class="chapter-no">Chapter 12</div>
+    <h1 class="chapter-title">Live record &amp; preview</h1>
+    <p class="lead" style="max-width: 130mm;">
+      Real-time pattern entry and the audition workflow. Two complementary
+      modes: live record captures performance into the sequencer; preview
+      auditions trigs without committing them.
+    </p>
+  </div>
+
+  <h2>Live Record</h2>
+
+  <p>
+    Live Record lets you record trigs and parameter changes while the
+    sequencer plays. Two flavours:
+  </p>
+
+  <h3>Unquantised Live Record</h3>
+
+  <p>
+    Activate: hold <kbd>REC</kbd> + <kbd>PLAY</kbd>. The OT enters Live
+    Record mode (REC LED flashing). Any trig key you press is recorded
+    at the exact moment it occurs — including its microtiming offset
+    relative to the nearest step.
+  </p>
+
+  <p>
+    Use case: live, expressive entry where exact timing matters.
+    Pressing trigs slightly behind the beat creates lay-back; ahead of
+    the beat creates push. Useful for finger-drumming and chromatic
+    melodic input.
+  </p>
+
+  <h3>Quantised Live Record</h3>
+
+  <p>
+    Activate: hold <kbd class="fn">FUNCTION</kbd> + <kbd>REC</kbd> +
+    <kbd>PLAY</kbd>. Any trig you press is snapped to the nearest step.
+    Microtiming is zeroed.
+  </p>
+
+  <p>
+    Use case: tighter, more rigid recording — useful when capturing
+    chromatic input and you want clean step-aligned trigs.
+  </p>
+
+  <h3>What gets recorded</h3>
+
+  <ul class="tight">
+    <li>Trig presses (TRACKS mode) — added as note trigs at their
+        timing</li>
+    <li>Trig presses (CHROMATIC mode) — recorded as note trigs with
+        pitch p-locks</li>
+    <li>Trig presses (SLICES mode) — recorded with slice-number
+        p-locks</li>
+    <li>Knob movements — recorded as p-locks on the step the playhead
+        passes through</li>
+    <li>Sample slot changes (SLOTS mode) — recorded as slot p-locks</li>
+  </ul>
+
+  <h3>Erasing on the fly</h3>
+
+  <p>
+    Hold <kbd class="fn">FUNCTION</kbd> + <kbd>NO</kbd> while the
+    sequencer plays in Live Record. Any step the playhead passes
+    through is erased — both the trig and any p-locks on it. Release
+    to stop erasing.
+  </p>
+
+  <p>
+    This is the OT's "moving rubber" — useful for quickly clearing a
+    section of the pattern without exiting Live Record.
+  </p>
+
+  <h2>Preview</h2>
+
+  <p>
+    Preview lets you hear what a step would sound like (with its
+    p-locks) without committing to it.
+  </p>
+
+  <p>
+    Two preview destinations:
+  </p>
+
+  <ul class="tight">
+    <li><kbd>YES</kbd> + <kbd>TRIG</kbd> — preview to MAIN bus</li>
+    <li><kbd>CUE</kbd> + <kbd>TRIG</kbd> — preview to CUE bus
+        (headphone pre-listen)</li>
+  </ul>
+
+  <p>
+    Both forms play the trig's sample with the trig's parameter locks
+    applied. Use case: while building a pattern, audition each step's
+    locked values before deciding whether to keep them.
+  </p>
+
+  <h2>Pattern length and per-track length</h2>
+
+  <p>
+    Pattern length is configured per pattern via
+    <kbd class="fn">FUNCTION</kbd>+<kbd>SCALE SETUP</kbd>. The OT
+    supports patterns from 1 to 64 steps.
+  </p>
+
+  <p>
+    Per-track length: each track can have its own pattern length within
+    the master pattern. This creates polymeter — track 1 loops at 16
+    steps while track 2 loops at 13 steps, drifting in and out of
+    phase.
+  </p>
+
+  <p>
+    Master length sets the overall pattern duration; track lengths are
+    capped at master. When a track's length is shorter than master, the
+    track repeats internally until master cycles.
+  </p>
+
+  <h2>Time scale</h2>
+
+  <p>
+    The time scale (1/4, 1/8, 1/16, 1/32) determines how fast the
+    sequencer runs through its steps relative to the project tempo.
+    Default 1/16 — each step is a sixteenth note. Change to 1/32 for
+    fast hi-hat or trap-style sequences; 1/8 for half-time feels.
+  </p>
+
+  <p>
+    Time scale is per-track. A 1/32 hi-hat track on a 1/16 master
+    pattern fires twice as fast — but loops twice within the same
+    master cycle, so the timing aligns musically.
+  </p>
+
+  <h2>The 1:4 / 2:4 / 3:4 / 4:4 LEDs</h2>
+
+  <p>
+    The four LEDs above the Scale Setup button (callout 26 in chapter 4)
+    flash on each beat of the master pattern, showing your position
+    within the bar. They're a visual metronome — useful for live
+    performance when you can't take your eyes off the panel.
+  </p>
+
+  <h2>Recording knobs and parameter changes</h2>
+
+  <p>
+    In Live Record, knob movements are recorded as parameter locks on
+    every step the playhead passes through during the move. Move a
+    filter knob through one cycle of the pattern, and you've drawn an
+    automation curve into the sequencer.
+  </p>
+
+  <p>
+    The recorded automation can be edited per-step afterwards — hold a
+    trig to see the locked value, turn the knob to adjust. Combined
+    with Live Record's trig entry, this is how complex evolving
+    patterns get built on the OT in minutes rather than hours.
+  </p>
+
+  <div class="callout tip">
+    <span class="callout-label">Tip · stop with sequencer playing</span>
+    <p>
+      To exit Live Record without stopping the sequencer, press
+      <kbd>REC</kbd> alone. This disarms recording but keeps playback
+      running. Useful for iterative composition: enter Live Record,
+      add some trigs, exit to listen, re-enter to add more.
+    </p>
+  </div>
+</section>

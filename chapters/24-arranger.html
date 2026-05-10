@@ -1,0 +1,135 @@
+<section class="chapter" data-running="24 · The arranger">
+  <span class="running-title">24 · The arranger</span>
+  <div class="chapter-header">
+    <div class="eyebrow">Part X · The arranger</div>
+    <div class="chapter-no">Chapter 24</div>
+    <h1 class="chapter-title">The arranger</h1>
+    <p class="lead" style="max-width: 130mm;">
+      The Octatrack's song mode. Chains patterns into long-form
+      arrangements with per-row tempo, length, and offset overrides.
+      Eight arrangements per project.
+    </p>
+  </div>
+
+  <h2>What an arrangement is</h2>
+
+  <p>
+    An arrangement is a list of rows. Each row plays a specific pattern
+    for a specified duration before advancing to the next row. With
+    careful row design, you can build full-length songs out of
+    sequenced patterns — verse, chorus, bridge, drop, outro — without
+    manually changing patterns during playback.
+  </p>
+
+  <p>
+    A project holds 8 arrangements, accessible via
+    <kbd class="fn">FUNCTION</kbd> + <kbd>PATTERN</kbd>. Each
+    arrangement can have up to 256 rows.
+  </p>
+
+  <h2>Row anatomy</h2>
+
+  <p>
+    Each row specifies:
+  </p>
+
+  <table class="key-table">
+    <thead><tr><th>Field</th><th>Function</th></tr></thead>
+    <tbody>
+      <tr><td>Pattern</td><td>Which pattern (e.g. A01, B05) to play</td></tr>
+      <tr><td>Length</td><td>How many bars (or pattern repeats) to stay on this row</td></tr>
+      <tr><td>Offset</td><td>Skip the first N steps of the pattern</td></tr>
+      <tr><td>BPM</td><td>Override project tempo for this row</td></tr>
+      <tr><td>Mute</td><td>Mute specific tracks for this row</td></tr>
+      <tr><td>Transpose</td><td>Per-row pitch shift in semitones</td></tr>
+      <tr><td>Scene</td><td>Force scene assignments for this row</td></tr>
+      <tr><td>Trig</td><td>Optional trigger conditions before advancing</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Building an arrangement</h2>
+
+  <ol class="tight">
+    <li>Open the arranger page (<kbd class="fn">FUNCTION</kbd> +
+        <kbd>PATTERN</kbd>)</li>
+    <li>Use UP/DOWN to navigate row by row; LEFT/RIGHT to switch
+        between fields within a row</li>
+    <li>Knob A selects pattern; B sets length; etc.</li>
+    <li>Add rows as needed by stepping past the last row</li>
+    <li>Save with <kbd class="fn">FUNCTION</kbd> + <kbd>YES</kbd></li>
+  </ol>
+
+  <p>
+    Activate arrangement playback: from the arrangement page, press
+    <kbd>PLAY</kbd>. The OT plays through rows in sequence. To jump to
+    a specific row during playback, navigate to it and press
+    <kbd>YES</kbd>.
+  </p>
+
+  <h2>Per-row overrides</h2>
+
+  <h3>Tempo</h3>
+
+  <p>
+    The BPM field overrides the project tempo for the duration of that
+    row. Useful for tempo modulation across a song — gradually
+    accelerating drum-and-bass build-ups, or slow-down outros.
+    Setting BPM = 0 inherits from the project.
+  </p>
+
+  <h3>Mute</h3>
+
+  <p>
+    The Mute field lets you specify which tracks are muted during the
+    row. Set up base patterns with everything playing, then mute
+    elements per row to create song structure without rewriting
+    patterns.
+  </p>
+
+  <h3>Transpose</h3>
+
+  <p>
+    Per-row pitch shift. The OT's notion of "musical key" is at the
+    arrangement row level. Shift +5 semitones for a key change at the
+    chorus, –3 for a darker bridge.
+  </p>
+
+  <h2>Loops within arrangements</h2>
+
+  <p>
+    A row can be set to LOOP — it stays active until something
+    triggers it to advance. Useful for live performance where you
+    want a section to vamp until you decide to move on. Trigger
+    advance via the trig keys or via MIDI.
+  </p>
+
+  <h2>Multiple arrangements per project</h2>
+
+  <p>
+    With 8 arrangements per project, you can store entire setlists.
+    One arrangement per song; switch arrangements between songs in a
+    set. The 8-arrangement limit is generous for most use cases.
+  </p>
+
+  <h2>Arranger vs live pattern switching</h2>
+
+  <p>
+    Arranger is one workflow; manual pattern switching is the other.
+    Most performers use both: arrangements for structured material,
+    manual switching for improvisation. The OT supports interrupt-the-
+    arrangement workflow where you can stop the current row and
+    switch to manual control mid-song.
+  </p>
+
+  <div class="callout tip">
+    <span class="callout-label">Tip · row-level scenes</span>
+    <p>
+      The Scene field lets each row force the crossfader to specific
+      scene assignments. Combined with Mute and Transpose, this means
+      a single arrangement row carries a complete musical context —
+      not just "play pattern A" but "play A with these mutes, this
+      transpose, this scene assignment". An arrangement of 16 rows is
+      effectively a 16-state composition machine.
+    </p>
+  </div>
+</section>

@@ -1,0 +1,173 @@
+<section class="chapter" data-running="17 · LFOs &amp; the designer">
+  <span class="running-title">17 · LFOs &amp; the designer</span>
+  <div class="chapter-header">
+    <div class="eyebrow">Part VI · Sound shaping</div>
+    <div class="chapter-no">Chapter 17</div>
+    <h1 class="chapter-title">LFOs &amp; the LFO designer</h1>
+    <p class="lead" style="max-width: 130mm;">
+      Three LFOs per track, plus a full custom-shape designer. The
+      Octatrack's LFO system is one of the most flexible in any
+      hardware sampler — once you find the designer.
+    </p>
+  </div>
+
+  <h2>Three LFOs per track</h2>
+
+  <p>
+    Every audio track has three independent LFOs. Each one can target
+    almost any parameter the track exposes — pitch, filter cutoff, FX
+    parameters, even sample slot.
+  </p>
+
+  <p>
+    The LFO page (button to the right of AMP) shows all three at once:
+  </p>
+
+  <table class="key-table">
+    <thead><tr><th>Knob</th><th>Param</th><th>Function</th></tr></thead>
+    <tbody>
+      <tr><td>A</td><td><span class="param">SPD</span></td><td>Speed (rate)</td></tr>
+      <tr><td>B</td><td><span class="param">MULT</span></td><td>Speed multiplier (sync to bars/steps)</td></tr>
+      <tr><td>C</td><td><span class="param">FAD</span></td><td>Fade-in / fade-out time</td></tr>
+      <tr><td>D</td><td><span class="param">DEST</span></td><td>Destination parameter</td></tr>
+      <tr><td>E</td><td><span class="param">WAVE</span></td><td>Waveform (sine, tri, saw, square, exp, ramp, random, custom)</td></tr>
+      <tr><td>F</td><td><span class="param">DEPTH</span></td><td>Modulation depth (positive or negative)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Switching between LFO 1, 2, 3</h3>
+
+  <p>
+    Use the UP/DOWN arrow keys (within the LFO page) to switch between
+    the three LFOs. The LCD title bar shows which is active.
+  </p>
+
+  <h3>SPD vs MULT</h3>
+
+  <p>
+    SPD sets the raw rate; MULT modifies it to align with musical
+    divisions. MULT × SPD = effective rate. Common MULT values:
+  </p>
+
+  <ul class="tight">
+    <li>MULT = 1 — free-running, SPD is the rate</li>
+    <li>MULT = 32, 16, 8, 4 — bar-synced (full bar, half, quarter,
+        eighth)</li>
+    <li>MULT = 64, 128 — multi-bar cycles</li>
+  </ul>
+
+  <h3>Trig modes</h3>
+
+  <p>
+    LFOs can be set to:
+  </p>
+
+  <ul class="tight">
+    <li><strong>FREE</strong> — runs continuously, ignores trigs</li>
+    <li><strong>TRIG</strong> — restarts on every trig</li>
+    <li><strong>HOLD</strong> — runs while a trig is active, holds at
+        last value when released</li>
+    <li><strong>ONE</strong> — fires once per trig and stops</li>
+    <li><strong>HALF</strong> — fires for half a cycle per trig</li>
+  </ul>
+
+  <p>
+    TRIG mode is the default. ONE is useful for envelope-like LFOs —
+    e.g. a sawtooth ramping down once per trig acts as a decay
+    envelope.
+  </p>
+
+  <h2>LFO designer (custom waveforms)</h2>
+
+  <p>
+    Hold <kbd class="fn">FUNCTION</kbd> + <kbd>LFO</kbd> to enter the
+    LFO designer. Here you can draw custom waveforms with up to 16
+    points per cycle.
+  </p>
+
+  <h3>How the designer works</h3>
+
+  <ul class="tight">
+    <li>The screen shows a 16-step horizontal grid</li>
+    <li>Each step has a value (the LFO's amplitude at that point)</li>
+    <li>Move the cursor with LEFT/RIGHT arrows; adjust the value with
+        knob A or UP/DOWN</li>
+    <li>Set INTERP between points (knob B) — linear interpolation,
+        smooth curves, or step-quantised</li>
+    <li>Press <kbd>YES</kbd> to save the custom shape; the LFO can
+        then select it via the WAVE parameter</li>
+  </ul>
+
+  <h3>Why custom LFO shapes matter</h3>
+
+  <p>
+    Built-in waveforms (sine, square, etc.) cover basic modulation.
+    Custom shapes unlock:
+  </p>
+
+  <ul class="tight">
+    <li><strong>Step-locked sequences</strong> — a 16-step LFO with
+        each step at a different value becomes a CV sequence in
+        software form</li>
+    <li><strong>Drum-machine-style accents</strong> — a 16-step LFO
+        modulating volume with peaks every 4 steps</li>
+    <li><strong>Rhythmic filter sweeps</strong> — uneven sweep curves
+        that drum patterns can lock to</li>
+    <li><strong>Pseudo-arpeggiators</strong> — a 16-step LFO on pitch
+        cycling through scale degrees</li>
+  </ul>
+
+  <h3>The interpolation modes</h3>
+
+  <ul class="tight">
+    <li><strong>LIN</strong> — linear interpolation between points
+        (creates ramps)</li>
+    <li><strong>EXP</strong> — exponential curves (smoother, "musical"
+        feel)</li>
+    <li><strong>S/H</strong> — step-quantised (no interpolation,
+        creates stepped sequences)</li>
+  </ul>
+
+  <h2>LFO destinations</h2>
+
+  <p>
+    The DEST parameter sets which parameter the LFO modulates. Almost
+    every parameter on PLAYBACK, AMP, FX1, and FX2 is available. Some
+    common targets:
+  </p>
+
+  <ul class="tight">
+    <li><strong>PLAYBACK STRT</strong> — random sample-start jumps
+        (with random LFO)</li>
+    <li><strong>FX1 cutoff</strong> — classic auto-wah</li>
+    <li><strong>FX2 delay time</strong> — pitch-warping delay</li>
+    <li><strong>AMP VOL</strong> — tremolo</li>
+    <li><strong>SLOT</strong> — sample-slot rotation (random LFO
+        cycles through slots)</li>
+  </ul>
+
+  <h2>LFOs combined with p-locks</h2>
+
+  <p>
+    LFOs are part-level (set on the part) but can be p-locked per
+    step. A step can lock LFO speed, depth, or destination —
+    effectively retriggering a different LFO behaviour for one trig.
+  </p>
+
+  <p>
+    Combined with conditional trigs and step-locked LFO restarts, the
+    OT's modulation system is closer to a generative-music engine
+    than a static synth: same pattern, different sound every cycle.
+  </p>
+
+  <div class="callout secret">
+    <span class="callout-label">Hidden · LFO as envelope</span>
+    <p>
+      Set LFO1 to ONE trig mode, MULT = 1, SPD adjusted to taste,
+      WAVE = exp ramp down, DEPTH = positive. Target a parameter and
+      the LFO becomes a one-shot decay envelope. The OT's LFO system
+      can substitute for a second amplitude envelope, a pitch envelope,
+      or a filter envelope — none of which the unit officially has.
+    </p>
+  </div>
+</section>

@@ -1,0 +1,273 @@
+<section class="chapter" data-running="C · Glossary">
+  <span class="running-title">C · Glossary</span>
+  <div class="chapter-header">
+    <div class="eyebrow">Part XII · Reference appendices</div>
+    <div class="chapter-no">Appendix C</div>
+    <h1 class="chapter-title">Glossary</h1>
+    <p class="lead" style="max-width: 130mm;">
+      Octatrack-specific terminology. Most terms appear in the
+      official manual; some are community shorthand.
+    </p>
+  </div>
+
+  <dl class="spec-grid">
+    <dt>Audio Pool</dt>
+    <dd>
+      The set-level folder containing all sample files available to
+      projects within that set. See chapter 7.
+    </dd>
+
+    <dt>Bank</dt>
+    <dd>
+      A container holding 16 patterns and 4 parts. A project has 16
+      banks (A–P). Each bank's patterns share its parts. See
+      chapter 6.
+    </dd>
+
+    <dt>BPM</dt>
+    <dd>
+      Beats per minute. The OT's tempo can be project-wide or
+      per-pattern. Per-row override available in arrangements.
+    </dd>
+
+    <dt>Buffer</dt>
+    <dd>
+      A recorder buffer — RAM allocated for audio capture on a
+      track. Eight buffers, one per track. See chapter 19.
+    </dd>
+
+    <dt>CHROMATIC mode</dt>
+    <dd>
+      Trig mode where the 16 trig keys play the active sample at
+      different chromatic pitches. See chapter 11.
+    </dd>
+
+    <dt>CF card</dt>
+    <dd>
+      Compact Flash. The OT's only persistent storage medium. See
+      chapter 6.
+    </dd>
+
+    <dt>Conditional trig</dt>
+    <dd>
+      A trig that fires only if a condition is met (probability,
+      previous trig, neighbour, fill, etc.). See chapter 10.
+    </dd>
+
+    <dt>Crossfader</dt>
+    <dd>
+      Hardware fader that morphs parameters between Scene A and
+      Scene B. Does not gate audio directly. See chapter 21.
+    </dd>
+
+    <dt>CUE bus</dt>
+    <dd>
+      Secondary audio bus, separate from MAIN. Routed to the rear-
+      panel CUE outputs. Useful for headphone pre-listen and
+      Studio Mode. See chapter 8.
+    </dd>
+
+    <dt>DELAY CONTROL mode</dt>
+    <dd>
+      Trig mode where each trig key momentarily activates a different
+      delay setting. Performance-oriented. See chapter 11.
+    </dd>
+
+    <dt>FILL mode</dt>
+    <dd>
+      Momentary mode that activates FILL-conditional trigs. See
+      chapter 10.
+    </dd>
+
+    <dt>Flex</dt>
+    <dd>
+      A machine type. Plays samples loaded into RAM. Supports
+      reversal, pitch, time-stretch, slicing. See chapter 13.
+    </dd>
+
+    <dt>FX1, FX2</dt>
+    <dd>
+      Two effects slots per track. FX1 runs first, FX2 second.
+      Catalogues differ slightly. See chapter 18.
+    </dd>
+
+    <dt>LFO designer</dt>
+    <dd>
+      Custom-waveform editor for LFOs. 16-point grid with
+      interpolation modes. Hidden behind FUNCTION + LFO. See
+      chapter 17.
+    </dd>
+
+    <dt>Live Record</dt>
+    <dd>
+      Real-time pattern entry mode. Activate with REC + PLAY. See
+      chapter 12.
+    </dd>
+
+    <dt>Master machine</dt>
+    <dd>
+      A machine type loaded only on T8. Turns T8 into a master-bus
+      processor. See chapter 14.
+    </dd>
+
+    <dt>Memory config</dt>
+    <dd>
+      Project-wide RAM allocation between Flex samples and recorder
+      buffers. See chapter 7.
+    </dd>
+
+    <dt>Microtiming</dt>
+    <dd>
+      Per-trig timing offset, in 1/23rd-of-a-step increments. See
+      chapter 10.
+    </dd>
+
+    <dt>Neighbor machine</dt>
+    <dd>
+      A machine that reads the audio output of the previous track.
+      Used to chain effects across tracks. See chapter 14.
+    </dd>
+
+    <dt>One-shot trig</dt>
+    <dd>
+      A trig that fires once, then disarms. Used by Pickup machines
+      and for triggered events. Set with YES + TRIG.
+    </dd>
+
+    <dt>Parameter lock (p-lock)</dt>
+    <dd>
+      A parameter value applied to a single step, overriding the
+      part's base value. The OT's signature feature. See chapter 9.
+    </dd>
+
+    <dt>Part</dt>
+    <dd>
+      Container for machine assignments, base parameter values, and
+      scene assignments. Four parts per bank. See chapter 6.
+    </dd>
+
+    <dt>Pattern</dt>
+    <dd>
+      A sequence of trigs and parameter locks. 1–64 steps. 16
+      patterns per bank. See chapter 6.
+    </dd>
+
+    <dt>Pickup machine</dt>
+    <dd>
+      A live-looper machine type. Records from a chosen source into
+      a buffer, then loops. Master/slave configuration for synced
+      multi-track loops. See chapter 15.
+    </dd>
+
+    <dt>Project</dt>
+    <dd>
+      Top-level container holding 16 banks, settings, sample slots,
+      arrangements. See chapter 6.
+    </dd>
+
+    <dt>QUICK MUTE mode</dt>
+    <dd>
+      Trig mode where trig keys 1–8 toggle track mutes. See
+      chapter 11.
+    </dd>
+
+    <dt>QREC</dt>
+    <dd>
+      Quantise recording. Recording start aligns to a chosen beat
+      division. See chapter 19.
+    </dd>
+
+    <dt>Resampling</dt>
+    <dd>
+      Recording the OT's own audio output (MAIN or CUE) into a
+      recorder buffer. See chapter 20.
+    </dd>
+
+    <dt>Scene</dt>
+    <dd>
+      A snapshot of parameter values across all tracks. 16 scenes
+      per part. Two scenes assigned to crossfader ends for morphing.
+      See chapter 21.
+    </dd>
+
+    <dt>Scene lock</dt>
+    <dd>
+      A parameter explicitly assigned to a scene. The crossfader
+      morphs only scene-locked parameters. See chapter 21.
+    </dd>
+
+    <dt>Set</dt>
+    <dd>
+      Top-level folder on the CF card. Holds the Audio Pool and
+      one or more projects. See chapter 6.
+    </dd>
+
+    <dt>Slice</dt>
+    <dd>
+      A named region within a sample, addressable as a slice
+      number. Up to 64 slices per sample. See chapter 20.
+    </dd>
+
+    <dt>SLICES mode</dt>
+    <dd>
+      Trig mode where each trig key plays a different slice of the
+      active sample. See chapter 11.
+    </dd>
+
+    <dt>SLOT (Sample slot)</dt>
+    <dd>
+      An assignment of a sample file to a numbered slot, with trim
+      and loop points. Static slots (128) and Flex slots (128) are
+      separate lists. See chapter 7.
+    </dd>
+
+    <dt>SLOTS mode</dt>
+    <dd>
+      Trig mode where each trig key selects a different sample slot.
+      See chapter 11.
+    </dd>
+
+    <dt>Static</dt>
+    <dd>
+      A machine type that streams samples from the CF card. RAM-
+      light but limited in playback flexibility. See chapter 13.
+    </dd>
+
+    <dt>Thru machine</dt>
+    <dd>
+      A machine that routes external audio input through the track's
+      effects chain. See chapter 14.
+    </dd>
+
+    <dt>TIMESTRETCH</dt>
+    <dd>
+      Flex-only feature. Sample tempo and pitch decoupled. Three
+      modes: NORM, BEAT, OFF. See chapter 13.
+    </dd>
+
+    <dt>Trig</dt>
+    <dd>
+      A step in the pattern that fires the track's sound. See
+      chapter 9.
+    </dd>
+
+    <dt>Trigless lock</dt>
+    <dd>
+      A parameter lock that does not retrigger the sound. Set with
+      FUNCTION + TRIG. See chapter 9.
+    </dd>
+
+    <dt>TurboMIDI</dt>
+    <dd>
+      Higher-baud-rate MIDI between two Elektron devices.
+      Reduces clock jitter. Automatic when both ends support it.
+      See chapter 23.
+    </dd>
+
+    <dt>XVOL</dt>
+    <dd>
+      Crossfader-controlled volume offset. Used for fader-driven
+      track fade-in/out via scene-locking. See chapter 16.
+    </dd>
+  </dl>
+</section>

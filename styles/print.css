@@ -1,0 +1,170 @@
+/* ============================================================
+   Paged Media — page geometry, headers, footers, chapter rules
+   ============================================================ */
+
+/* ---------- Page setup ---------- */
+@page {
+  size: A4;
+  margin: 22mm 20mm 20mm 20mm;
+  background: var(--bg);
+
+  @top-left {
+    content: string(book-title);
+    font-family: 'Inter', sans-serif;
+    font-size: 8.5pt;
+    font-weight: 500;
+    color: var(--ink-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 6mm;
+  }
+  @top-right {
+    content: string(chapter-title);
+    font-family: 'Inter', sans-serif;
+    font-size: 8.5pt;
+    font-weight: 500;
+    color: var(--ink-muted);
+    letter-spacing: 0.04em;
+    margin-bottom: 6mm;
+  }
+  @bottom-right {
+    content: counter(page);
+    font-family: 'Inter', sans-serif;
+    font-size: 9pt;
+    font-weight: 600;
+    color: var(--ink);
+    margin-top: 6mm;
+  }
+  @bottom-left {
+    content: "Octatrack MK1 — Reworked Manual";
+    font-family: 'Inter', sans-serif;
+    font-size: 7.5pt;
+    font-weight: 400;
+    color: var(--ink-muted);
+    letter-spacing: 0.06em;
+    margin-top: 6mm;
+  }
+}
+
+/* Cover page — no headers/footers */
+@page :first {
+  margin: 0;
+  background: var(--ink);
+  @top-left { content: ""; }
+  @top-right { content: ""; }
+  @bottom-left { content: ""; }
+  @bottom-right { content: ""; }
+}
+
+/* Chapter-opening page — suppress header only on the FIRST page of a chapter */
+@page chapter-open {
+  /* inherit defaults (running headers, page numbers) */
+}
+@page chapter-open:first {
+  margin-top: 30mm;
+  @top-left { content: ""; }
+  @top-right { content: ""; }
+}
+
+/* ---------- Document-level string sets ---------- */
+body { string-set: book-title "OCTATRACK MK1"; }
+
+/* ---------- Cover ---------- */
+.cover {
+  page: cover;
+  page-break-after: always;
+  background: var(--ink);
+  color: var(--bg);
+  width: 210mm;
+  height: 297mm;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+@page cover {
+  size: A4;
+  margin: 0;
+  background: var(--ink);
+  @top-left { content: ""; }
+  @top-right { content: ""; }
+  @bottom-left { content: ""; }
+  @bottom-right { content: ""; }
+}
+
+/* ---------- Section / chapter break utilities ---------- */
+.chapter {
+  page-break-before: always;
+  page: chapter-open;
+}
+/* Capture running header from the chapter's h1.chapter-title directly */
+h1.chapter-title { string-set: chapter-title content(); }
+.running-title { display: none; }
+.chapter > .chapter-header { /* the big chapter intro on opening page */
+  margin-top: 4mm;
+  padding-bottom: 2em;
+  border-bottom: 2px solid var(--ink);
+  margin-bottom: 1.6em;
+}
+.chapter-header .eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 9pt;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.6em;
+}
+.chapter-header .chapter-no {
+  font-family: 'Inter', sans-serif;
+  font-size: 11pt;
+  font-weight: 500;
+  color: var(--ink-muted);
+  margin-bottom: 0.3em;
+}
+
+/* TOC */
+.toc { page-break-before: always; }
+.toc-list { list-style: none; padding: 0; margin: 0; }
+.toc-list > li {
+  display: flex;
+  align-items: baseline;
+  font-family: 'Inter', sans-serif;
+  font-size: 11pt;
+  margin: 0.55em 0;
+  break-inside: avoid;
+}
+.toc-list .toc-num {
+  font-weight: 600;
+  color: var(--accent-deep);
+  width: 28pt;
+  flex: 0 0 28pt;
+}
+.toc-list .toc-name { flex: 1; font-weight: 500; color: var(--ink); }
+.toc-list .toc-leader {
+  flex: 1;
+  border-bottom: 1px dotted var(--rule);
+  margin: 0 0.6em;
+  position: relative;
+  bottom: 0.25em;
+}
+.toc-list .toc-page { font-weight: 600; font-variant-numeric: tabular-nums; color: var(--ink); }
+
+.toc-list .toc-part {
+  font-family: 'Inter', sans-serif;
+  font-size: 8.5pt;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin: 1.4em 0 0.4em 0;
+  border-top: 1px solid var(--rule);
+  padding-top: 0.5em;
+  flex-basis: 100%;
+  display: block;
+}
+.toc-list .toc-part:first-child { margin-top: 0; border-top: 0; padding-top: 0; }
+
+/* Avoid orphan headings */
+h1, h2, h3, h4 { page-break-after: avoid; break-after: avoid; }
+figure, table, .callout, .key-table, .screen-mock { break-inside: avoid; }

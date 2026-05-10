@@ -1,0 +1,139 @@
+<section class="chapter" data-running="23 · MIDI sync &amp; clocking">
+  <span class="running-title">23 · MIDI sync &amp; clocking</span>
+  <div class="chapter-header">
+    <div class="eyebrow">Part IX · MIDI</div>
+    <div class="chapter-no">Chapter 23</div>
+    <h1 class="chapter-title">MIDI sync &amp; clocking</h1>
+    <p class="lead" style="max-width: 130mm;">
+      Configuring the Octatrack as MIDI master, slave, or in
+      daisy-chained setups with multiple devices.
+    </p>
+  </div>
+
+  <h2>Sync modes</h2>
+
+  <p>
+    PROJECT → SYNC SOURCE has three options:
+  </p>
+
+  <ul class="tight">
+    <li><strong>INT</strong> — internal clock. The OT's tempo is
+        master.</li>
+    <li><strong>MIDI</strong> — slave to incoming MIDI clock on the
+        IN port.</li>
+    <li><strong>USB</strong> — slave to USB MIDI (rare; requires host
+        software supporting USB MIDI clock).</li>
+  </ul>
+
+  <h2>The OT as master</h2>
+
+  <p>
+    Default mode. The OT generates clock and sends it on the OUT
+    port. Connected slaves (synths, drum machines, other Elektron
+    units) follow the OT's tempo and transport.
+  </p>
+
+  <p>
+    To send clock: PROJECT → MIDI → SYNC → CLOCK SEND = ON. The OT
+    transmits 24 PPQ MIDI clock continuously when running.
+  </p>
+
+  <p>
+    The OT also sends MIDI Start, Stop, and Continue messages aligned
+    with its transport. Most slaves respect these.
+  </p>
+
+  <h2>The OT as slave</h2>
+
+  <p>
+    Set SYNC SOURCE = MIDI. The OT's transport now follows incoming
+    MIDI clock. Press PLAY on the master device; the OT starts. Stop
+    on master; OT stops.
+  </p>
+
+  <p>
+    The OT's internal tempo display shows the received tempo. Tempo
+    changes on the master propagate immediately.
+  </p>
+
+  <p>
+    Caveat: when slaved, the OT's tempo knob is disabled. To
+    fine-tune tempo, do it on the master.
+  </p>
+
+  <h2>Daisy-chaining</h2>
+
+  <p>
+    A daisy chain uses MIDI THRU to forward incoming clock from one
+    device to the next. Master → slave 1 (IN, THRU) → slave 2 (IN,
+    THRU) → ...
+  </p>
+
+  <p>
+    The OT's THRU port forwards exactly what arrives at IN — no
+    re-clocking, no re-buffering. So long as the OT is in slave
+    mode, its THRU is functionally a passthrough.
+  </p>
+
+  <h2>Latency considerations</h2>
+
+  <p>
+    MIDI clock has finite resolution — 24 PPQ at MIDI's standard baud
+    introduces a jitter floor of ~1 ms. For most performance
+    applications this is inaudible. For tight synchronisation
+    (parallel drum machines hitting the same beat) you may want
+    TurboMIDI between two Elektron devices, which reduces clock
+    jitter.
+  </p>
+
+  <p>
+    On non-Elektron daisy chains, expect a few milliseconds of
+    cumulative delay across multiple THRU stages. Splitter boxes
+    (re-clocking distribution amplifiers) help on long chains.
+  </p>
+
+  <h2>Project-wide MIDI settings</h2>
+
+  <p>
+    Beyond sync source, several MIDI settings live at the project
+    level (PROJECT → MIDI):
+  </p>
+
+  <ul class="tight">
+    <li><strong>CLOCK SEND</strong> — transmit clock</li>
+    <li><strong>CLOCK RECV</strong> — receive clock</li>
+    <li><strong>TRANSPORT SEND</strong> — transmit Start/Stop/Continue</li>
+    <li><strong>TRANSPORT RECV</strong> — receive transport messages</li>
+    <li><strong>PROGRAM CHANGE SEND/RECV</strong> — pattern changes
+        as MIDI Program Change</li>
+    <li><strong>CC SEND</strong> — send CC for OT parameters (rare;
+        for external monitoring or recording)</li>
+  </ul>
+
+  <h2>Using OT pattern changes as PC</h2>
+
+  <p>
+    With PROGRAM CHANGE SEND = ON, switching patterns on the OT
+    sends a MIDI PC message corresponding to the pattern number.
+    Slaves that listen for PC can switch their own patterns in sync.
+  </p>
+
+  <p>
+    Practical use: OT pattern A1 sends PC 0; the connected
+    Digitone switches to its pattern 0. OT to A2 sends PC 1;
+    Digitone switches to 1. With careful pattern numbering, both
+    devices can step through aligned arrangements.
+  </p>
+
+  <div class="callout note">
+    <span class="callout-label">Note · USB does not carry audio or MIDI clock</span>
+    <p>
+      The Octatrack's USB port is for SysEx (firmware updates, project
+      backup) and disk-mode access only. There is no USB MIDI, no
+      USB audio, no Overbridge — even though many of Elektron's other
+      products support these. The OT MK1 was developed before USB
+      MIDI/audio became standard on Elektron's lineup. Don't expect
+      it.
+    </p>
+  </div>
+</section>

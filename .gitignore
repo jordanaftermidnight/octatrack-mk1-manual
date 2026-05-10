@@ -1,0 +1,25 @@
+# Build artefacts
+build/manual.html
+build/preview-*.png
+!build/.gitkeep
+# Note: build/octatrack-mk1-manual.pdf is committed as the published artefact.
+# Other PDFs (drafts, previews) stay ignored:
+build/preview*.pdf
+build/draft*.pdf
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Editors
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Local notes / drafts
+TODO.md
+NOTES.md
+drafts/

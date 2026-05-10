@@ -1,0 +1,200 @@
+<section class="chapter" data-running="25 · Performance recipes">
+  <span class="running-title">25 · Performance recipes</span>
+  <div class="chapter-header">
+    <div class="eyebrow">Part XI · Performance recipes</div>
+    <div class="chapter-no">Chapter 25</div>
+    <h1 class="chapter-title">Performance recipes</h1>
+    <p class="lead" style="max-width: 130mm;">
+      Workflow patterns for getting useful results out of the
+      Octatrack quickly. Each recipe is a starting framework — adapt
+      to your context.
+    </p>
+  </div>
+
+  <h2>Recipe — first 90 minutes</h2>
+
+  <div class="recipe">
+    <h4>Get sound out of the OT, fast</h4>
+    <p>
+      <strong>Goal:</strong> from boot to a working four-bar sketch in
+      under 90 minutes.
+    </p>
+    <ol>
+      <li>Boot the OT. Verify CF card is installed and formatted.</li>
+      <li>Create a new project: PROJECT → NEW. Name it.</li>
+      <li>Drop a few drum samples (kick, snare, hat) into the Audio
+          Pool via the Sample Manager. Assign each to a Flex slot.</li>
+      <li>On T1, load a Flex machine. Assign the kick slot.</li>
+      <li>Place trigs on steps 1, 5, 9, 13. You have a four-on-the-
+          floor kick.</li>
+      <li>On T2, Flex machine, assign snare. Trigs on 5 and 13.</li>
+      <li>On T3, Flex machine, assign hi-hat. Trigs on 3, 7, 11, 15
+          (or 16 trigs with conditional probability).</li>
+      <li>Press PLAY. You have a beat.</li>
+      <li>Spend the next 80 minutes adjusting volumes, pitches, and
+          adding p-locks. Don't worry about perfection.</li>
+    </ol>
+    <p>
+      The point is to get audio happening fast and iterate from there.
+      The OT rewards iteration.
+    </p>
+  </div>
+
+  <h2>Recipe — beat slicing</h2>
+
+  <div class="recipe">
+    <h4>Turn a drum loop into 16 playable hits</h4>
+    <ol>
+      <li>Load a 1-bar drum loop into a Flex slot.</li>
+      <li>Open the audio editor (chapter 20). Go to the SLICE page.</li>
+      <li>Auto-slice with grid = 16. The loop is now divided into 16
+          equal slices.</li>
+      <li>Save. Return to the track.</li>
+      <li>Switch to SLICES trig mode (FUNCTION + UP/DOWN).</li>
+      <li>Each trig key now plays a different slice. Build new
+          patterns by hitting trigs in any order.</li>
+      <li>Switch back to TRACKS mode. Place trigs and p-lock the
+          STRT (slice number) parameter to choose which slices fire
+          on which steps.</li>
+    </ol>
+    <p>
+      Two minutes of setup yields a slice-able drum kit playable from
+      any pattern.
+    </p>
+  </div>
+
+  <h2>Recipe — DJ-style transition</h2>
+
+  <div class="recipe">
+    <h4>Smooth pattern transition via the crossfader</h4>
+    <ol>
+      <li>Pattern A: your current section.</li>
+      <li>Pattern B (in same part): your destination section. Same
+          tempo.</li>
+      <li>Configure scene A (fader fully left): all tracks at full
+          volume, all FX at base settings.</li>
+      <li>Configure scene B (fader fully right): T1 (kick) muted,
+          T2 (bass) cutoff at 30, T3 (snare) volume at 0, FX1 reverb
+          mix at 100.</li>
+      <li>While pattern A plays, slide fader from A to B over 4
+          bars. Pattern A "filters out" and reverbs up.</li>
+      <li>At the end of the slide, switch to pattern B. The crossfader
+          is now at B end of pattern B's scene mapping.</li>
+      <li>Slide back to A end over 4 bars. Pattern B "fades in" with
+          full energy.</li>
+    </ol>
+    <p>
+      The transition reads as a 16-bar build-and-drop without ever
+      manually crossfading two tracks.
+    </p>
+  </div>
+
+  <h2>Recipe — live looping with Pickup</h2>
+
+  <div class="recipe">
+    <h4>One-take loop performance</h4>
+    <ol>
+      <li>T1 = Pickup (Master), source = Input AB, length = 4 bars.</li>
+      <li>T2 = Pickup (Slave), source = Input AB.</li>
+      <li>T3 = Flex playback (drums) — loop or pattern.</li>
+      <li>Plug guitar/synth into Input A.</li>
+      <li>Place a one-shot trig on T1 step 1.</li>
+      <li>Press PLAY. Drums start. T1 starts recording at step 1.</li>
+      <li>Play 4 bars of guitar. T1 captures, then loops.</li>
+      <li>Place a one-shot trig on T2 step 1 of the next pattern
+          cycle.</li>
+      <li>Play 4 bars of an overdub layer (different chord / harmony).
+          T2 captures, loops.</li>
+      <li>You now have drums + 2 layers of looping. Apply scenes for
+          mute/unmute on the loops; build energy curves.</li>
+    </ol>
+  </div>
+
+  <h2>Recipe — generative drum pattern</h2>
+
+  <div class="recipe">
+    <h4>Conditional trigs + LFO modulation = pattern that mutates</h4>
+    <ol>
+      <li>Build a base drum pattern: kick on 1/5/9/13, snare on
+          5/13, hat on every step.</li>
+      <li>Add 8 more "ghost" trigs across the pattern. Set each to
+          condition 50% (probability).</li>
+      <li>Add 4 more "fill" trigs. Set each to condition FILL.</li>
+      <li>On the snare track, configure LFO 1: WAVE = random,
+          DEST = STRT, DEPTH = ±20, TRIG mode = TRIG. Each snare hit
+          plays from a random offset within the sample.</li>
+      <li>On the hi-hat track, configure LFO 2: WAVE = sine, DEST =
+          AMP VOL, DEPTH = ±10, MULT = 4 (one cycle per bar). The
+          hat volume gently breathes.</li>
+      <li>Press PLAY. The pattern is structurally identical every
+          bar but sonically different — the 50% trigs come and go,
+          the snare sample-start jumps around, the hat volume
+          breathes.</li>
+      <li>Hit FUNCTION+YES to drop a fill momentarily.</li>
+    </ol>
+  </div>
+
+  <h2>Recipe — hub workflow (OT + external gear)</h2>
+
+  <div class="recipe">
+    <h4>OT as the central brain of a small live setup</h4>
+    <ol>
+      <li>OT is master. Configure CLOCK SEND = ON, TRANSPORT SEND =
+          ON.</li>
+      <li>Connect OT MIDI OUT → external synth (e.g. Digitone) MIDI
+          IN.</li>
+      <li>Connect synth audio out → OT Input AB.</li>
+      <li>On the OT, set up a MIDI track sequencing the synth
+          (chapter 22). P-lock notes per step.</li>
+      <li>Set up an OT audio track with a Thru machine on Input AB —
+          the synth's audio runs through the OT's FX.</li>
+      <li>The OT now sequences the synth AND processes its audio.
+          Apply scenes to morph FX on the synth's audio. Use the
+          OT's recorder to capture portions of the synth's output as
+          samples.</li>
+    </ol>
+    <p>
+      Result: one OT centralises sequencing, audio routing, FX
+      processing, and live capture for an entire small rig.
+    </p>
+  </div>
+
+  <h2>Recipe — randomisation as composition tool</h2>
+
+  <div class="recipe">
+    <h4>Use randomisation to escape "blank pattern paralysis"</h4>
+    <ol>
+      <li>Start with an empty pattern.</li>
+      <li>FUNCTION + RANDOM (the trig key labelled RANDOM in
+          conditions) populates the pattern with random trigs.</li>
+      <li>Listen for what works. Keep the trigs you like; remove
+          the rest.</li>
+      <li>Random-LFO on the SLOT parameter cycles through samples
+          per step — yielding chaotic but surprisingly musical
+          beats.</li>
+      <li>Use 50% conditional trigs for organic-feeling
+          variation.</li>
+      <li>Iterate. Randomisation is a starting point; your taste is
+          the editor.</li>
+    </ol>
+  </div>
+
+  <h2>Recipe — the dub send</h2>
+
+  <div class="recipe">
+    <h4>Throw any sound into delay/reverb at any moment</h4>
+    <ol>
+      <li>T8 = Master machine with FX1 = Delay, FX2 = Reverb.</li>
+      <li>Configure each track's CUE level: 0 by default.</li>
+      <li>Live performance: hold CUE + a TRACK button to send that
+          track's audio to the CUE bus, which (via the Master
+          machine's FX configuration) routes through delay and
+          reverb.</li>
+      <li>Releasing the CUE+TRACK combo cuts the send. The
+          delay/reverb tails decay naturally.</li>
+    </ol>
+    <p>
+      Effectively a one-button "dub throw" on any track at any time.
+    </p>
+  </div>
+</section>

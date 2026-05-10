@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 320" role="img" aria-labelledby="t-flow">
+  <title id="t-flow">Per-track signal flow</title>
+  <defs>
+    <style>
+      .block      { fill: #FBF8F1; stroke: #15110D; stroke-width: 1.2; }
+      .block-fx   { fill: #F2E5D0; stroke: #15110D; stroke-width: 1.2; }
+      .block-out  { fill: #C84A1A; stroke: #15110D; stroke-width: 1.2; }
+      .block-bus  { fill: #2C5566; stroke: #15110D; stroke-width: 1.2; }
+      .arrow      { fill: none; stroke: #15110D; stroke-width: 1.2; }
+      .label      { font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 700;
+                    fill: #15110D; text-anchor: middle; }
+      .label-light{ font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 700;
+                    fill: #FBF8F1; text-anchor: middle; }
+      .sublabel   { font-family: 'Inter', sans-serif; font-size: 7px; font-weight: 500;
+                    fill: #6B635A; text-anchor: middle; }
+      .stage      { font-family: 'Inter', sans-serif; font-size: 7px; font-weight: 700;
+                    fill: #C84A1A; text-anchor: middle; letter-spacing: 0.16em;
+                    text-transform: uppercase; }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#15110D"/>
+    </marker>
+  </defs>
+
+  <!-- Stage 1: Source / Machine -->
+  <g transform="translate(40, 110)">
+    <rect class="block" x="0" y="0" width="120" height="80" rx="3"/>
+    <text class="stage" x="60" y="-8">SOURCE</text>
+    <text class="label" x="60" y="32">Machine</text>
+    <text class="sublabel" x="60" y="50">Static · Flex · Thru</text>
+    <text class="sublabel" x="60" y="62">Neighbor · Pickup</text>
+  </g>
+
+  <!-- Arrow 1->2 -->
+  <line class="arrow" x1="160" y1="150" x2="190" y2="150" marker-end="url(#arrow)"/>
+
+  <!-- Stage 2: PLAYBACK -->
+  <g transform="translate(195, 110)">
+    <rect class="block" x="0" y="0" width="100" height="80" rx="3"/>
+    <text class="stage" x="50" y="-8">2</text>
+    <text class="label" x="50" y="32">PLAYBACK</text>
+    <text class="sublabel" x="50" y="50">Pitch, start,</text>
+    <text class="sublabel" x="50" y="62">length, slice</text>
+  </g>
+
+  <!-- Arrow 2->3 -->
+  <line class="arrow" x1="295" y1="150" x2="325" y2="150" marker-end="url(#arrow)"/>
+
+  <!-- Stage 3: AMP -->
+  <g transform="translate(330, 110)">
+    <rect class="block" x="0" y="0" width="90" height="80" rx="3"/>
+    <text class="stage" x="45" y="-8">3</text>
+    <text class="label" x="45" y="32">AMP</text>
+    <text class="sublabel" x="45" y="50">Envelope</text>
+    <text class="sublabel" x="45" y="62">Volume · Pan</text>
+  </g>
+
+  <!-- Arrow 3->4 -->
+  <line class="arrow" x1="420" y1="150" x2="450" y2="150" marker-end="url(#arrow)"/>
+
+  <!-- Stage 4: FX1 -->
+  <g transform="translate(455, 110)">
+    <rect class="block-fx" x="0" y="0" width="80" height="80" rx="3"/>
+    <text class="stage" x="40" y="-8">4</text>
+    <text class="label" x="40" y="32">FX1</text>
+    <text class="sublabel" x="40" y="50">Filter, EQ,</text>
+    <text class="sublabel" x="40" y="62">comp, etc.</text>
+  </g>
+
+  <!-- Arrow 4->5 -->
+  <line class="arrow" x1="535" y1="150" x2="565" y2="150" marker-end="url(#arrow)"/>
+
+  <!-- Stage 5: FX2 -->
+  <g transform="translate(570, 110)">
+    <rect class="block-fx" x="0" y="0" width="80" height="80" rx="3"/>
+    <text class="stage" x="40" y="-8">5</text>
+    <text class="label" x="40" y="32">FX2</text>
+    <text class="sublabel" x="40" y="50">Delay, reverb,</text>
+    <text class="sublabel" x="40" y="62">chorus, etc.</text>
+  </g>
+
+  <!-- Arrow 5->6 -->
+  <line class="arrow" x1="650" y1="150" x2="680" y2="150" marker-end="url(#arrow)"/>
+
+  <!-- Stage 6: Mixer routing -->
+  <g transform="translate(685, 110)">
+    <rect class="block" x="0" y="0" width="100" height="80" rx="3"/>
+    <text class="stage" x="50" y="-8">6</text>
+    <text class="label" x="50" y="32">MIXER</text>
+    <text class="sublabel" x="50" y="50">MAIN · CUE</text>
+    <text class="sublabel" x="50" y="62">routing</text>
+  </g>
+
+  <!-- Output paths: MAIN and CUE -->
+  <line class="arrow" x1="785" y1="135" x2="815" y2="120" marker-end="url(#arrow)"/>
+  <line class="arrow" x1="785" y1="165" x2="815" y2="180" marker-end="url(#arrow)"/>
+
+  <g transform="translate(820, 100)">
+    <rect class="block-out" x="0" y="0" width="50" height="32" rx="3"/>
+    <text class="label-light" x="25" y="20">MAIN</text>
+  </g>
+
+  <g transform="translate(820, 168)">
+    <rect class="block-bus" x="0" y="0" width="50" height="32" rx="3"/>
+    <text class="label-light" x="25" y="20">CUE</text>
+  </g>
+
+  <!-- Master track box (T8 special) -->
+  <g transform="translate(560, 240)">
+    <rect class="block-fx" x="0" y="0" width="190" height="50" rx="3" fill="#F2E5D0" opacity="0.7" stroke-dasharray="3,2"/>
+    <text class="stage" x="95" y="14">IF T8 = MASTER MACHINE</text>
+    <text class="sublabel" x="95" y="30">FX1 + FX2 process the MAIN bus sum</text>
+    <text class="sublabel" x="95" y="42">before reaching the outputs</text>
+  </g>
+
+  <!-- Dashed arrow showing master path -->
+  <path class="arrow" d="M 740 150 Q 760 150, 765 215 L 715 245" stroke-dasharray="3,2" marker-end="url(#arrow)" opacity="0.6"/>
+
+  <!-- Title -->
+  <text x="450" y="30" font-family="Inter, sans-serif" font-size="11" font-weight="700"
+        fill="#15110D" text-anchor="middle">Per-track audio path</text>
+  <text x="450" y="48" font-family="Inter, sans-serif" font-size="8" font-weight="500"
+        fill="#6B635A" text-anchor="middle">All eight tracks share the same chain. Crossfader sits outside this path (parameter morph only).</text>
+</svg>

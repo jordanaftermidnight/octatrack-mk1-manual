@@ -1,0 +1,169 @@
+<section class="chapter" data-running="18 · Effects (FX1 &amp; FX2)">
+  <span class="running-title">18 · Effects (FX1 &amp; FX2)</span>
+  <div class="chapter-header">
+    <div class="eyebrow">Part VI · Sound shaping</div>
+    <div class="chapter-no">Chapter 18</div>
+    <h1 class="chapter-title">Effects (FX1 &amp; FX2)</h1>
+    <p class="lead" style="max-width: 130mm;">
+      The full catalogue of Octatrack effects, plus the famous FX1
+      reverb hack — a workaround that turns FX1 into a reverb slot
+      despite its limited official choices.
+    </p>
+  </div>
+
+  <h2>Effect slots</h2>
+
+  <p>
+    Each track has FX1 and FX2 slots. FX1 runs first; FX2 runs after.
+    The choice of which effect lives in each slot is set on the FX
+    page's Setup screen (<kbd class="fn">FUNCTION</kbd> + <kbd>EFFECT 1</kbd>
+    or <kbd>EFFECT 2</kbd>).
+  </p>
+
+  <h2>FX1 effects</h2>
+
+  <table class="key-table">
+    <thead><tr><th>Effect</th><th>Use</th></tr></thead>
+    <tbody>
+      <tr><td>Filter (LP/HP/BP)</td><td>Frequency shaping, classic filter sweeps</td></tr>
+      <tr><td>EQ</td><td>Tonal correction, 3-band parametric</td></tr>
+      <tr><td>DJ EQ</td><td>3-band kill-EQ for live use</td></tr>
+      <tr><td>Phaser</td><td>Sweep modulation, 4-stage phaser</td></tr>
+      <tr><td>Flanger</td><td>Short-delay modulation, jet-style swirl</td></tr>
+      <tr><td>Chorus</td><td>Multi-voice ensemble effect</td></tr>
+      <tr><td>Compressor</td><td>Dynamic range control</td></tr>
+      <tr><td>Lo-Fi</td><td>Bit-crusher, sample-rate reducer, distortion</td></tr>
+      <tr><td>Spatializer</td><td>Stereo-width manipulation</td></tr>
+    </tbody>
+  </table>
+
+  <h2>FX2 effects</h2>
+
+  <table class="key-table">
+    <thead><tr><th>Effect</th><th>Use</th></tr></thead>
+    <tbody>
+      <tr><td>Reverb (Plate)</td><td>Plate-style reverb, the OT's main reverb</td></tr>
+      <tr><td>Reverb (Spring)</td><td>Spring-tank-style reverb</td></tr>
+      <tr><td>Delay</td><td>Stereo delay with feedback and modulation</td></tr>
+      <tr><td>Dark Reverb</td><td>Diffuse, low-frequency-emphasised reverb</td></tr>
+      <tr><td>Comb Filter</td><td>Tuned resonant comb filter</td></tr>
+      <tr><td>Filter (LP/HP/BP)</td><td>Same filter family as FX1</td></tr>
+      <tr><td>Lo-Fi</td><td>Same Lo-Fi as FX1, useful for post-reverb destruction</td></tr>
+      <tr><td>EQ</td><td>Final tonal shaping</td></tr>
+    </tbody>
+  </table>
+
+  <p>
+    Note that FX1 and FX2 have different — but partly overlapping —
+    catalogs. Filter, EQ, and Lo-Fi appear on both. Reverb and delay
+    are FX2-only.
+  </p>
+
+  <h2>FX page parameters</h2>
+
+  <p>
+    Each effect exposes six parameters mapped to encoders A–F. The
+    specific parameters depend on the chosen effect. A few examples:
+  </p>
+
+  <h3>Filter (FX1 or FX2)</h3>
+
+  <table class="key-table">
+    <tbody>
+      <tr><td>A</td><td>Freq (cutoff)</td></tr>
+      <tr><td>B</td><td>Reso (resonance)</td></tr>
+      <tr><td>C</td><td>Type (LP / HP / BP)</td></tr>
+      <tr><td>D</td><td>Slope (12/24 dB)</td></tr>
+      <tr><td>E</td><td>Drive (input saturation)</td></tr>
+      <tr><td>F</td><td>Mix (wet/dry — usually 100% on FX1)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Plate Reverb (FX2)</h3>
+
+  <table class="key-table">
+    <tbody>
+      <tr><td>A</td><td>Time (decay length)</td></tr>
+      <tr><td>B</td><td>Damp (high-frequency damping)</td></tr>
+      <tr><td>C</td><td>Pre-delay</td></tr>
+      <tr><td>D</td><td>Diffusion</td></tr>
+      <tr><td>E</td><td>Low cut</td></tr>
+      <tr><td>F</td><td>Mix (wet/dry)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Delay (FX2)</h3>
+
+  <table class="key-table">
+    <tbody>
+      <tr><td>A</td><td>Time</td></tr>
+      <tr><td>B</td><td>Feedback</td></tr>
+      <tr><td>C</td><td>Spread (stereo)</td></tr>
+      <tr><td>D</td><td>Modulation depth</td></tr>
+      <tr><td>E</td><td>Modulation rate</td></tr>
+      <tr><td>F</td><td>Mix (wet/dry)</td></tr>
+    </tbody>
+  </table>
+
+  <h2>The FX1 reverb hack</h2>
+
+  <p>
+    Officially, reverb is FX2-only. But because FX1 has a Spatializer
+    that includes a short ambience component, and because Lo-Fi can be
+    pushed into a degraded near-reverb texture, it's possible to get
+    reverb-like behaviour from FX1 — freeing FX2 for a separate use.
+  </p>
+
+  <p>
+    The cleaner method, however: use a Neighbor machine on the next
+    track. Track 1 has FX1 + FX2 (e.g. filter + delay). Track 2 is a
+    Neighbor reading T1's output, with FX1 = filter and FX2 = reverb.
+    Now you have effectively four effects on T1's audio path. The
+    "reverb hack" is mostly historical — the Neighbor approach is more
+    flexible and is documented in chapter 14.
+  </p>
+
+  <h2>FX setup conventions</h2>
+
+  <p>
+    Common combinations:
+  </p>
+
+  <ul class="tight">
+    <li><strong>Filter + Reverb</strong> — most versatile, classic
+        sample chain</li>
+    <li><strong>Compressor + Delay</strong> — compressed source into
+        delay, useful for vocals or punchy melodics</li>
+    <li><strong>Lo-Fi + Reverb</strong> — degraded character into
+        space</li>
+    <li><strong>EQ + Compressor</strong> (on a Master machine) —
+        master-bus glue</li>
+    <li><strong>Phaser + Delay</strong> — psychedelic textures, swirl
+        + space</li>
+  </ul>
+
+  <h2>P-locking FX parameters</h2>
+
+  <p>
+    Every FX parameter can be p-locked. This is where the OT's effects
+    become sequenceable: a delay's feedback can rise and fall across
+    a pattern, a reverb's mix can fade in for two bars, a filter's
+    cutoff can sweep on every step.
+  </p>
+
+  <p>
+    Combined with LFO modulation (chapter 17) on the same parameters,
+    you can stack rhythmic FX changes (p-locks) over continuous
+    modulation (LFOs) for performative complexity.
+  </p>
+
+  <div class="callout tip">
+    <span class="callout-label">Tip · the wet/dry parameter (F)</span>
+    <p>
+      Most effects' Mix parameter is on encoder F. P-locking F to 0 on
+      certain steps disables the effect for those trigs only — useful
+      for "this kick has reverb, this kick doesn't" effects without
+      muting the FX globally.
+    </p>
+  </div>
+</section>

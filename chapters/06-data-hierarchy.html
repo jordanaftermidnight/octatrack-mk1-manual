@@ -1,0 +1,182 @@
+<section class="chapter" data-running="6 · The data hierarchy">
+  <span class="running-title">6 · The data hierarchy</span>
+  <div class="chapter-header">
+    <div class="eyebrow">Part III · Mental model</div>
+    <div class="chapter-no">Chapter 6</div>
+    <h1 class="chapter-title">The data hierarchy</h1>
+    <p class="lead" style="max-width: 130mm;">
+      Sets, projects, banks, patterns, parts. The Octatrack's data structure
+      is the single most important thing to understand before you touch a
+      sequencer page — and the source of most newcomer confusion.
+    </p>
+  </div>
+
+  <p>
+    The Octatrack does not have a "song" or a "preset". It has a layered
+    structure where data lives at five different scopes: the
+    <strong>card</strong>, the <strong>set</strong>, the
+    <strong>project</strong>, the <strong>bank</strong>, and the
+    <strong>pattern/part</strong>. Knowing which scope a piece of data
+    belongs to is how you avoid the two most common Octatrack disasters:
+    losing work, and accidentally overwriting something elsewhere on the
+    machine.
+  </p>
+
+  <figure>
+    <object data="../illustrations/data-hierarchy.svg" type="image/svg+xml" style="width: 100%; max-width: 165mm;">
+      Data hierarchy diagram (SVG)
+    </object>
+    <figcaption>
+      <span class="label">Figure 6.1</span>
+      The Octatrack's nested data scopes. Each level inherits the level
+      above and is overridden only at save time.
+    </figcaption>
+  </figure>
+
+  <h2>Card</h2>
+
+  <p>
+    The Compact Flash card is the root of everything. Format it FAT32 and
+    the Octatrack creates a top-level folder structure on first boot. A
+    single card can hold dozens of <em>sets</em>, each one a self-contained
+    workspace. Cards are interchangeable — taking one out and inserting
+    another is how you switch between, say, a live-set CF and a
+    studio-experiments CF without having to manage projects within a
+    single card.
+  </p>
+
+  <h2>Set</h2>
+
+  <p>
+    A set is a folder on the card. It contains an
+    <strong>Audio Pool</strong> (the shared sample library, see chapter 7)
+    and one or more <strong>projects</strong>. The set is the boundary
+    between which samples a project can see — projects within the same
+    set share the Audio Pool; projects in different sets do not.
+  </p>
+
+  <p>
+    Practical use of sets: one set per album, one per gig, one per studio
+    session. The Audio Pool grows over time within a set; starting a fresh
+    set keeps things tidy.
+  </p>
+
+  <h2>Project</h2>
+
+  <p>
+    The project is the "song" container, though the metaphor is loose. It
+    holds:
+  </p>
+
+  <ul class="tight">
+    <li><strong>16 banks</strong> (A–P), each containing 16 patterns and 4
+        parts</li>
+    <li><strong>Project-wide settings</strong> — sync source, MIDI config,
+        audio routing, memory configuration</li>
+    <li>The <strong>Arranger</strong> — up to 8 arrangements per project,
+        chaining patterns into long-form structures</li>
+    <li>References to samples in the Audio Pool, plus per-project
+        <strong>sample slots</strong> (Static + Flex slot lists)</li>
+  </ul>
+
+  <p>
+    Loading a project loads all of the above into RAM. Saving a project
+    writes the current RAM state back to the card. <strong>Unsaved
+    changes are lost on power-off</strong> — the OT does not auto-save.
+  </p>
+
+  <h2>Bank</h2>
+
+  <p>
+    A bank is 16 patterns plus 4 parts, identified by a letter A–P. Banks
+    are independent: switching from bank A to bank B replaces the patterns
+    and parts in active memory. Banks A–P are accessed by holding
+    <kbd>BANK</kbd> and pressing the corresponding trig key.
+  </p>
+
+  <p>
+    The 4 parts within a bank are shared across that bank's 16 patterns.
+    Any pattern can be assigned to any of the 4 parts — a pattern's
+    "instrument set" comes from its assigned part.
+  </p>
+
+  <h2>Pattern</h2>
+
+  <p>
+    A pattern is the sequence: the trigs, parameter locks, microtiming
+    offsets, conditional trigs, and per-track pattern length. Patterns
+    are 1 to 64 steps, with per-track lengths possible for polyrhythmic
+    sequences.
+  </p>
+
+  <p>
+    A pattern <em>references</em> a part — it does not contain the
+    instrument data itself. Two patterns assigned to the same part will
+    play through the same set of machines and samples; changing the part
+    affects both.
+  </p>
+
+  <h2>Part</h2>
+
+  <p>
+    The part is the instrument container. It holds:
+  </p>
+
+  <ul class="tight">
+    <li>Per-track <strong>machine assignments</strong> (Static, Flex,
+        Thru, Neighbor, Pickup, Master)</li>
+    <li>Per-track <strong>sample slot assignments</strong> (which sample
+        each Flex/Static track plays)</li>
+    <li>Per-track <strong>parameter base values</strong> for all five
+        pages (PLAYBACK, AMP, LFO, FX1, FX2)</li>
+    <li>Per-track <strong>scene assignments</strong> for both ends of the
+        crossfader</li>
+    <li>Per-track <strong>MIDI track</strong> data (channel, port, base
+        note, etc.)</li>
+  </ul>
+
+  <p>
+    A pattern + its part = the complete musical statement at that
+    moment. Saving a part is separate from saving a pattern, and worth
+    doing whenever you've made changes you want to keep.
+  </p>
+
+  <div class="callout warn">
+    <span class="callout-label">Warning · the unsaved-part problem</span>
+    <p>
+      The most common Octatrack frustration: making careful per-track
+      adjustments, switching to a different pattern, returning to the
+      original — and finding all the adjustments wiped. The cause is
+      almost always an <strong>unsaved part</strong>. Patterns hold their
+      changes in RAM, but switching parts <em>reloads</em> the part from
+      disk if the in-memory copy hasn't been saved. <kbd class="fn">FUNCTION</kbd>+<kbd>YES</kbd>
+      on the part page commits the part to disk; do this often.
+    </p>
+  </div>
+
+  <h2>What lives where — a cheat sheet</h2>
+
+  <table class="key-table">
+    <thead>
+      <tr><th>Data</th><th>Scope</th><th>Saved with</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Sample audio file</td><td>Audio Pool (set)</td><td>Card</td></tr>
+      <tr><td>Sample slot list</td><td>Project</td><td>Project</td></tr>
+      <tr><td>Machine on track 1</td><td>Part</td><td>Part</td></tr>
+      <tr><td>PLAYBACK page values</td><td>Part</td><td>Part</td></tr>
+      <tr><td>Scene assignments</td><td>Part</td><td>Part</td></tr>
+      <tr><td>Trigs on a step</td><td>Pattern</td><td>Pattern</td></tr>
+      <tr><td>Parameter locks</td><td>Pattern</td><td>Pattern</td></tr>
+      <tr><td>Pattern length</td><td>Pattern</td><td>Pattern</td></tr>
+      <tr><td>Tempo</td><td>Project (or pattern, optionally)</td><td>Project</td></tr>
+      <tr><td>MIDI sync source</td><td>Project</td><td>Project</td></tr>
+    </tbody>
+  </table>
+
+  <p>
+    Memorising this table saves hours of debugging. When something
+    "sticks" or "won't stick", the answer is almost always at the part
+    or project level — not the pattern.
+  </p>
+</section>

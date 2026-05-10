@@ -1,0 +1,169 @@
+<section class="chapter" data-running="13 · Static &amp; Flex machines">
+  <span class="running-title">13 · Static &amp; Flex machines</span>
+  <div class="chapter-header">
+    <div class="eyebrow">Part V · Machines</div>
+    <div class="chapter-no">Chapter 13</div>
+    <h1 class="chapter-title">Static &amp; Flex machines</h1>
+    <p class="lead" style="max-width: 130mm;">
+      The two principal playback machines. Static streams from the card;
+      Flex plays from RAM. Almost every Octatrack project uses both.
+    </p>
+  </div>
+
+  <h2>Static machine</h2>
+
+  <p>
+    Loads from the Static slot list. Plays the slot's audio file by
+    streaming from the CF card. Constraints: forward playback only at
+    moderate pitch ranges; cannot reverse; cannot pitch-shift below
+    about –12 semitones without artefacts.
+  </p>
+
+  <h3>Page parameters</h3>
+
+  <table class="key-table">
+    <thead><tr><th>Page</th><th>Encoder A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>PLAYBACK</td>
+        <td>Slot</td>
+        <td>Pitch</td>
+        <td>Start</td>
+        <td>Length</td>
+        <td>Loop</td>
+        <td>Rate</td>
+      </tr>
+      <tr>
+        <td>AMP</td>
+        <td>Atk</td>
+        <td>Hold</td>
+        <td>Rel</td>
+        <td>Vol</td>
+        <td>Bal</td>
+        <td>Xvol</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Best for</h3>
+
+  <ul class="tight">
+    <li>Backing tracks (full songs, stems)</li>
+    <li>Long ambient samples</li>
+    <li>DJ workflows where each track is a complete song</li>
+    <li>Anything over 30 seconds where RAM would be wasted</li>
+  </ul>
+
+  <h2>Flex machine</h2>
+
+  <p>
+    Loads from the Flex slot list. Audio is in RAM. Supports the full
+    range of OT playback: reverse, pitch shift over a wide range,
+    slice playback, scrubbing, time-stretching.
+  </p>
+
+  <h3>Page parameters (Flex-specific)</h3>
+
+  <p>
+    The Flex machine has the same PLAYBACK page layout as Static, plus
+    these additional capabilities:
+  </p>
+
+  <ul class="tight">
+    <li><strong>Negative pitch</strong> at <span class="param">PTCH</span> –64 = octave down (full speed reverse capable)</li>
+    <li><strong>Reverse</strong> via <span class="param">RATE</span> negative values, or via the reverse trig</li>
+    <li><strong>Slice mode</strong> via <span class="param">START</span> set to slice number (0–63) when slice grid exists</li>
+    <li><strong>Time-stretch</strong> on the TIMESTRETCH page (only on Flex; chapter 30)</li>
+  </ul>
+
+  <h3>The TIMESTRETCH page</h3>
+
+  <p>
+    Flex tracks have access to a TIMESTRETCH page (accessed by holding
+    <kbd class="fn">FUNCTION</kbd> + the LFO button). It allows:
+  </p>
+
+  <ul class="tight">
+    <li><strong>NORM</strong> — pitch and tempo bound together (changing
+        rate changes both)</li>
+    <li><strong>BEAT</strong> — tempo follows project tempo, pitch
+        independent (the standard "stretchy" mode)</li>
+    <li><strong>OFF</strong> — pitch and rate decoupled, no stretching</li>
+  </ul>
+
+  <p>
+    BEAT mode is the standard time-stretch behaviour: the sample
+    auto-conforms to project tempo, and you can pitch it independently.
+    Quality is acceptable for moderate stretches; extreme stretches
+    introduce artifacts (which can themselves be musical).
+  </p>
+
+  <h2>Choosing between Static and Flex</h2>
+
+  <p>
+    Quick guide:
+  </p>
+
+  <table class="key-table">
+    <thead><tr><th>Need</th><th>Static</th><th>Flex</th></tr></thead>
+    <tbody>
+      <tr><td>Sample ≤ 30s, drum hits, loops, vocals</td><td></td><td>✓</td></tr>
+      <tr><td>Backing track, full song, stem</td><td>✓</td><td></td></tr>
+      <tr><td>Need to slice</td><td></td><td>✓</td></tr>
+      <tr><td>Need reverse playback</td><td></td><td>✓</td></tr>
+      <tr><td>Time-stretching</td><td></td><td>✓</td></tr>
+      <tr><td>Pitch shift > 1 octave</td><td></td><td>✓</td></tr>
+      <tr><td>RAM is full</td><td>✓</td><td></td></tr>
+    </tbody>
+  </table>
+
+  <p>
+    A common pattern: one or two Static tracks for backing material,
+    five or six Flex tracks for everything else. The Master machine on
+    T8 if you need master-bus FX. This is the canonical "live
+    Octatrack" project layout.
+  </p>
+
+  <h2>Sample slot locks</h2>
+
+  <p>
+    Both machines support <em>sample slot locks</em> — a parameter lock
+    that swaps the sample slot for a single step. Hold a trig, turn
+    encoder A (the SLOT parameter), and the trig now plays a different
+    slot from the slot list.
+  </p>
+
+  <p>
+    This is the Octatrack's "kit-switching per step" capability. With
+    16 trigs and 16 different slot locks, one track can play 16
+    different drum sounds across a bar — using only one slot list and
+    one machine.
+  </p>
+
+  <div class="callout tip">
+    <span class="callout-label">Tip · slot-lock for kit drumming</span>
+    <p>
+      Build a slot list of drum hits (kick, snare, hat, clap, perc,
+      etc.). On a single Flex track, place 16 trigs and slot-lock each
+      to a different drum. You've built a one-track drum kit that takes
+      no extra tracks. Combined with pitch p-locks per step you can get
+      surprisingly varied drums from a single track.
+    </p>
+  </div>
+
+  <h2>Slot setup workflow</h2>
+
+  <ol class="tight">
+    <li><kbd class="fn">FUNCTION</kbd> + <kbd>PLAYBACK</kbd> opens the
+        Setup screen for the active track's machine</li>
+    <li>Encoder A scrolls through slots; encoder B previews</li>
+    <li><kbd>YES</kbd> assigns the highlighted slot to the track</li>
+    <li><kbd>EXIT</kbd> returns to the PLAYBACK page</li>
+  </ol>
+
+  <p>
+    Slots can be loaded from the Sample Manager if not already
+    assigned. The Setup screen shows the current slot, file name, and
+    estimated memory usage.
+  </p>
+</section>

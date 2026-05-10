@@ -1,0 +1,159 @@
+<section class="chapter" data-running="8 · Eight tracks, master, signal flow">
+  <span class="running-title">8 · Eight tracks, master, signal flow</span>
+  <div class="chapter-header">
+    <div class="eyebrow">Part III · Mental model</div>
+    <div class="chapter-no">Chapter 8</div>
+    <h1 class="chapter-title">Eight tracks, master, signal flow</h1>
+    <p class="lead" style="max-width: 130mm;">
+      How audio actually moves through the Octatrack. The signal path is
+      simple in outline and becomes powerful through the combinatorics of
+      what each track can <em>do</em>.
+    </p>
+  </div>
+
+  <h2>Eight audio tracks</h2>
+
+  <p>
+    The Octatrack has eight audio tracks, T1 through T8. Each track
+    holds one <em>machine</em> — a chunk of sample-playback or
+    audio-routing logic — and processes that machine's output through a
+    fixed signal chain: PLAYBACK → AMP → FX1 → FX2 → mixer routing.
+  </p>
+
+  <p>
+    All eight tracks are equal in capability except T8, which has a
+    special role: when its assigned machine is the <em>Master machine</em>,
+    T8 becomes a master-bus processor (chapter 16). Otherwise T8 is a
+    normal audio track.
+  </p>
+
+  <p>
+    Alongside the audio tracks is a parallel set of <strong>eight MIDI
+    tracks</strong>. MIDI tracks share the same trig keys when MIDI
+    mode is active (chapter 11 of Part IX); they don't process audio.
+  </p>
+
+  <h2>Per-track signal chain</h2>
+
+  <figure>
+    <object data="../illustrations/signal-flow.svg" type="image/svg+xml" style="width: 100%; max-width: 165mm;">
+      Per-track signal flow (SVG)
+    </object>
+    <figcaption>
+      <span class="label">Figure 8.1</span>
+      Audio path for a single track. The crossfader is not in this chain —
+      it modulates parameters on this chain, not audio.
+    </figcaption>
+  </figure>
+
+  <h3>1. Source</h3>
+
+  <p>
+    The track's machine produces audio. For Static and Flex machines,
+    this is the active sample slot's audio, played at the position
+    determined by current trigs and parameter locks. For Thru machines
+    it's the live audio from a chosen rear-panel input pair. For
+    Pickup machines it's the contents of that track's recorder buffer.
+  </p>
+
+  <h3>2. PLAYBACK page</h3>
+
+  <p>
+    Pitch, sample start, length, loop, time-stretching, slice selection.
+    These shape <em>what</em> portion of the source plays and how. See
+    chapter 21.
+  </p>
+
+  <h3>3. AMP page</h3>
+
+  <p>
+    Amplitude envelope (attack, hold, release), volume, balance (pan).
+    Every Octatrack track has an AMP envelope; a flat envelope is just
+    "track plays at full volume". See chapter 22.
+  </p>
+
+  <h3>4. FX1, FX2</h3>
+
+  <p>
+    Two effect slots per track. Each slot can hold any one of the
+    available effects (filter, EQ, delay, reverb, chorus, compressor,
+    phaser, lo-fi, etc.). FX1 runs before FX2; the order is fixed.
+    Choosing which effect lives in each slot is done on the FX page's
+    Setup screen.
+  </p>
+
+  <h3>5. Mixer routing</h3>
+
+  <p>
+    After FX2, the track's audio is routed to one or more of:
+  </p>
+  <ul class="tight">
+    <li><strong>MAIN bus</strong> — the master stereo output</li>
+    <li><strong>CUE bus</strong> — pre-listen / Studio Mode second pair</li>
+    <li>Both, with independent levels</li>
+  </ul>
+
+  <p>
+    Routing is set on the Mixer page. The MAIN bus is summed across all
+    eight tracks; if T8 is loaded with a Master machine, that sum runs
+    through T8's PLAYBACK / AMP / FX1 / FX2 chain before reaching the
+    rear-panel MAIN outputs.
+  </p>
+
+  <h2>The Master track quirk</h2>
+
+  <p>
+    When T8's machine is set to Master, T8 stops being a normal track
+    and becomes a master-bus effects insert. Its sample slot is
+    ignored; its trigs are ignored; its sequencer page does nothing
+    audible. What it <em>does</em> have is its FX1 and FX2 slots, which
+    now process the entire MAIN-bus sum.
+  </p>
+
+  <p>
+    This is how you get a master EQ or master compressor on the
+    Octatrack: load the Master machine on T8, then put a Compressor on
+    its FX1 and a final EQ on its FX2. Note that you lose T8 as a
+    sound-producing track when you do this — eight becomes seven.
+  </p>
+
+  <h2>The crossfader is not in the chain</h2>
+
+  <p>
+    The crossfader morphs <em>parameter values</em> between two
+    snapshots (Scene A and Scene B). It does not gate audio or sit in
+    any signal path. When you move the fader, every parameter that has
+    a scene lock interpolates between the A value and the B value. The
+    audio signal flow above is the same whether the fader is at A, at
+    B, or anywhere between.
+  </p>
+
+  <p>
+    A useful corollary: if you scene-lock a track's level to 0 at
+    Scene A and to maximum at Scene B, the fader will appear to fade
+    that track in or out. But the audio still flows through the same
+    chain — the level parameter is what's changing.
+  </p>
+
+  <h2>What this means in practice</h2>
+
+  <p>
+    With one machine per track, you build composite voices through
+    routing (Neighbor machines that read the previous track's output —
+    see chapter 16) or by parallel arrangement (drum loop on T1, bass
+    on T2, atmosphere on T3, etc.). Eight tracks is more than it sounds
+    when each track has its own two effect slots, its own LFO, and full
+    parameter-lock control per step.
+  </p>
+
+  <div class="callout tip">
+    <span class="callout-label">Tip · the FX1/FX2 ordering hack</span>
+    <p>
+      Because FX1 always runs before FX2, the choice of which effect goes
+      where matters. A reverb on FX1 followed by a filter on FX2 sounds
+      very different from filter→reverb. When you find a combination
+      that doesn't sound right, try swapping the slots before swapping
+      the effects.
+    </p>
+  </div>
+</section>

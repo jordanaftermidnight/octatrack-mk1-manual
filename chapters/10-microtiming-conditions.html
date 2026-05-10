@@ -1,0 +1,167 @@
+<section class="chapter" data-running="10 · Microtiming &amp; conditional trigs">
+  <span class="running-title">10 · Microtiming &amp; conditional trigs</span>
+  <div class="chapter-header">
+    <div class="eyebrow">Part IV · The sequencer</div>
+    <div class="chapter-no">Chapter 10</div>
+    <h1 class="chapter-title">Microtiming &amp; conditional trigs</h1>
+    <p class="lead" style="max-width: 130mm;">
+      Two features that lift the Octatrack sequencer above the
+      step-quantised grid — microtiming pushes trigs off the grid;
+      conditional trigs make trigs probabilistic or context-dependent.
+    </p>
+  </div>
+
+  <h2>Microtiming</h2>
+
+  <p>
+    By default, every trig fires exactly on its step's beat division.
+    Microtiming offsets a single trig forward or backward in time by a
+    fraction of a step — adding push, pull, swing, or human
+    inconsistency to a single hit.
+  </p>
+
+  <p>
+    To set microtiming: hold the trig key, then press the LEFT or
+    RIGHT arrow key. Each press shifts the trig by 1/23rd of a step.
+    The OT shows the offset on the LCD as a small numeric value
+    (negative = earlier, positive = later).
+  </p>
+
+  <p>
+    Microtiming range is roughly ±half a step. Pushing further wraps
+    around (a "+12" trig on step 5 fires earlier than the next step's
+    natural time, but not earlier than step 5 itself).
+  </p>
+
+  <h3>Practical uses</h3>
+
+  <ul class="tight">
+    <li><strong>Swing</strong> — add positive microtiming to every other
+        step. Common values: +5 to +10 for subtle swing, +12 to +18 for
+        broken-beat feel.</li>
+    <li><strong>Drag and push</strong> — pull the snare back ~3 ticks
+        for a laid-back feel; push the hi-hat forward 2–4 for urgency.</li>
+    <li><strong>Humanisation</strong> — randomise small amounts (±2 to
+        ±5) across an otherwise rigid pattern.</li>
+    <li><strong>Polyrhythmic phasing</strong> — combined with per-track
+        pattern lengths, microtiming creates complex evolving textures.</li>
+  </ul>
+
+  <h2>Conditional trigs</h2>
+
+  <p>
+    A conditional trig only fires if a condition is met. Conditions are
+    set per-trig via the LEVEL knob while a trig is held. As you turn
+    LEVEL with a trig held, the LCD displays the active condition.
+  </p>
+
+  <p>
+    The OS 1.40A condition list, in order:
+  </p>
+
+  <table class="key-table">
+    <thead>
+      <tr><th>Condition</th><th>Meaning</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><span class="param">FILL</span></td><td>Fires only when fill mode is active</td></tr>
+      <tr><td><span class="param">FILL</span> (inverted)</td><td>Fires only when fill mode is NOT active</td></tr>
+      <tr><td><span class="param">PRE</span></td><td>Fires if the previous trig on this track fired</td></tr>
+      <tr><td><span class="param">PRE</span> (inverted)</td><td>Fires if the previous trig did NOT fire</td></tr>
+      <tr><td><span class="param">NEI</span></td><td>Fires if the same step on the neighbouring (lower-numbered) track fired</td></tr>
+      <tr><td><span class="param">NEI</span> (inverted)</td><td>Fires if the neighbouring track step did NOT fire</td></tr>
+      <tr><td><span class="param">1ST</span></td><td>Fires only on the first cycle of the pattern</td></tr>
+      <tr><td><span class="param">1ST</span> (inverted)</td><td>Fires on every cycle EXCEPT the first</td></tr>
+      <tr><td><span class="param">X%</span></td><td>Probability — fires X% of the time (10, 20, ... 90%)</td></tr>
+      <tr><td><span class="param">A:B</span></td><td>Fires on the A-th occurrence out of every B (e.g. 1:2 = every other; 2:3 = the second of every three)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Using conditions</h3>
+
+  <p>
+    The most useful conditions in practice:
+  </p>
+
+  <ul class="tight">
+    <li><strong>FILL</strong> — keep fills off the main pattern; they
+        only appear when you trigger fill mode.</li>
+    <li><strong>50%</strong> — the workhorse. Add probabilistic hi-hat
+        flutters, ghost snare hits, occasional accents.</li>
+    <li><strong>1:2</strong> — alternates between hits on even/odd
+        cycles, useful for variations.</li>
+    <li><strong>PRE</strong> — chains. A trig with PRE only fires if
+        the previous step's trig also fired — useful for ratchet-style
+        repeats.</li>
+    <li><strong>NEI</strong> — couples tracks. A trig on T2 with
+        condition <span class="param">NEI</span> only fires if T1's
+        same-step trig fired. Useful for accent layers tied to a kick.</li>
+  </ul>
+
+  <div class="recipe">
+    <h4>Recipe — probability cascade for hi-hats</h4>
+    <p>
+      On a 16-step pattern, place a hi-hat trig on every step. Set
+      conditions:
+    </p>
+    <ul class="tight">
+      <li>Steps 1, 5, 9, 13: no condition (always fire — the downbeats)</li>
+      <li>Steps 3, 7, 11, 15: 80% (steady upbeats with occasional dropouts)</li>
+      <li>Steps 2, 6, 10, 14: 50% (off-beats that come and go)</li>
+      <li>Steps 4, 8, 12, 16: 30% (rare flourishes)</li>
+    </ul>
+    <p>
+      The hi-hat now feels alive — different on every cycle, but the
+      core groove (1, 5, 9, 13) is rock-solid.
+    </p>
+  </div>
+
+  <h2>Fill mode</h2>
+
+  <p>
+    Fill mode is a momentary switch that activates all
+    <span class="param">FILL</span>-conditional trigs. Activate with
+    <kbd class="fn">FUNCTION</kbd> + <kbd>YES</kbd> (toggle), or hold
+    <kbd class="fn">FUNCTION</kbd> + <kbd>YES</kbd> for momentary
+    (release ends the fill).
+  </p>
+
+  <p>
+    The classic use: design the main groove without fills, then add a
+    parallel layer of FILL-conditional trigs that only fire when you
+    momentarily activate fill mode. Ride the fill switch during a
+    performance to introduce variation without changing patterns.
+  </p>
+
+  <p>
+    Inverted-FILL trigs fire <em>only when fill is off</em> — useful
+    for "drop the kick during the fill" effects. Combine FILL and
+    inverted-FILL on the same pattern for clean swap-outs.
+  </p>
+
+  <h2>Combining conditions</h2>
+
+  <p>
+    Each trig has one condition. To stack effects, use multiple trigs
+    on adjacent steps with different conditions, or use per-track
+    pattern lengths to create longer-evolving sequences.
+  </p>
+
+  <p>
+    The combination of microtiming + conditional trigs + parameter
+    locks is what makes the Octatrack's sequencer feel generative
+    rather than mechanical. Two patterns, one part, careful use of
+    conditions: indistinguishable from improvisation in many contexts.
+  </p>
+
+  <div class="callout secret">
+    <span class="callout-label">Hidden · NEI condition pitfall</span>
+    <p>
+      The NEI condition references the <em>previous track</em> (e.g.
+      T2's NEI condition checks T1; T3 checks T2). It does NOT chain
+      across all tracks. T1's NEI references T8, wrapping around. A
+      common mistake is expecting NEI on T5 to depend on T1; it
+      depends on T4. Plan track ordering accordingly.
+    </p>
+  </div>
+</section>

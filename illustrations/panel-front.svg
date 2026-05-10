@@ -1,0 +1,756 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 820" role="img" aria-labelledby="t-panel">
+  <title id="t-panel">Octatrack MK1 — top panel layout</title>
+
+  <defs>
+    <style>
+      /* Chassis */
+      .chassis  { fill: #1A1A1A; stroke: #0A0A0A; stroke-width: 1; }
+
+      /* Knobs (large, gray with light tick) */
+      .knob     { fill: #5E5851; stroke: #1A1A1A; stroke-width: 0.5; }
+      .knob-dot { fill: #C8C0B5; }
+
+      /* Light "function-group" buttons (cream/white):
+         Function, Cue, Mixer, MIDI, Pattern, Bank, Yes/No, arrows,
+         parameter-row, PLAY, STOP, Scale Setup */
+      .key-light { fill: #D8D2C5; stroke: #1A1A1A; stroke-width: 0.5; }
+
+      /* Medium gray buttons: Tempo, Scene A/B, T-mute, trigs */
+      .key-mid   { fill: #6E6862; stroke: #1A1A1A; stroke-width: 0.5; }
+
+      /* Red buttons: Record AB/CD, REC transport */
+      .key-rec   { fill: #BA2A1C; stroke: #15110D; stroke-width: 0.5; }
+
+      /* Active-trig highlight (used on trigs 2/5/9/13 as example) */
+      .key-trig-active { fill: #C84A1A; stroke: #15110D; stroke-width: 0.5; }
+
+      /* LCD */
+      .lcd      { fill: #0A0A0A; }
+      .lcd-line { stroke: #C7E662; stroke-width: 1; opacity: 0.55; }
+
+      /* LEDs */
+      .led-on-red    { fill: #E03A2B; }
+      .led-on-green  { fill: #4DC76B; }
+      .led-on-yellow { fill: #F2B33A; }
+      .led-off  { fill: #2A2522; stroke: #44403B; stroke-width: 0.4; }
+
+      /* Compact-flash card edge */
+      .cf-card-stripe { fill: #BA2A1C; }
+
+      /* Labels */
+      .label-light    { font-family: 'Inter', sans-serif; font-size: 6.4px; font-weight: 700;
+                        fill: #F4EFE5; text-anchor: middle; letter-spacing: 0.04em; }
+      .label-on-light { font-family: 'Inter', sans-serif; font-size: 6.4px; font-weight: 700;
+                        fill: #1A1A1A; text-anchor: middle; letter-spacing: 0.04em; }
+      .label-alt-on-light { font-family: 'Inter', sans-serif; font-size: 5px; font-weight: 600;
+                        fill: #BA2A1C; text-anchor: middle; letter-spacing: 0.02em; }
+      .label-alt-red  { font-family: 'Inter', sans-serif; font-size: 5px; font-weight: 600;
+                        fill: #D85A2A; text-anchor: middle; letter-spacing: 0.02em; }
+      .label-knob     { font-family: 'Inter', sans-serif; font-size: 6.2px; font-weight: 700;
+                        fill: #F4EFE5; text-anchor: middle; letter-spacing: 0.04em; }
+      .label-knob-alt { font-family: 'Inter', sans-serif; font-size: 5px; font-weight: 600;
+                        fill: #D85A2A; text-anchor: middle; letter-spacing: 0.02em; }
+      .label-mute     { font-family: 'Inter', sans-serif; font-size: 5.4px; font-weight: 700;
+                        fill: #F4EFE5; text-anchor: start; letter-spacing: 0.02em; }
+      .label-mute-alt { font-family: 'Inter', sans-serif; font-size: 4.8px; font-weight: 600;
+                        fill: #D85A2A; text-anchor: start; letter-spacing: 0.02em; }
+      .label-rear     { font-family: 'Inter', sans-serif; font-size: 6.2px; font-weight: 600;
+                        fill: #BBB5AB; text-anchor: middle; letter-spacing: 0.04em; }
+      .label-tiny     { font-family: 'Inter', sans-serif; font-size: 4.8px; font-weight: 600;
+                        fill: #F4EFE5; text-anchor: middle; letter-spacing: 0.04em; }
+      .label-tiny-alt { font-family: 'Inter', sans-serif; font-size: 4.4px; font-weight: 600;
+                        fill: #D85A2A; text-anchor: middle; letter-spacing: 0.02em; }
+      .label-tiny-grey{ font-family: 'Inter', sans-serif; font-size: 4.4px; font-weight: 600;
+                        fill: #BBB5AB; text-anchor: middle; letter-spacing: 0.04em; }
+      .group-label    { font-family: 'Inter', sans-serif; font-size: 6.5px; font-weight: 700;
+                        fill: #BBB5AB; text-anchor: middle; letter-spacing: 0.18em;
+                        text-transform: uppercase; }
+      .ab-label       { font-family: 'Inter', sans-serif; font-size: 5.6px; font-weight: 700;
+                        fill: #F4EFE5; text-anchor: middle; }
+      .logo-elektron  { font-family: 'Inter', sans-serif; font-size: 17px; font-weight: 800;
+                        fill: #F4EFE5; letter-spacing: -0.01em; }
+      .logo-octatrack { font-family: 'Inter', sans-serif; font-size: 17px; font-weight: 800;
+                        fill: #BA2A1C; letter-spacing: 0.04em; }
+      .logo-octatrack-mark { fill: #BA2A1C; }
+      .dps-mark       { font-family: 'JetBrains Mono', monospace; font-size: 8px; font-weight: 800;
+                        fill: #F4EFE5; letter-spacing: 0.02em; }
+      .dps-tag        { font-family: 'Inter', sans-serif; font-size: 7.2px; font-weight: 600;
+                        fill: #BBB5AB; letter-spacing: 0.16em; text-transform: uppercase; }
+
+      /* Callouts */
+      .callout-num    { font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 700;
+                        fill: #FBF8F1; text-anchor: middle; }
+      .callout-line   { stroke: #C84A1A; stroke-width: 0.9; fill: none; }
+      .callout-circle { fill: #C84A1A; }
+    </style>
+  </defs>
+
+  <!-- =============================== -->
+  <!-- OUTER CHASSIS                   -->
+  <!-- =============================== -->
+  <rect class="chassis" x="40" y="80" width="1160" height="600" rx="6"/>
+
+  <!-- TOP EDGE: rear connector labels (printed on the panel facing user) -->
+  <g>
+    <circle class="led-off" cx="100" cy="98" r="1.5"/>
+    <circle class="led-off" cx="180" cy="98" r="1.5"/>
+    <circle class="led-off" cx="245" cy="98" r="1.5"/>
+    <circle class="led-off" cx="320" cy="98" r="1.5"/>
+    <circle class="led-off" cx="400" cy="98" r="1.5"/>
+    <circle class="led-off" cx="480" cy="98" r="1.5"/>
+    <circle class="led-off" cx="545" cy="98" r="1.5"/>
+    <circle class="led-off" cx="615" cy="98" r="1.5"/>
+    <circle class="led-off" cx="780" cy="98" r="1.5"/>
+    <circle class="led-off" cx="900" cy="98" r="1.5"/>
+    <circle class="led-off" cx="1000" cy="98" r="1.5"/>
+    <circle class="led-off" cx="1080" cy="98" r="1.5"/>
+
+    <text class="label-rear" x="100" y="112">HEAD-</text>
+    <text class="label-rear" x="100" y="119">PHONES</text>
+    <text class="label-rear" x="180" y="115">MAIN OUT</text>
+    <text class="label-rear" x="245" y="115">CUE OUT</text>
+    <text class="label-rear" x="320" y="115">INPUT A B</text>
+    <text class="label-rear" x="400" y="115">INPUT C D</text>
+    <text class="label-rear" x="480" y="115">MIDI IN</text>
+    <text class="label-rear" x="545" y="115">MIDI OUT</text>
+    <text class="label-rear" x="615" y="115">MIDI THRU</text>
+    <text class="label-rear" x="780" y="115">COMPACT FLASH</text>
+    <text class="label-rear" x="900" y="115">USB</text>
+    <text class="label-rear" x="1000" y="115">DC IN</text>
+    <text class="label-rear" x="1080" y="115">POWER</text>
+  </g>
+
+  <!-- Card Status indicator -->
+  <g transform="translate(700, 140)">
+    <circle class="led-off" cx="0" cy="0" r="2"/>
+    <text class="label-rear" x="0" y="14">CARD STATUS</text>
+  </g>
+
+  <!-- BRAND MARKS -->
+  <text class="logo-elektron" x="80" y="160">elektron</text>
+
+  <!-- DPS-1 mark + DYNAMIC PERFORMANCE SAMPLER -->
+  <g transform="translate(380, 175)">
+    <text class="dps-mark" x="0" y="0">DPS-1</text>
+    <g fill="#F4EFE5">
+      <rect x="36" y="-7" width="0.8" height="7"/>
+      <rect x="38" y="-7" width="0.8" height="7"/>
+      <rect x="40" y="-7" width="0.8" height="7"/>
+      <rect x="42" y="-7" width="0.8" height="7"/>
+      <rect x="44" y="-7" width="0.8" height="7"/>
+      <rect x="46" y="-7" width="0.8" height="7"/>
+      <rect x="48" y="-7" width="0.8" height="7"/>
+    </g>
+    <text class="dps-tag" x="58" y="0">DYNAMIC PERFORMANCE SAMPLER</text>
+  </g>
+
+  <!-- OCTATRACK logo: OT mark + OCTATRACK text, side by side -->
+  <g transform="translate(1010, 158)">
+    <!-- OT mark: two white circles + small red dot -->
+    <circle cx="0"  cy="0" r="8"   fill="#F4EFE5"/>
+    <circle cx="20" cy="0" r="6"   fill="#F4EFE5"/>
+    <circle cx="20" cy="0" r="2"   fill="#1A1A1A"/>
+    <circle cx="32" cy="6" r="2.4" fill="#BA2A1C"/>
+    <!-- OCTATRACK text -->
+    <text class="logo-octatrack" x="46" y="6" text-anchor="start">OCTATRACK</text>
+  </g>
+
+  <!-- =============================== -->
+  <!-- LEFT ZONE                       -->
+  <!-- =============================== -->
+
+  <!-- 1. Volume knob -->
+  <g transform="translate(110, 220)">
+    <circle class="knob" r="22"/>
+    <circle class="knob-dot" cx="0" cy="-12" r="2"/>
+    <text class="label-knob" y="38">VOLUME</text>
+  </g>
+
+  <!-- 2. A--B and C--D input level meter LEDs -->
+  <g transform="translate(220, 200)">
+    <text class="ab-label" x="0" y="3" text-anchor="start">A</text>
+    <text class="label-knob-alt" x="22" y="3" text-anchor="middle">- - -</text>
+    <text class="ab-label" x="48" y="3" text-anchor="end">B</text>
+    <g>
+      <circle class="led-off" cx="6"  cy="14" r="1.6"/>
+      <circle class="led-off" cx="14" cy="14" r="1.6"/>
+      <circle class="led-off" cx="22" cy="14" r="1.6"/>
+      <circle class="led-off" cx="30" cy="14" r="1.6"/>
+      <circle class="led-off" cx="38" cy="14" r="1.6"/>
+      <circle class="led-off" cx="46" cy="14" r="1.6"/>
+    </g>
+    <text class="ab-label" x="58" y="3" text-anchor="start">C</text>
+    <text class="label-knob-alt" x="80" y="3" text-anchor="middle">- - -</text>
+    <text class="ab-label" x="106" y="3" text-anchor="end">D</text>
+    <g>
+      <circle class="led-off" cx="64"  cy="14" r="1.6"/>
+      <circle class="led-off" cx="72"  cy="14" r="1.6"/>
+      <circle class="led-off" cx="80"  cy="14" r="1.6"/>
+      <circle class="led-off" cx="88"  cy="14" r="1.6"/>
+      <circle class="led-off" cx="96"  cy="14" r="1.6"/>
+      <circle class="led-off" cx="104" cy="14" r="1.6"/>
+    </g>
+  </g>
+
+  <!-- 3. Audio Record buttons (smaller round red — REC AB and REC CD) -->
+  <g>
+    <circle class="key-rec" cx="245" cy="280" r="13"/>
+    <text class="label-light" x="245" y="300">RECORD</text>
+    <text class="label-alt-red" x="245" y="310">SETUP</text>
+
+    <circle class="key-rec" cx="297" cy="280" r="13"/>
+    <text class="label-light" x="297" y="300">RECORD</text>
+    <text class="label-alt-red" x="297" y="310">SETUP</text>
+  </g>
+
+  <!-- 4. T1-T4 mute buttons (bigger, distributed across LCD height) -->
+  <g transform="translate(455, 215)">
+    <g>
+      <circle class="led-on-red" cx="-16" cy="0" r="2"/>
+      <circle class="key-mid" cx="0" cy="0" r="10"/>
+      <text class="label-mute" x="15" y="-2">T1</text>
+      <text class="label-mute-alt" x="15" y="6">MUTE</text>
+    </g>
+    <g transform="translate(0, 50)">
+      <circle class="led-off" cx="-16" cy="0" r="2"/>
+      <circle class="key-mid" cx="0" cy="0" r="10"/>
+      <text class="label-mute" x="15" y="-2">T2</text>
+      <text class="label-mute-alt" x="15" y="6">MUTE</text>
+    </g>
+    <g transform="translate(0, 100)">
+      <circle class="led-off" cx="-16" cy="0" r="2"/>
+      <circle class="key-mid" cx="0" cy="0" r="10"/>
+      <text class="label-mute" x="15" y="-2">T3</text>
+      <text class="label-mute-alt" x="15" y="6">MUTE</text>
+    </g>
+    <g transform="translate(0, 150)">
+      <circle class="led-off" cx="-16" cy="0" r="2"/>
+      <circle class="key-mid" cx="0" cy="0" r="10"/>
+      <text class="label-mute" x="15" y="-2">T4</text>
+      <text class="label-mute-alt" x="15" y="6">MUTE</text>
+    </g>
+  </g>
+
+  <!-- 5. LCD screen (bigger, gray-fill with darker bezel) -->
+  <rect x="481" y="189" width="258" height="193" rx="3" fill="#0A0A0A"/>
+  <rect class="lcd" x="485" y="193" width="250" height="185" rx="2" fill="#2E2E2E"/>
+  <g>
+    <line class="lcd-line" x1="495" y1="210" x2="545" y2="210"/>
+    <line class="lcd-line" x1="553" y1="210" x2="603" y2="210"/>
+    <line class="lcd-line" x1="611" y1="210" x2="660" y2="210"/>
+    <line class="lcd-line" x1="668" y1="210" x2="725" y2="210"/>
+    <line class="lcd-line" x1="495" y1="235" x2="565" y2="235"/>
+    <line class="lcd-line" x1="573" y1="235" x2="635" y2="235"/>
+    <line class="lcd-line" x1="643" y1="235" x2="725" y2="235"/>
+    <line class="lcd-line" x1="495" y1="260" x2="600" y2="260"/>
+    <line class="lcd-line" x1="608" y1="260" x2="725" y2="260"/>
+    <line class="lcd-line" x1="495" y1="285" x2="725" y2="285"/>
+    <line class="lcd-line" x1="495" y1="310" x2="555" y2="310"/>
+    <line class="lcd-line" x1="563" y1="310" x2="615" y2="310"/>
+    <line class="lcd-line" x1="623" y1="310" x2="675" y2="310"/>
+    <line class="lcd-line" x1="683" y1="310" x2="725" y2="310"/>
+    <line class="lcd-line" x1="495" y1="335" x2="725" y2="335"/>
+    <line class="lcd-line" x1="495" y1="360" x2="600" y2="360"/>
+    <line class="lcd-line" x1="608" y1="360" x2="725" y2="360"/>
+  </g>
+
+  <!-- 4. T5-T8 mute buttons (mirrored, bigger, distributed across LCD height) -->
+  <g transform="translate(765, 215)">
+    <g>
+      <circle class="key-mid" cx="0" cy="0" r="10"/>
+      <circle class="led-off" cx="16" cy="0" r="2"/>
+      <text class="label-mute" x="-15" y="-2" text-anchor="end">T5</text>
+      <text class="label-mute-alt" x="-15" y="6" text-anchor="end">MUTE</text>
+    </g>
+    <g transform="translate(0, 50)">
+      <circle class="key-mid" cx="0" cy="0" r="10"/>
+      <circle class="led-off" cx="16" cy="0" r="2"/>
+      <text class="label-mute" x="-15" y="-2" text-anchor="end">T6</text>
+      <text class="label-mute-alt" x="-15" y="6" text-anchor="end">MUTE</text>
+    </g>
+    <g transform="translate(0, 100)">
+      <circle class="key-mid" cx="0" cy="0" r="10"/>
+      <circle class="led-off" cx="16" cy="0" r="2"/>
+      <text class="label-mute" x="-15" y="-2" text-anchor="end">T7</text>
+      <text class="label-mute-alt" x="-15" y="6" text-anchor="end">MUTE</text>
+    </g>
+    <g transform="translate(0, 150)">
+      <circle class="key-mid" cx="0" cy="0" r="10"/>
+      <circle class="led-off" cx="16" cy="0" r="2"/>
+      <text class="label-mute" x="-15" y="-2" text-anchor="end">T8</text>
+      <text class="label-mute-alt" x="-15" y="6" text-anchor="end">MUTE</text>
+    </g>
+  </g>
+
+  <!-- =============================== -->
+  <!-- RIGHT ZONE                      -->
+  <!-- =============================== -->
+
+  <!-- 7. Level knob -->
+  <g transform="translate(870, 240)">
+    <circle class="knob" r="22"/>
+    <circle class="knob-dot" cx="0" cy="-12" r="2"/>
+    <text class="label-knob" y="38">LEVEL</text>
+  </g>
+
+  <!-- 9. Six DATA ENTRY knobs (A B C / D E F) -->
+  <g>
+    <g transform="translate(960, 240)">
+      <circle class="knob" r="22"/>
+      <circle class="knob-dot" cx="0" cy="-12" r="2"/>
+      <text class="label-knob" y="38">A</text>
+    </g>
+    <g transform="translate(1050, 240)">
+      <circle class="knob" r="22"/>
+      <circle class="knob-dot" cx="0" cy="-12" r="2"/>
+      <text class="label-knob" y="38">B</text>
+    </g>
+    <g transform="translate(1140, 240)">
+      <circle class="knob" r="22"/>
+      <circle class="knob-dot" cx="0" cy="-12" r="2"/>
+      <text class="label-knob" y="38">C</text>
+    </g>
+    <g transform="translate(960, 320)">
+      <circle class="knob" r="22"/>
+      <circle class="knob-dot" cx="0" cy="-12" r="2"/>
+      <text class="label-knob" y="38">D</text>
+    </g>
+    <g transform="translate(1050, 320)">
+      <circle class="knob" r="22"/>
+      <circle class="knob-dot" cx="0" cy="-12" r="2"/>
+      <text class="label-knob" y="38">E</text>
+    </g>
+    <g transform="translate(1140, 320)">
+      <circle class="knob" r="22"/>
+      <circle class="knob-dot" cx="0" cy="-12" r="2"/>
+      <text class="label-knob" y="38">F</text>
+    </g>
+  </g>
+
+  <!-- 8. Tempo button (gray round button, smaller than knobs) -->
+  <g transform="translate(870, 320)">
+    <circle class="key-mid" r="14"/>
+    <text class="label-light" y="2.5">TEMPO</text>
+    <text class="label-knob-alt" y="28">TAP TEMPO</text>
+  </g>
+
+  <!-- =============================== -->
+  <!-- CENTER-LEFT BUTTONS — small round, light fill -->
+  <!-- =============================== -->
+
+  <!-- 10. Mixer / Project (small round, label below) -->
+  <g transform="translate(215, 395)">
+    <circle class="led-off" cx="0" cy="-14" r="1.6"/>
+    <circle class="key-light" cx="0" cy="0" r="9"/>
+    <text class="label-light" x="0" y="22">MIXER</text>
+    <text class="label-alt-red" x="0" y="32">PROJECT</text>
+  </g>
+
+  <!-- 11. MIDI / Part (small round + LED indicator) -->
+  <g transform="translate(305, 395)">
+    <circle class="key-light" cx="0" cy="0" r="9"/>
+    <circle class="led-off" cx="14" cy="-2" r="1.6"/>
+    <text class="label-light" x="0" y="22">MIDI</text>
+    <text class="label-alt-red" x="0" y="32">PART</text>
+  </g>
+
+  <!-- 12. FUNCTION (pill-shaped, light fill, shorter) -->
+  <g transform="translate(75, 460)">
+    <rect class="key-light" x="0" y="0" width="60" height="22" rx="11"/>
+    <text class="label-on-light" x="30" y="14">FUNCTION</text>
+  </g>
+
+  <!-- 13. CUE / Reload (pill-shaped, light fill, shorter) -->
+  <g transform="translate(145, 460)">
+    <circle class="led-off" cx="30" cy="-8" r="1.6"/>
+    <rect class="key-light" x="0" y="0" width="60" height="22" rx="11"/>
+    <text class="label-on-light" x="30" y="14">CUE</text>
+    <text class="label-alt-on-light" x="30" y="40">RELOAD</text>
+  </g>
+
+  <!-- 14. Pattern / Arranger (pill-shaped, light fill) -->
+  <g transform="translate(75, 530)">
+    <rect class="key-light" x="0" y="0" width="60" height="22" rx="11"/>
+    <text class="label-on-light" x="30" y="14">PATTERN</text>
+    <text class="label-alt-on-light" x="30" y="40">ARRANGER</text>
+  </g>
+
+  <!-- 15. Bank / Edit (pill-shaped, light fill) -->
+  <g transform="translate(145, 530)">
+    <rect class="key-light" x="0" y="0" width="60" height="22" rx="11"/>
+    <text class="label-on-light" x="30" y="14">BANK</text>
+    <text class="label-alt-on-light" x="30" y="40">EDIT</text>
+  </g>
+
+  <!-- =============================== -->
+  <!-- CENTER NAVIGATION                                         -->
+  <!-- =============================== -->
+
+  <!-- 16. Enter / Yes (round, light fill, with LED indicator above) -->
+  <g transform="translate(295, 460)">
+    <circle class="led-off" cx="20" cy="-8" r="1.6"/>
+    <circle class="key-light" cx="0" cy="0" r="11"/>
+    <text class="label-light" x="0" y="24">ENTER</text>
+    <text class="label-alt-red" x="0" y="33">YES</text>
+  </g>
+
+  <!-- 17. Exit / No (round, light fill) -->
+  <g transform="translate(295, 530)">
+    <circle class="key-light" cx="0" cy="0" r="11"/>
+    <text class="label-light" x="0" y="24">EXIT</text>
+    <text class="label-alt-red" x="0" y="33">NO</text>
+  </g>
+
+  <!-- 18. Arrow keys (cross arrangement, slightly larger, cross-center aligned to transport y=480) -->
+  <g transform="translate(370, 467)">
+    <circle class="key-light" cx="24" cy="0" r="10"/>
+    <text class="label-tiny" x="24" y="2.5">▲</text>
+
+    <circle class="key-light" cx="0" cy="26" r="10"/>
+    <text class="label-tiny" x="0" y="28.5">◀</text>
+
+    <circle class="key-light" cx="24" cy="26" r="10"/>
+    <text class="label-tiny" x="24" y="28.5">▼</text>
+
+    <circle class="key-light" cx="48" cy="26" r="10"/>
+    <text class="label-tiny" x="48" y="28.5">▶</text>
+  </g>
+
+  <!-- =============================== -->
+  <!-- 19. PARAMETER PAGE BUTTONS (5 small round, tighter spacing, centered under LCD) -->
+  <!-- =============================== -->
+  <g transform="translate(510, 420)">
+    <!-- labels above each (primary) -->
+    <text class="label-light" x="0"   y="-14">PLAYBACK</text>
+    <text class="label-alt-red" x="0" y="-6">NOTE</text>
+    <text class="label-light" x="50"  y="-14">AMP</text>
+    <text class="label-alt-red" x="50" y="-6">ARP</text>
+    <text class="label-light" x="100" y="-14">LFO</text>
+    <text class="label-alt-red" x="100" y="-6">LFO</text>
+    <text class="label-light" x="150" y="-14">EFFECT 1</text>
+    <text class="label-alt-red" x="150" y="-6">CTRL 1</text>
+    <text class="label-light" x="200" y="-14">EFFECT 2</text>
+    <text class="label-alt-red" x="200" y="-6">CTRL 2</text>
+
+    <!-- 5 small round buttons (uniform, tighter) -->
+    <circle class="key-light" cx="0"   cy="0" r="8"/>
+    <circle class="key-light" cx="50"  cy="0" r="8"/>
+    <circle class="key-light" cx="100" cy="0" r="8"/>
+    <circle class="key-light" cx="150" cy="0" r="8"/>
+    <circle class="key-light" cx="200" cy="0" r="8"/>
+
+    <!-- LED indicators below each -->
+    <circle class="led-off" cx="0"   cy="14" r="1.6"/>
+    <circle class="led-off" cx="50"  cy="14" r="1.6"/>
+    <circle class="led-off" cx="100" cy="14" r="1.6"/>
+    <circle class="led-off" cx="150" cy="14" r="1.6"/>
+    <circle class="led-off" cx="200" cy="14" r="1.6"/>
+
+    <!-- Setup label (under the 5-LED row) -->
+    <line stroke="#BBB5AB" stroke-width="0.4" x1="-15" y1="22" x2="85" y2="22" opacity="0.5"/>
+    <text class="label-tiny-grey" x="100" y="24">SETUP</text>
+    <line stroke="#BBB5AB" stroke-width="0.4" x1="115" y1="22" x2="215" y2="22" opacity="0.5"/>
+  </g>
+
+  <!-- =============================== -->
+  <!-- 20-22. TRANSPORT (elongated pill buttons)  -->
+  <!-- 20: REC red · 21: PLAY light · 22: STOP light -->
+  <!-- =============================== -->
+  <g transform="translate(568, 480)">
+    <!-- LED row above transport -->
+    <circle class="led-on-red" cx="-2" cy="-14" r="1.6"/>
+    <circle class="led-off"    cx="40" cy="-14" r="1.6"/>
+    <circle class="led-off"    cx="82" cy="-14" r="1.6"/>
+
+    <!-- 20: REC = Copy (red pill, white circle dot icon) -->
+    <g>
+      <rect class="key-rec" x="-18" y="-9" width="36" height="18" rx="9"/>
+      <circle cx="-2" cy="0" r="3.5" fill="#F4EFE5"/>
+      <circle cx="-2" cy="0" r="2"   fill="#BA2A1C"/>
+      <text class="label-alt-red" x="0" y="22">COPY</text>
+    </g>
+    <!-- 21: PLAY = Clear (light pill, dark triangle icon) -->
+    <g transform="translate(42, 0)">
+      <rect class="key-light" x="-18" y="-9" width="36" height="18" rx="9"/>
+      <polygon points="-3,-5 -3,5 5,0" fill="#1A1A1A"/>
+      <text class="label-alt-red" x="0" y="22">CLEAR</text>
+    </g>
+    <!-- 22: STOP = Paste (light pill, dark square icon) -->
+    <g transform="translate(84, 0)">
+      <rect class="key-light" x="-18" y="-9" width="36" height="18" rx="9"/>
+      <rect x="-4" y="-4" width="8" height="8" fill="#1A1A1A"/>
+      <text class="label-alt-red" x="0" y="22">PASTE</text>
+    </g>
+  </g>
+
+  <!-- =============================== -->
+  <!-- 23-25. SCENE A · CROSSFADER · SCENE B -->
+  <!-- =============================== -->
+  <g transform="translate(870, 470)">
+    <!-- 23: Scene A (bigger, with LED above) -->
+    <g>
+      <circle class="led-off" cx="0" cy="-34" r="2"/>
+      <circle class="key-mid" cx="0" cy="0" r="26"/>
+      <text class="label-light" x="0" y="3">SCENE A</text>
+      <text class="label-alt-red" x="0" y="40">MUTE</text>
+    </g>
+    <!-- 24: Crossfader -->
+    <g transform="translate(35, 0)">
+      <rect x="0" y="-16" width="200" height="32" rx="3" fill="#0A0A0A" stroke="#3A3A3A" stroke-width="0.5"/>
+      <line x1="10" y1="0" x2="190" y2="0" stroke="#7A7570" stroke-width="2.5"/>
+      <rect x="86" y="-12" width="28" height="24" rx="2" fill="#5E5851" stroke="#1A1A1A" stroke-width="0.5"/>
+      <line x1="100" y1="-8" x2="100" y2="8" stroke="#1A1A1A" stroke-width="0.6"/>
+      <text class="label-tiny-grey" x="100" y="36">CROSSFADER</text>
+    </g>
+    <!-- 25: Scene B (bigger, mirror) -->
+    <g transform="translate(270, 0)">
+      <circle class="led-off" cx="0" cy="-34" r="2"/>
+      <circle class="key-mid" cx="0" cy="0" r="26"/>
+      <text class="label-light" x="0" y="3">SCENE B</text>
+      <text class="label-alt-red" x="0" y="40">MUTE</text>
+    </g>
+  </g>
+
+  <!-- =============================== -->
+  <!-- 26. SCALE SETUP + tempo signature LEDs -->
+  <!-- LEDs above; Scale Setup button at trig-row level, far right -->
+  <!-- =============================== -->
+  <!-- 1:4 / 2:4 / 3:4 / 4:4 LEDs (above the Scale Setup button) -->
+  <g transform="translate(1175, 565)">
+    <circle class="led-off" cx="-9" cy="0" r="1.5"/>
+    <text class="label-tiny" x="-9" y="-5">1:4</text>
+    <circle class="led-off" cx="9" cy="0" r="1.5"/>
+    <text class="label-tiny" x="9" y="-5">2:4</text>
+    <circle class="led-off" cx="-9" cy="12" r="1.5"/>
+    <text class="label-tiny" x="-9" y="20">3:4</text>
+    <circle class="led-off" cx="9" cy="12" r="1.5"/>
+    <text class="label-tiny" x="9" y="20">4:4</text>
+  </g>
+
+  <!-- 26. Scale Setup button — pill at far right edge of panel, matching official manual -->
+  <g transform="translate(1175, 620)">
+    <rect class="key-light" x="-18" y="-9" width="36" height="18" rx="9"/>
+    <text class="label-alt-red" x="0" y="26">SCALE SETUP</text>
+  </g>
+
+  <!-- =============================== -->
+  <!-- BOTTOM ROW — 16 BIG ROUND TRIG KEYS -->
+  <!-- spacing 70, span x=80 to x=1130 — matches official manual proportions -->
+  <!-- =============================== -->
+  <g transform="translate(0, 590)">
+    <!-- LEDs above each trig -->
+    <g>
+      <circle class="led-off"    cx="80"   cy="0" r="2"/>
+      <circle class="led-on-red" cx="150"  cy="0" r="2"/>
+      <circle class="led-off"    cx="220"  cy="0" r="2"/>
+      <circle class="led-off"    cx="290"  cy="0" r="2"/>
+      <circle class="led-on-red" cx="360"  cy="0" r="2"/>
+      <circle class="led-off"    cx="430"  cy="0" r="2"/>
+      <circle class="led-off"    cx="500"  cy="0" r="2"/>
+      <circle class="led-off"    cx="570"  cy="0" r="2"/>
+      <circle class="led-on-red" cx="640"  cy="0" r="2"/>
+      <circle class="led-off"    cx="710"  cy="0" r="2"/>
+      <circle class="led-off"    cx="780"  cy="0" r="2"/>
+      <circle class="led-off"    cx="850"  cy="0" r="2"/>
+      <circle class="led-on-red" cx="920"  cy="0" r="2"/>
+      <circle class="led-off"    cx="990"  cy="0" r="2"/>
+      <circle class="led-off"    cx="1060" cy="0" r="2"/>
+      <circle class="led-off"    cx="1130" cy="0" r="2"/>
+    </g>
+
+    <!-- 16 round trig buttons -->
+    <g transform="translate(0, 30)">
+      <circle class="key-mid"          cx="80"   cy="0" r="22"/><text class="label-light" x="80"   y="3">1</text>
+      <circle class="key-trig-active"  cx="150"  cy="0" r="22"/><text class="label-light" x="150"  y="3">2</text>
+      <circle class="key-mid"          cx="220"  cy="0" r="22"/><text class="label-light" x="220"  y="3">3</text>
+      <circle class="key-mid"          cx="290"  cy="0" r="22"/><text class="label-light" x="290"  y="3">4</text>
+      <circle class="key-trig-active"  cx="360"  cy="0" r="22"/><text class="label-light" x="360"  y="3">5</text>
+      <circle class="key-mid"          cx="430"  cy="0" r="22"/><text class="label-light" x="430"  y="3">6</text>
+      <circle class="key-mid"          cx="500"  cy="0" r="22"/><text class="label-light" x="500"  y="3">7</text>
+      <circle class="key-mid"          cx="570"  cy="0" r="22"/><text class="label-light" x="570"  y="3">8</text>
+      <circle class="key-trig-active"  cx="640"  cy="0" r="22"/><text class="label-light" x="640"  y="3">9</text>
+      <circle class="key-mid"          cx="710"  cy="0" r="22"/><text class="label-light" x="710"  y="3">10</text>
+      <circle class="key-mid"          cx="780"  cy="0" r="22"/><text class="label-light" x="780"  y="3">11</text>
+      <circle class="key-mid"          cx="850"  cy="0" r="22"/><text class="label-light" x="850"  y="3">12</text>
+      <circle class="key-trig-active"  cx="920"  cy="0" r="22"/><text class="label-light" x="920"  y="3">13</text>
+      <circle class="key-mid"          cx="990"  cy="0" r="22"/><text class="label-light" x="990"  y="3">14</text>
+      <circle class="key-mid"          cx="1060" cy="0" r="22"/><text class="label-light" x="1060" y="3">15</text>
+      <circle class="key-mid"          cx="1130" cy="0" r="22"/><text class="label-light" x="1130" y="3">16</text>
+    </g>
+
+    <!-- A·T1..P·T8 labels under each trig -->
+    <g transform="translate(0, 70)">
+      <text class="label-tiny" x="80"   y="0">A · T1</text>
+      <text class="label-tiny" x="150"  y="0">B · T2</text>
+      <text class="label-tiny" x="220"  y="0">C · T3</text>
+      <text class="label-tiny" x="290"  y="0">D · T4</text>
+      <text class="label-tiny" x="360"  y="0">E · T5</text>
+      <text class="label-tiny" x="430"  y="0">F · T6</text>
+      <text class="label-tiny" x="500"  y="0">G · T7</text>
+      <text class="label-tiny" x="570"  y="0">H · T8</text>
+      <text class="label-tiny" x="640"  y="0">I · T1</text>
+      <text class="label-tiny" x="710"  y="0">J · T2</text>
+      <text class="label-tiny" x="780"  y="0">K · T3</text>
+      <text class="label-tiny" x="850"  y="0">L · T4</text>
+      <text class="label-tiny" x="920"  y="0">M · T5</text>
+      <text class="label-tiny" x="990"  y="0">N · T6</text>
+      <text class="label-tiny" x="1060" y="0">O · T7</text>
+      <text class="label-tiny" x="1130" y="0">P · T8</text>
+    </g>
+
+    <!-- Track Trigs / Sample-MIDI Trigs grouping with brackets -->
+    <g transform="translate(0, 88)">
+      <line stroke="#BBB5AB" stroke-width="0.5" x1="60" y1="0" x2="270" y2="0" opacity="0.5"/>
+      <text class="label-tiny-grey" x="320" y="2">TRACK TRIGS</text>
+      <line stroke="#BBB5AB" stroke-width="0.5" x1="370" y1="0" x2="590" y2="0" opacity="0.5"/>
+      <line stroke="#BBB5AB" stroke-width="0.5" x1="620" y1="0" x2="820" y2="0" opacity="0.5"/>
+      <text class="label-tiny-grey" x="880" y="2">SAMPLE / MIDI TRIGS</text>
+      <line stroke="#BBB5AB" stroke-width="0.5" x1="940" y1="0" x2="1150" y2="0" opacity="0.5"/>
+    </g>
+  </g>
+
+  <!-- =============================== -->
+  <!-- CALLOUT NUMBERS (1-26)          -->
+  <!-- =============================== -->
+  <g>
+    <!-- 1: Volume -->
+    <line class="callout-line" x1="110" y1="198" x2="110" y2="40"/>
+    <circle class="callout-circle" cx="110" cy="32" r="9"/>
+    <text class="callout-num" x="110" y="35">1</text>
+
+    <!-- 2: A-B / C-D LEDs -->
+    <line class="callout-line" x1="270" y1="195" x2="270" y2="40"/>
+    <circle class="callout-circle" cx="270" cy="32" r="9"/>
+    <text class="callout-num" x="270" y="35">2</text>
+
+    <!-- 3: Record buttons -->
+    <line class="callout-line" x1="270" y1="265" x2="270" y2="60"/>
+    <circle class="callout-circle" cx="270" cy="52" r="9"/>
+    <text class="callout-num" x="270" y="55">3</text>
+
+    <!-- 4 (left): T1-T4 -->
+    <line class="callout-line" x1="441" y1="215" x2="441" y2="50"/>
+    <circle class="callout-circle" cx="441" cy="42" r="9"/>
+    <text class="callout-num" x="441" y="45">4</text>
+
+    <!-- 5: LCD -->
+    <line class="callout-line" x1="610" y1="193" x2="610" y2="40"/>
+    <circle class="callout-circle" cx="610" cy="32" r="9"/>
+    <text class="callout-num" x="610" y="35">5</text>
+
+    <!-- 4 (right): T5-T8 -->
+    <line class="callout-line" x1="779" y1="215" x2="779" y2="50"/>
+    <circle class="callout-circle" cx="779" cy="42" r="9"/>
+    <text class="callout-num" x="779" y="45">4</text>
+
+    <!-- 6: Card Status -->
+    <line class="callout-line" x1="700" y1="138" x2="678" y2="60"/>
+    <circle class="callout-circle" cx="676" cy="52" r="9"/>
+    <text class="callout-num" x="676" y="55">6</text>
+
+    <!-- 7: Level -->
+    <line class="callout-line" x1="870" y1="218" x2="870" y2="40"/>
+    <circle class="callout-circle" cx="870" cy="32" r="9"/>
+    <text class="callout-num" x="870" y="35">7</text>
+
+    <!-- 8: Tempo -->
+    <line class="callout-line" x1="850" y1="320" x2="836" y2="60"/>
+    <circle class="callout-circle" cx="836" cy="52" r="9"/>
+    <text class="callout-num" x="836" y="55">8</text>
+
+    <!-- 9: Data entry knobs -->
+    <line class="callout-line" x1="1140" y1="218" x2="1140" y2="40"/>
+    <circle class="callout-circle" cx="1140" cy="32" r="9"/>
+    <text class="callout-num" x="1140" y="35">9</text>
+
+    <!-- 10: Mixer -->
+    <line class="callout-line" x1="215" y1="386" x2="20" y2="386"/>
+    <circle class="callout-circle" cx="12" cy="386" r="9"/>
+    <text class="callout-num" x="12" y="389">10</text>
+
+    <!-- 11: MIDI -->
+    <line class="callout-line" x1="305" y1="386" x2="305" y2="362"/>
+    <circle class="callout-circle" cx="305" cy="354" r="9"/>
+    <text class="callout-num" x="305" y="357">11</text>
+
+    <!-- 12: Function -->
+    <line class="callout-line" x1="75" y1="471" x2="20" y2="471"/>
+    <circle class="callout-circle" cx="12" cy="471" r="9"/>
+    <text class="callout-num" x="12" y="474">12</text>
+
+    <!-- 13: Cue -->
+    <line class="callout-line" x1="205" y1="471" x2="225" y2="471"/>
+    <circle class="callout-circle" cx="233" cy="471" r="9"/>
+    <text class="callout-num" x="233" y="474">13</text>
+
+    <!-- 14: Pattern -->
+    <line class="callout-line" x1="75" y1="541" x2="20" y2="541"/>
+    <circle class="callout-circle" cx="12" cy="541" r="9"/>
+    <text class="callout-num" x="12" y="544">14</text>
+
+    <!-- 15: Bank -->
+    <line class="callout-line" x1="205" y1="541" x2="225" y2="541"/>
+    <circle class="callout-circle" cx="233" cy="541" r="9"/>
+    <text class="callout-num" x="233" y="544">15</text>
+
+    <!-- 16: Enter / Yes -->
+    <line class="callout-line" x1="295" y1="449" x2="295" y2="362"/>
+    <circle class="callout-circle" cx="295" cy="354" r="9"/>
+    <text class="callout-num" x="295" y="357">16</text>
+
+    <!-- 17: Exit / No -->
+    <line class="callout-line" x1="295" y1="541" x2="295" y2="700"/>
+    <circle class="callout-circle" cx="295" cy="708" r="9"/>
+    <text class="callout-num" x="295" y="711">17</text>
+
+    <!-- 18: Arrows -->
+    <line class="callout-line" x1="394" y1="503" x2="394" y2="700"/>
+    <circle class="callout-circle" cx="394" cy="708" r="9"/>
+    <text class="callout-num" x="394" y="711">18</text>
+
+    <!-- 19: Parameter row -->
+    <line class="callout-line" x1="610" y1="412" x2="610" y2="370"/>
+    <circle class="callout-circle" cx="610" cy="362" r="9"/>
+    <text class="callout-num" x="610" y="365">19</text>
+
+    <!-- 20: Copy / REC -->
+    <line class="callout-line" x1="568" y1="491" x2="568" y2="700"/>
+    <circle class="callout-circle" cx="568" cy="708" r="9"/>
+    <text class="callout-num" x="568" y="711">20</text>
+
+    <!-- 21: Clear / PLAY -->
+    <line class="callout-line" x1="610" y1="491" x2="610" y2="700"/>
+    <circle class="callout-circle" cx="610" cy="708" r="9"/>
+    <text class="callout-num" x="610" y="711">21</text>
+
+    <!-- 22: Paste / STOP -->
+    <line class="callout-line" x1="652" y1="491" x2="652" y2="700"/>
+    <circle class="callout-circle" cx="652" cy="708" r="9"/>
+    <text class="callout-num" x="652" y="711">22</text>
+
+    <!-- 23: Scene A -->
+    <line class="callout-line" x1="870" y1="448" x2="870" y2="700"/>
+    <circle class="callout-circle" cx="870" cy="708" r="9"/>
+    <text class="callout-num" x="870" y="711">23</text>
+
+    <!-- 24: Crossfader -->
+    <line class="callout-line" x1="1005" y1="470" x2="1005" y2="700"/>
+    <circle class="callout-circle" cx="1005" cy="708" r="9"/>
+    <text class="callout-num" x="1005" y="711">24</text>
+
+    <!-- 25: Scene B -->
+    <line class="callout-line" x1="1140" y1="448" x2="1140" y2="700"/>
+    <circle class="callout-circle" cx="1140" cy="708" r="9"/>
+    <text class="callout-num" x="1140" y="711">25</text>
+
+    <!-- 26: Scale Setup -->
+    <line class="callout-line" x1="1175" y1="618" x2="1175" y2="700"/>
+    <circle class="callout-circle" cx="1175" cy="708" r="9"/>
+    <text class="callout-num" x="1175" y="711">26</text>
+  </g>
+
+  <text x="1160" y="800" font-family="Inter, sans-serif" font-size="7"
+        font-weight="600" fill="#6B635A" letter-spacing="0.18em" text-anchor="end">
+    OCTATRACK · MK1 · TOP PANEL
+  </text>
+</svg>

@@ -1,0 +1,153 @@
+<section class="chapter" data-running="22 · MIDI tracks">
+  <span class="running-title">22 · MIDI tracks</span>
+  <div class="chapter-header">
+    <div class="eyebrow">Part IX · MIDI</div>
+    <div class="chapter-no">Chapter 22</div>
+    <h1 class="chapter-title">MIDI tracks</h1>
+    <p class="lead" style="max-width: 130mm;">
+      Eight MIDI tracks running in parallel with the audio tracks.
+      The OT can sequence external gear with the same trig + p-lock
+      paradigm — including LFOs, scenes, and conditional trigs.
+    </p>
+  </div>
+
+  <h2>Activating MIDI mode</h2>
+
+  <p>
+    Press the <kbd>MIDI</kbd> button (callout 11). The button's LED
+    lights, and the trig row, parameter pages, and encoders now
+    address MIDI tracks instead of audio tracks. Press again to
+    return to audio.
+  </p>
+
+  <p>
+    The eight MIDI tracks are independent of the eight audio tracks.
+    They share the trig keys but have their own parts, patterns,
+    parameters, and scenes.
+  </p>
+
+  <h2>Per-MIDI-track configuration</h2>
+
+  <p>
+    On the MIDI Setup page (<kbd class="fn">FUNCTION</kbd> +
+    <kbd>PLAYBACK</kbd> while in MIDI mode):
+  </p>
+
+  <table class="key-table">
+    <thead><tr><th>Param</th><th>Function</th></tr></thead>
+    <tbody>
+      <tr><td>CHAN</td><td>MIDI channel 1–16</td></tr>
+      <tr><td>OUT</td><td>Output port (MIDI Out, USB-MIDI not supported, internal channel routing)</td></tr>
+      <tr><td>BANK</td><td>Program/Bank Select</td></tr>
+      <tr><td>PROG</td><td>Program Change</td></tr>
+      <tr><td>NOTE</td><td>Base note (MIDI note number)</td></tr>
+      <tr><td>VEL</td><td>Default velocity</td></tr>
+      <tr><td>LEN</td><td>Default note length</td></tr>
+    </tbody>
+  </table>
+
+  <h2>The five MIDI parameter pages</h2>
+
+  <p>
+    In MIDI mode, the parameter row buttons map to:
+  </p>
+
+  <ul class="tight">
+    <li><strong>NOTE</strong> — the playback page for MIDI: note,
+        velocity, length, channel-related params</li>
+    <li><strong>ARP</strong> — arpeggiator settings</li>
+    <li><strong>LFO</strong> — same three-LFO system as audio,
+        targets MIDI parameters</li>
+    <li><strong>CTRL 1</strong> — first user-assignable CC page (8 CC
+        targets)</li>
+    <li><strong>CTRL 2</strong> — second user-assignable CC page (8 CC
+        targets)</li>
+  </ul>
+
+  <p>
+    CTRL 1 and CTRL 2 each let you assign 8 CC numbers to the encoders
+    — 16 CCs total per MIDI track, each with full p-lock and LFO
+    capability. This makes the OT a deeply capable MIDI controller,
+    not just a sequencer.
+  </p>
+
+  <h2>The arpeggiator</h2>
+
+  <p>
+    The ARP page activates a per-track arpeggiator. Settings:
+  </p>
+
+  <ul class="tight">
+    <li>Mode (up, down, alternate, random, polyphonic)</li>
+    <li>Speed (multiplier of project tempo)</li>
+    <li>Octave range</li>
+    <li>Length (how many cycles before stopping)</li>
+    <li>Probability (each arp note can have a percentage chance)</li>
+  </ul>
+
+  <p>
+    The arpeggiator is rare in performance samplers and is a strong
+    point of the OT's MIDI implementation. Combined with note p-locks
+    you can sequence arps that change pattern and rate per step.
+  </p>
+
+  <h2>MIDI sequencing examples</h2>
+
+  <div class="recipe">
+    <h4>Recipe — sequence external synth</h4>
+    <p>
+      Set MIDI track 1's CHAN to match the synth's receive channel.
+      Place trigs on the trig row. Each trig fires a note at the base
+      pitch (NOTE param). P-lock pitch per step for a melodic
+      sequence. The synth plays the OT's notes — you've turned the
+      OT into an external sequencer with full Octatrack-style p-lock
+      capabilities.
+    </p>
+  </div>
+
+  <div class="recipe">
+    <h4>Recipe — CC modulation alongside notes</h4>
+    <p>
+      On the same MIDI track, configure CTRL 1 with the synth's
+      filter CC. P-lock the CC per step alongside note p-locks.
+      Now your sequenced notes carry filter modulation per step —
+      no need for the synth to handle the modulation internally.
+    </p>
+  </div>
+
+  <h2>MIDI receive</h2>
+
+  <p>
+    The OT also receives MIDI on the IN port. Common uses:
+  </p>
+
+  <ul class="tight">
+    <li>External clock (PROJECT → SYNC SOURCE = MIDI)</li>
+    <li>Note-triggering audio tracks (MIDI note ON triggers a sample
+        playback)</li>
+    <li>CC remote control of OT parameters (assignable in PROJECT →
+        MIDI MAP)</li>
+  </ul>
+
+  <p>
+    The MIDI MAP lets you assign external CCs to OT parameters
+    (filter cutoff, FX values, scene morphs, etc.). Combined with an
+    external controller (or Push, or another sequencer) the OT
+    becomes deeply remote-controllable.
+  </p>
+
+  <h2>TurboMIDI</h2>
+
+  <p>
+    Between two Elektron devices, the MIDI cables negotiate a higher
+    baud rate (TurboMIDI), reducing latency on dense CC streams. This
+    is automatic — connect Elektron to Elektron, get TurboMIDI. With
+    non-Elektron gear, falls back to standard MIDI baud (no impact).
+  </p>
+
+  <p>
+    Useful in practice for sequencing other Elektron units: Digitone,
+    Analog Rytm, Digitakt — all benefit from TurboMIDI when
+    sequenced from the OT.
+  </p>
+</section>

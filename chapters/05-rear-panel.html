@@ -1,0 +1,176 @@
+<section class="chapter" data-running="5 · Rear panel">
+  <span class="running-title">5 · Rear panel</span>
+  <div class="chapter-header">
+    <div class="eyebrow">Part II · Hardware tour</div>
+    <div class="chapter-no">Chapter 5</div>
+    <h1 class="chapter-title">Rear panel &amp; connections</h1>
+    <p class="lead" style="max-width: 130mm;">
+      Twelve connector groups along the back edge. Numbering matches
+      sec.&nbsp;3.2 of the official OS&nbsp;1.40A manual.
+    </p>
+  </div>
+
+  <figure>
+    <object data="../illustrations/panel-rear.svg" type="image/svg+xml" style="width: 100%; max-width: 175mm;">
+      Rear panel diagram (SVG)
+    </object>
+    <figcaption>
+      <span class="label">Figure 5.1</span>
+      Rear panel of the Octatrack MK1, schematic. Numbering matches the
+      official OS&nbsp;1.40A manual, sec.&nbsp;3.2.
+    </figcaption>
+  </figure>
+
+  <div class="cols-2">
+    <div>
+      <h3>1 · Power on / off</h3>
+      <p>
+        Rocker switch. Always stop the sequencer and save your project
+        before powering down — the Octatrack does not commit unsaved
+        RAM-resident recordings to the CF card on power loss.
+        Power-cycling while a save is in progress can also corrupt the
+        project file.
+      </p>
+
+      <h3>2 · 6V DC power in</h3>
+      <p>
+        Centre-positive 6&nbsp;V&nbsp;/&nbsp;3&nbsp;A barrel jack — the
+        <kbd>⊖ &mdash; ⊕</kbd> symbol next to the jack confirms the
+        polarity. Use the original Elektron PSU or a high-quality
+        replacement matching the polarity and current rating.
+        Underspecified supplies cause intermittent reboots, especially on
+        busy projects.
+      </p>
+
+      <h3>3 · Hi-Speed USB 2.0</h3>
+      <p>
+        Two functions only: <strong>mass storage</strong> for accessing
+        the Compact Flash card from a host computer
+        (PROJECT → SYSTEM → USB DISK MODE), and <strong>SysEx
+        transport</strong> for OS upgrades and backup dumps. There is
+        no USB MIDI, no USB audio, and no Overbridge — the port has
+        never carried audio in either direction, on either MK1 or MK2.
+      </p>
+
+      <h3>4 · Compact Flash card reader</h3>
+      <p>
+        Type I CF slot. The MK1 was originally tested up to 4&nbsp;GB;
+        with the OS&nbsp;1.30+ filesystem improvements, cards up to
+        64&nbsp;GB work reliably. Use FAT32. Avoid SD-to-CF adapters in
+        long-term use — many introduce write failures the OT silently
+        tolerates until a save corrupts. Genuine industrial CF cards
+        (SanDisk Extreme, Lexar Professional 1066x or higher) remain
+        available and worth the purchase.
+      </p>
+
+      <h3>5 · MIDI Thru</h3>
+      <p>
+        5-pin DIN. Echoes incoming MIDI from the IN port without
+        re-quantising or modifying it.
+      </p>
+
+      <h3>6 · MIDI Out</h3>
+      <p>
+        5-pin DIN. Sends data from the OT's eight MIDI tracks plus
+        clock, transport, and SysEx. Supports Elektron's
+        <strong>TurboMIDI</strong> protocol — higher-than-standard baud
+        rates between two Elektron boxes for faster CC streams. Anything
+        connected, Elektron or otherwise, falls back to standard MIDI
+        baud automatically.
+      </p>
+    </div>
+
+    <div>
+      <h3>7 · MIDI In</h3>
+      <p>
+        5-pin DIN. Receives clock, notes, CCs, NRPNs, and SysEx. Used
+        for slaving the OT to an external clock, for triggering audio
+        tracks from a keyboard, and for receiving real-time controller
+        data into the eight MIDI tracks.
+      </p>
+
+      <h3>8 · Input C / D</h3>
+      <p>
+        Two ¼″ jacks forming the <strong>CD pair</strong>. C is the top
+        jack (left channel), D is the bottom jack (right channel). On MK1
+        the inputs are <strong>unbalanced</strong> at +8&nbsp;dBu peak.
+        (The MK2 changed this to impedance-balanced inputs at
+        +17&nbsp;dBu, a 9&nbsp;dB headroom improvement that is the
+        single most-cited reason to prefer MK2 for studio use.)
+      </p>
+
+      <h3>9 · Input A / B</h3>
+      <p>
+        Two ¼″ jacks forming the <strong>AB pair</strong>. A is the top
+        jack (left channel), B is the bottom jack (right channel). Same
+        electrical characteristics as the CD pair. Together with CD,
+        these provide four mono input channels arranged as two stereo
+        pairs.
+      </p>
+
+      <h3>10 · Cue Out L / R</h3>
+      <p>
+        Stacked vertical pair (L on top, R on bottom). Impedance-
+        balanced ¼″. By default the CUE bus carries whatever tracks are
+        currently routed to it via <kbd>CUE</kbd>+<kbd>TRACK</kbd> —
+        useful for headphone pre-listen. With <strong>Studio Mode</strong>
+        enabled (PROJECT → CTRL → AUDIO → OUTPUTS = STUDIO) the CUE bus
+        becomes a completely independent main pair: each track gets a
+        MAIN volume and a CUE volume, and the two pairs can carry
+        different mixes for front-of-house and stage monitoring, or for
+        a hardware mixer return.
+      </p>
+
+      <h3>11 · Main Out L / R</h3>
+      <p>
+        Stacked vertical pair (L on top, R on bottom), to the right of
+        Cue Out. Impedance-balanced ¼″. Carries the sum of all tracks
+        routed to MAIN, after the master track's FX if a Master machine
+        is loaded on T8.
+      </p>
+
+      <h3>12 · Headphones output</h3>
+      <p>
+        Single ¼″ stereo jack at the right edge. Driven by the
+        front-panel headphones-volume knob (callout 1 in chapter 4).
+        Mirrors the CUE bus by default; mirrors the MAIN pair when the
+        CUE bus is empty and Studio Mode is off.
+      </p>
+    </div>
+  </div>
+
+  <div class="callout warn" style="margin-top: 1.4em;">
+    <span class="callout-label">Warning · ground hum on unbalanced inputs</span>
+    <p>
+      The MK1's unbalanced inputs are susceptible to ground loops when the
+      Octatrack and a connected synth or mixer are on different mains
+      circuits. If you hear 50/60&nbsp;Hz hum that disappears when you
+      unplug the source, you have a ground loop. The right fix is a
+      properly grounded power distribution; a serviceable temporary fix
+      is a transformer-isolated DI box on the offending source.
+    </p>
+  </div>
+
+  <h2 style="margin-top: 1.4em;">A small note on the chassis</h2>
+
+  <p>
+    The MK1's enclosure is silver-painted steel with the rear panel
+    forming a structural chassis. Two screws on each side and a row
+    along the rear edge open the unit. Inside, three ribbon cables
+    connect the upper UI PCB to the main board — significant if you
+    ever need to service the crossfader or a failed encoder. The MK2
+    uses two ribbons and a slightly different geometry; service docs
+    from MK2 do not all transfer.
+  </p>
+
+  <p>
+    Battery: a CR2450 lithium-manganese cell, retained in a clip on the
+    main PCB. It backs up RAM-held pattern and part data so the unit
+    boots into the project it was last working on without a full CF
+    reload — Elektron quotes a six-year shelf life under typical use.
+    When the battery fails, the Octatrack will still work, but every
+    cold start will take longer and any unsaved work in RAM will be
+    lost. Replacement is straightforward and detailed in
+    Appendix&nbsp;G.
+  </p>
+</section>

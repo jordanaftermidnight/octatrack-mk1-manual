@@ -1,0 +1,170 @@
+<section class="chapter" data-running="14 · Thru, Neighbor, Master">
+  <span class="running-title">14 · Thru, Neighbor, Master</span>
+  <div class="chapter-header">
+    <div class="eyebrow">Part V · Machines</div>
+    <div class="chapter-no">Chapter 14</div>
+    <h1 class="chapter-title">Thru, Neighbor &amp; Master machines</h1>
+    <p class="lead" style="max-width: 130mm;">
+      Three machines that don't play samples. Thru passes external audio
+      through; Neighbor reads the previous track's signal; Master turns
+      a track into a master-bus processor.
+    </p>
+  </div>
+
+  <h2>Thru machine</h2>
+
+  <p>
+    A Thru machine routes external audio (from one of the rear-panel
+    input pairs) directly into the track's signal chain. The track
+    becomes a live audio processor — your synth or external source
+    runs through the OT's PLAYBACK, AMP, FX1, and FX2.
+  </p>
+
+  <p>
+    Thru-machine PLAYBACK page has different parameters: source
+    selection (AB, CD, A, B, C, D), input gain, balance.
+  </p>
+
+  <h3>Use cases</h3>
+
+  <ul class="tight">
+    <li>Treat the OT as a multi-effects unit for your synth</li>
+    <li>Apply scenes/p-locks to live input — modulate the FX on
+        external sound through the crossfader</li>
+    <li>Use a Thru-machine track as a "drone layer" running an
+        external oscillator through the OT's filter and reverb</li>
+  </ul>
+
+  <p>
+    A Thru track does not have a sample, but you can still place
+    trigs on it — they'll just have no audible effect (no sample to
+    play). The trigs <em>can</em> carry parameter locks, however,
+    which means you can sequence FX changes on the Thru-track's input
+    without the input itself being sequenced.
+  </p>
+
+  <h2>Neighbor machine</h2>
+
+  <p>
+    A Neighbor machine reads the audio output of the previous track
+    (T2's neighbor is T1's output, T3's neighbor is T2's, etc.). It
+    feeds that audio into its own signal chain — meaning T2's PLAYBACK
+    /AMP/FX1/FX2 process T1's output.
+  </p>
+
+  <p>
+    This creates serial effect chains. T1 plays a sample; T2 (Neighbor)
+    adds a delay; T3 (Neighbor of T2) adds a reverb. Each track
+    contributes one effects pair, but the audio cascades.
+  </p>
+
+  <h3>Why this matters</h3>
+
+  <p>
+    The Octatrack normally limits you to 2 effects per track. With
+    Neighbor machines you can stack effects across multiple tracks —
+    4, 6, even 8 effects in series.
+  </p>
+
+  <p>
+    Cost: each Neighbor track consumes a track slot. If you want T1
+    with a 6-effect chain, you'll spend T1, T2, T3 on the chain. The
+    upside is full p-lock control over each effect stage independently.
+  </p>
+
+  <h3>Wraparound</h3>
+
+  <p>
+    T1's neighbor is T8 — the chain wraps. This is rarely useful but
+    occasionally produces feedback paths if used carelessly (e.g.
+    placing T8 as Master with T1 as Neighbor of T8 creates a feedback
+    loop). The OT prevents true feedback through Neighbor, but the
+    wraparound is real.
+  </p>
+
+  <div class="callout tip">
+    <span class="callout-label">Tip · Neighbor for parallel processing</span>
+    <p>
+      Place the same sample on T1 and a Neighbor on T2. The two tracks
+      now play the sample with independent FX chains. Mix them on the
+      mixer page for parallel processing — wet/dry blends, frequency
+      splits, etc. T1 = clean, T2 = filtered + delayed. Or T2 muted,
+      crossfader-controlled to fade in.
+    </p>
+  </div>
+
+  <h2>Master machine</h2>
+
+  <p>
+    Loaded only on T8. Turns T8 into a master-bus processor: T8's
+    sample slot is ignored, T8's trigs are silent, but T8's FX1 and
+    FX2 process the entire MAIN bus sum (the mix of T1 through T7,
+    plus any tracks routed to MAIN).
+  </p>
+
+  <p>
+    T8's Master configuration:
+  </p>
+
+  <ul class="tight">
+    <li>FX1 — typically a Compressor or EQ for master-bus glue</li>
+    <li>FX2 — typically a final EQ, limiter, or Lo-Fi for character</li>
+    <li>AMP volume on T8 — acts as master output volume</li>
+  </ul>
+
+  <h3>What you lose</h3>
+
+  <p>
+    You lose T8 as an audio-producing track. Eight tracks becomes
+    seven. For most projects this is a fair trade for master-bus FX.
+    For projects already at 7-track capacity, consider whether master
+    FX are worth the dedicated slot.
+  </p>
+
+  <h3>What you gain</h3>
+
+  <ul class="tight">
+    <li>Master compression for unified loudness across the mix</li>
+    <li>Master EQ for tonal correction</li>
+    <li>Lo-fi or saturation for character ("OT mix glue")</li>
+    <li>Scene control over master parameters — fade out the entire
+        mix via a scene-locked AMP volume</li>
+  </ul>
+
+  <h2>Choosing your machine layout</h2>
+
+  <p>
+    A few canonical setups:
+  </p>
+
+  <h3>Studio mix layout</h3>
+
+  <ul class="tight">
+    <li>T1–T6: Static and Flex playback (drums, bass, leads, etc.)</li>
+    <li>T7: spare Flex track for live capture</li>
+    <li>T8: Master machine</li>
+  </ul>
+
+  <h3>Live performance layout</h3>
+
+  <ul class="tight">
+    <li>T1: Pickup machine — live looper</li>
+    <li>T2–T6: Flex playback for sequenced material</li>
+    <li>T7: Thru machine — external synth input</li>
+    <li>T8: Master</li>
+  </ul>
+
+  <h3>Effects-rack layout</h3>
+
+  <ul class="tight">
+    <li>T1: Thru machine — input</li>
+    <li>T2–T7: Neighbor chain — six stages of effects</li>
+    <li>T8: Master</li>
+  </ul>
+
+  <p>
+    These are starting points. The OT rewards experimenting with
+    machine assignments — a project's layout is part of its sound
+    design.
+  </p>
+</section>

@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 380" role="img" aria-labelledby="t-pickup">
+  <title id="t-pickup">Pickup machine state diagram</title>
+  <defs>
+    <style>
+      .state-empty   { fill: #FBF8F1; stroke: #15110D; stroke-width: 1.4; }
+      .state-rec     { fill: #C84A1A; stroke: #15110D; stroke-width: 1.4; }
+      .state-play    { fill: #2C5566; stroke: #15110D; stroke-width: 1.4; }
+      .state-stop    { fill: #6B635A; stroke: #15110D; stroke-width: 1.4; }
+      .state-over    { fill: #A8331F; stroke: #15110D; stroke-width: 1.4; }
+      .arrow         { fill: none; stroke: #15110D; stroke-width: 1.2; }
+      .arrow-auto    { fill: none; stroke: #6B635A; stroke-width: 1.0; stroke-dasharray: 3,2; }
+      .label         { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700;
+                       text-anchor: middle; }
+      .label-light   { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700;
+                       fill: #FBF8F1; text-anchor: middle; }
+      .label-dark    { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700;
+                       fill: #15110D; text-anchor: middle; }
+      .trigger       { font-family: 'JetBrains Mono', monospace; font-size: 8px; font-weight: 700;
+                       fill: #C84A1A; text-anchor: middle; }
+      .trigger-auto  { font-family: 'JetBrains Mono', monospace; font-size: 8px; font-weight: 500;
+                       fill: #6B635A; font-style: italic; text-anchor: middle; }
+    </style>
+    <marker id="arrow-tip" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#15110D"/>
+    </marker>
+    <marker id="arrow-tip-auto" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#6B635A"/>
+    </marker>
+  </defs>
+
+  <!-- States -->
+  <g>
+    <ellipse class="state-empty" cx="100" cy="80"  rx="60" ry="32"/>
+    <text class="label-dark"      x="100" y="84">EMPTY</text>
+
+    <ellipse class="state-rec"   cx="320" cy="80"  rx="60" ry="32"/>
+    <text class="label-light"     x="320" y="84">RECORDING</text>
+
+    <ellipse class="state-play"  cx="540" cy="80"  rx="60" ry="32"/>
+    <text class="label-light"     x="540" y="84">PLAYING</text>
+
+    <ellipse class="state-over"  cx="540" cy="220" rx="60" ry="32"/>
+    <text class="label-light"     x="540" y="224">OVERDUBBING</text>
+
+    <ellipse class="state-stop"  cx="320" cy="220" rx="60" ry="32"/>
+    <text class="label-light"     x="320" y="224">STOPPED</text>
+  </g>
+
+  <!-- Transitions -->
+  <!-- EMPTY → RECORDING : YES + trig -->
+  <line class="arrow" x1="160" y1="80" x2="255" y2="80" marker-end="url(#arrow-tip)"/>
+  <text class="trigger" x="207" y="72">YES + TRIG</text>
+
+  <!-- RECORDING → PLAYING : auto after bars -->
+  <line class="arrow-auto" x1="380" y1="80" x2="475" y2="80" marker-end="url(#arrow-tip-auto)"/>
+  <text class="trigger-auto" x="427" y="72">auto, after N bars</text>
+
+  <!-- PLAYING → OVERDUBBING : YES + trig -->
+  <path class="arrow" d="M 530 112 Q 510 165, 530 188" marker-end="url(#arrow-tip)"/>
+  <text class="trigger" x="475" y="160" text-anchor="end">YES + TRIG</text>
+
+  <!-- OVERDUBBING → PLAYING : auto after bars -->
+  <path class="arrow-auto" d="M 555 188 Q 575 165, 555 112" marker-end="url(#arrow-tip-auto)"/>
+  <text class="trigger-auto" x="610" y="160" text-anchor="start">auto</text>
+
+  <!-- PLAYING → STOPPED : FUNCTION + trig -->
+  <line class="arrow" x1="480" y1="100" x2="380" y2="200" marker-end="url(#arrow-tip)"/>
+  <text class="trigger" x="445" y="135" text-anchor="middle">FUNCTION</text>
+  <text class="trigger" x="445" y="146" text-anchor="middle">+ TRIG</text>
+
+  <!-- STOPPED → PLAYING : YES + trig -->
+  <line class="arrow" x1="350" y1="195" x2="490" y2="100" marker-end="url(#arrow-tip)"/>
+  <text class="trigger" x="395" y="170" text-anchor="middle">YES + TRIG</text>
+
+  <!-- Self-loops? skip for clarity -->
+
+  <!-- Legend -->
+  <g transform="translate(60, 320)">
+    <text font-family="Inter, sans-serif" font-size="10" font-weight="700"
+          fill="#15110D" x="0" y="0">Transitions:</text>
+    <line stroke="#15110D" stroke-width="1.2" x1="100" y1="-3" x2="135" y2="-3"
+          marker-end="url(#arrow-tip)"/>
+    <text font-family="JetBrains Mono, monospace" font-size="8" font-weight="700"
+          fill="#C84A1A" x="142" y="0">user-triggered</text>
+
+    <line stroke="#6B635A" stroke-width="1" stroke-dasharray="3,2" x1="270" y1="-3" x2="305" y2="-3"
+          marker-end="url(#arrow-tip-auto)"/>
+    <text font-family="JetBrains Mono, monospace" font-size="8" font-weight="500"
+          fill="#6B635A" font-style="italic" x="312" y="0">automatic (after bars)</text>
+  </g>
+</svg>

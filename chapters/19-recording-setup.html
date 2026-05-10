@@ -1,0 +1,173 @@
+<section class="chapter" data-running="19 · Recording setup">
+  <span class="running-title">19 · Recording setup</span>
+  <div class="chapter-header">
+    <div class="eyebrow">Part VII · Sampling &amp; the audio editor</div>
+    <div class="chapter-no">Chapter 19</div>
+    <h1 class="chapter-title">Recording setup</h1>
+    <p class="lead" style="max-width: 130mm;">
+      The Octatrack samples on the fly into eight per-track recorder
+      buffers. This chapter covers how to configure recording — sources,
+      lengths, formats — and how the recorder interacts with the
+      sequencer.
+    </p>
+  </div>
+
+  <h2>The recorder buffers</h2>
+
+  <p>
+    Every audio track has its own recorder buffer. There are eight
+    buffers total, one per track. They share a common pool of memory
+    (set in PROJECT → MEMORY CONFIG, see chapter 7).
+  </p>
+
+  <p>
+    Each buffer can be:
+  </p>
+
+  <ul class="tight">
+    <li>Triggered by REC AB / REC CD on the front panel</li>
+    <li>Triggered by a sequencer record-trig</li>
+    <li>Played back as a sample by any Static or Flex track that
+        references it</li>
+    <li>Saved to the Audio Pool as a permanent sample (the
+        "Save Recording" option)</li>
+  </ul>
+
+  <h2>Recording Setup pages</h2>
+
+  <p>
+    Two setup pages, accessed via:
+  </p>
+
+  <ul class="tight">
+    <li><kbd class="fn">FUNCTION</kbd> + <kbd>REC AB</kbd> — page 1</li>
+    <li><kbd class="fn">FUNCTION</kbd> + <kbd>REC CD</kbd> — page 2</li>
+  </ul>
+
+  <p>
+    The settings are per-track — each track has its own recording
+    config.
+  </p>
+
+  <h3>Recording Setup page 1</h3>
+
+  <table class="key-table">
+    <thead><tr><th>Knob</th><th>Param</th><th>Function</th></tr></thead>
+    <tbody>
+      <tr><td>A</td><td><span class="param">SRC</span></td><td>Source: AB, CD, A, B, C, D, MAIN, CUE, neighboring track</td></tr>
+      <tr><td>B</td><td><span class="param">INAB</span></td><td>Input gain for AB pair</td></tr>
+      <tr><td>C</td><td><span class="param">INCD</span></td><td>Input gain for CD pair</td></tr>
+      <tr><td>D</td><td><span class="param">RLEN</span></td><td>Recording length in steps (1–256, or INF)</td></tr>
+      <tr><td>E</td><td><span class="param">FTSY</span></td><td>Pre-trigger memory (some history before record start)</td></tr>
+      <tr><td>F</td><td><span class="param">RTRIG</span></td><td>Auto-retrigger behavior</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Recording Setup page 2</h3>
+
+  <table class="key-table">
+    <thead><tr><th>Knob</th><th>Param</th><th>Function</th></tr></thead>
+    <tbody>
+      <tr><td>A</td><td><span class="param">QREC</span></td><td>Quantise recording start (off, 1/16 to bar)</td></tr>
+      <tr><td>B</td><td><span class="param">QPL</span></td><td>Quantise playback start</td></tr>
+      <tr><td>C</td><td><span class="param">SRC3</span></td><td>Internal source: which other track to capture</td></tr>
+      <tr><td>D</td><td><span class="param">LFO</span></td><td>LFO routing on input</td></tr>
+      <tr><td>E</td><td><span class="param">LOOP</span></td><td>Loop the recording (replaces older content as it fills)</td></tr>
+      <tr><td>F</td><td><span class="param">FREE</span></td><td>Free-record mode (manual stop)</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Memory config</h2>
+
+  <p>
+    The recorder memory pool is split into eight buffers. Memory
+    settings (PROJECT → MEMORY CONFIG):
+  </p>
+
+  <ul class="tight">
+    <li><strong>Recorder buffer length</strong> — total memory, in
+        seconds. Distributed equally across the 8 buffers.</li>
+    <li><strong>Mono / stereo</strong> — mono buffers double their
+        recordable length</li>
+    <li><strong>16-bit / 24-bit</strong> — 16-bit doubles the length
+        compared to 24-bit</li>
+  </ul>
+
+  <p>
+    The default memory config gives roughly 30 seconds per buffer at
+    16-bit stereo. Bumping up to 60+ seconds requires either reducing
+    Flex memory or going mono/16-bit.
+  </p>
+
+  <h2>Triggering recording</h2>
+
+  <p>
+    Several ways to start recording:
+  </p>
+
+  <ul class="tight">
+    <li><kbd>REC AB</kbd> — record AB pair into the active track's
+        buffer (record-quick mode), or hold a <kbd>TRACK</kbd> button
+        to record into that specific track</li>
+    <li>A record-trig in the sequencer — placed on a step like a
+        normal trig, but on a "record track" view</li>
+    <li>External MIDI message (CC remote-trigger of recording)</li>
+  </ul>
+
+  <h2>Quantised recording</h2>
+
+  <p>
+    With QREC set to a non-zero value, the recorder waits until the
+    next quantise boundary before actually starting. Press REC AB on
+    beat 2.5; with QREC = 1/4 bar, recording begins at beat 3.
+  </p>
+
+  <p>
+    Useful for: capturing aligned-to-beat material live, where you
+    can't time button presses precisely. The recorder does the
+    quantising for you.
+  </p>
+
+  <h2>Length presets vs free record</h2>
+
+  <p>
+    RLEN sets a fixed length in steps. The recorder captures exactly
+    that much, then stops. For a 16-step pattern at 1/16 time scale,
+    RLEN = 16 captures one bar.
+  </p>
+
+  <p>
+    FREE mode disables RLEN; you stop recording manually. The
+    recorder captures until you press the same trigger again, or
+    until the buffer is full. Useful when you don't know the length
+    in advance.
+  </p>
+
+  <div class="callout note">
+    <span class="callout-label">Note · the buffer is volatile</span>
+    <p>
+      Recorder buffers are in RAM. They're not saved on power-off, and
+      they're not saved with the project unless you explicitly save
+      them via "Save Recording" (PROJECT → CARD TOOLS). For live
+      performance this is fine — buffers regenerate as you sample. For
+      anything you want to keep, save explicitly.
+    </p>
+  </div>
+
+  <h2>Playing back recordings</h2>
+
+  <p>
+    Recorder buffers are accessible as samples. On a Flex or Static
+    machine, you can assign a recorder buffer as the slot source
+    (via the Setup page). Recording on T1 and playing the result back
+    through a Flex machine on T1 means T1 captures and replays in the
+    same track — the basis for live looping.
+  </p>
+
+  <p>
+    Pickup machines (chapter 15) wrap this entire workflow into a
+    single machine type. For workflows where you want explicit control
+    over capture timing and slot assignment, the manual recorder
+    setup gives finer control.
+  </p>
+</section>

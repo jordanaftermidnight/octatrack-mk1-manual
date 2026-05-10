@@ -1,0 +1,168 @@
+<section class="chapter" data-running="9 · Trigs and parameter locks">
+  <span class="running-title">9 · Trigs and parameter locks</span>
+  <div class="chapter-header">
+    <div class="eyebrow">Part IV · The sequencer</div>
+    <div class="chapter-no">Chapter 9</div>
+    <h1 class="chapter-title">Trigs &amp; parameter locks</h1>
+    <p class="lead" style="max-width: 130mm;">
+      The Octatrack sequencer's two atomic concepts. Everything else —
+      microtiming, conditional trigs, fill mode, scenes — is built on
+      these.
+    </p>
+  </div>
+
+  <h2>The trig</h2>
+
+  <p>
+    A <strong>trig</strong> is a step in the pattern that fires the
+    track's sound. The trig row at the bottom of the panel (in TRACKS
+    mode) shows 16 trigs at a time; the pattern's full length, up to
+    64 steps, is paged across the four pages with the LEFT/RIGHT arrow
+    keys.
+  </p>
+
+  <p>
+    To add a trig: press a trig key while the corresponding track is
+    selected. The trig key lights, and the trig will fire on that step
+    every time the pattern reaches it. To remove: press the trig key
+    again. To preview a trig (with its locks) without committing it,
+    hold <kbd>YES</kbd> + the trig key.
+  </p>
+
+  <p>
+    Trig types — pressed in the same way but distinguished by held
+    modifiers:
+  </p>
+
+  <ul class="tight">
+    <li><strong>Note trig</strong> — the default. Fires the sample at
+        the trig's pitch and parameter values.</li>
+    <li><strong>Trigless lock</strong> — held <kbd class="fn">FUNCTION</kbd>
+        + trig. Records parameter locks at this step but does not
+        re-trigger the sample. Useful for parameter automation that
+        rides over a sustained note.</li>
+    <li><strong>One-shot trig</strong> — held <kbd>YES</kbd> + trig.
+        Fires <em>once</em> when armed (typically used with the Pickup
+        machine), then disarms itself.</li>
+    <li><strong>Hold trig</strong> — long-press a trig in Live Record
+        mode while a sound plays.</li>
+  </ul>
+
+  <h2>The parameter lock</h2>
+
+  <p>
+    A parameter lock ("p-lock") records a parameter value
+    <em>specifically for one step</em>. When the pattern reaches that
+    step, the parameter takes the locked value; on every other step,
+    it uses the part's base value.
+  </p>
+
+  <p>
+    To set a p-lock:
+  </p>
+
+  <ol class="tight">
+    <li>Hold the trig key for the step you want to modify</li>
+    <li>While holding, turn any data-entry knob (A–F) — the value moves
+        for that step alone</li>
+    <li>Release the trig key</li>
+  </ol>
+
+  <p>
+    The trig now has a parameter lock, indicated by a red light on the
+    trig and an inverted parameter label on the LCD when that step is
+    selected. To clear all locks on a step: hold the trig and press
+    <kbd>NO</kbd>. To clear locks on a single parameter: hold the trig
+    and press the parameter knob (A–F) corresponding to it.
+  </p>
+
+  <p>
+    P-locks work on every parameter the OT exposes — pitch, sample
+    start, slice number, filter cutoff, FX values, even the sample
+    slot itself (a <em>sample slot lock</em>, see chapter 21). This is
+    the OT's signature feature: any single step can sound radically
+    different from any other.
+  </p>
+
+  <h2>P-lock examples</h2>
+
+  <div class="recipe">
+    <h4>Recipe — pitch ladder</h4>
+    <p>
+      Place a kick drum sample on every step of a 16-step pattern. Hold
+      step 5 and turn the pitch knob down 5 semitones; hold step 13
+      and turn it up 7 semitones. The pattern now plays the kick at
+      three distinct pitches across the bar — at the same loudness,
+      same envelope, same FX. One sample, one pattern, three voices.
+    </p>
+  </div>
+
+  <div class="recipe">
+    <h4>Recipe — moving filter sweep</h4>
+    <p>
+      With a sustained pad sample on a track, place 16 trigs (one per
+      step) and lock the FX1 filter cutoff at gradually higher values
+      across the pattern. You've drawn a filter envelope without using
+      an LFO — and it's editable on a per-step basis.
+    </p>
+  </div>
+
+  <h2>Trigless locks</h2>
+
+  <p>
+    A trigless lock changes parameters without re-triggering the sound.
+    To set: hold <kbd class="fn">FUNCTION</kbd> + trig key, then turn
+    knobs.
+  </p>
+
+  <p>
+    Why this matters: if a sample plays for several steps after its
+    initial trig (long release, sustained loop), p-locking subsequent
+    steps would re-trigger the sample. Trigless locks let you ride
+    parameters over the sustain — a filter sweep on a long pad, a
+    pitch bend on a sustained note, an FX wet/dry change without
+    interrupting the sound.
+  </p>
+
+  <p>
+    On the trig row, trigless locks show a different LED state from
+    note trigs. The full LED-state legend is in Appendix A.
+  </p>
+
+  <h2>The base value vs. the locked value</h2>
+
+  <p>
+    Every parameter has a <strong>base value</strong> set on the
+    parameter page (the knob position you see in the LCD when no trig
+    is held). Locks are deltas from this base: at every unlocked step,
+    the parameter uses the base; at locked steps, it uses the lock.
+  </p>
+
+  <p>
+    Adjusting the base value changes every unlocked step. This is the
+    fastest way to "shift everything" — turn the base knob, all
+    unlocked steps follow; locked steps stay where you put them.
+  </p>
+
+  <div class="callout tip">
+    <span class="callout-label">Tip · the silent-step trick</span>
+    <p>
+      Want to make a track go silent for a few steps without removing
+      its trigs? P-lock the AMP track-volume to zero on those steps.
+      The trigs still fire, the sample still plays, but at zero level —
+      so when you raise the volume p-lock back up later, the trigs are
+      still there waiting.
+    </p>
+  </div>
+
+  <h2>The scope reminder</h2>
+
+  <p>
+    Trigs and p-locks live in the <strong>pattern</strong> (chapter 6).
+    Switching to a different pattern presents a different set of
+    trigs/p-locks — the part stays the same. This is why two patterns
+    on the same part can sound radically different: the part defines
+    the instrument, but the pattern's trigs and locks define the
+    performance.
+  </p>
+</section>

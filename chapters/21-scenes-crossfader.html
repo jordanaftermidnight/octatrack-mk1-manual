@@ -1,0 +1,184 @@
+<section class="chapter" data-running="21 · Scenes &amp; crossfader">
+  <span class="running-title">21 · Scenes &amp; crossfader</span>
+  <div class="chapter-header">
+    <div class="eyebrow">Part VIII · Scenes, parts, crossfader</div>
+    <div class="chapter-no">Chapter 21</div>
+    <h1 class="chapter-title">Scenes &amp; the crossfader</h1>
+    <p class="lead" style="max-width: 130mm;">
+      The Octatrack's signature performance feature. Scenes are
+      parameter snapshots; the crossfader morphs between two of them
+      in real time. This is what makes the OT a "performance sampler"
+      and not just a sequencer.
+    </p>
+  </div>
+
+  <h2>Scenes — what they are</h2>
+
+  <p>
+    A scene is a snapshot of parameter values across all eight tracks.
+    Specifically, it stores any parameter that has been
+    <em>scene-locked</em> — meaning explicitly assigned to that scene
+    with a particular value. Parameters that are not scene-locked
+    don't appear in the scene; they remain controlled by the part's
+    base values and pattern p-locks.
+  </p>
+
+  <p>
+    Each part has 16 scenes, numbered 1–16. The crossfader assigns
+    one scene to its A end and one to its B end. Moving the fader
+    morphs every scene-locked parameter between its A value and its B
+    value.
+  </p>
+
+  <h2>The fader is a parameter morph, not an audio gate</h2>
+
+  <p>
+    Repeating from chapter 8: the crossfader does not gate audio.
+    It interpolates parameter values. If you want it to fade a track
+    in or out, you scene-lock the track's level — at zero in scene A
+    and at maximum in scene B. The fader then becomes a level
+    interpolator for that track.
+  </p>
+
+  <p>
+    The implication: every parameter that supports scene-locking can
+    be morphed by the fader. Pitch, FX cutoff, sample slot, scene
+    locks themselves — anything. This is why the crossfader is more
+    than a DJ-style mixer fader.
+  </p>
+
+  <h2>Setting a scene lock</h2>
+
+  <ol class="tight">
+    <li>Hold <kbd>SCENE A</kbd> (or <kbd>SCENE B</kbd>) and press a
+        trig key to select which scene to assign to that fader end.</li>
+    <li>Make sure the fader is fully at the chosen end (A or B).</li>
+    <li>Hold <kbd>SCENE A</kbd> (or B) again and turn a knob on any
+        parameter page. The knob's value is recorded into that scene.</li>
+    <li>Release. The parameter is now scene-locked.</li>
+  </ol>
+
+  <p>
+    The locked parameter shows a small "X" indicator on the LCD when
+    the scene is active. Move the fader: the parameter follows the
+    interpolation between A and B.
+  </p>
+
+  <h2>What can be scene-locked</h2>
+
+  <p>
+    Almost every parameter on the OT supports scene-locking:
+  </p>
+
+  <ul class="tight">
+    <li>All PLAYBACK parameters (pitch, slot, start, length, rate)</li>
+    <li>All AMP parameters (envelope, volume, balance, XVOL)</li>
+    <li>All FX1 / FX2 parameters</li>
+    <li>LFO depths and destinations</li>
+    <li>Track mute states (binary scene-lock — track on at A, off at
+        B)</li>
+  </ul>
+
+  <p>
+    Multi-track scenes are powerful: scene 1 might lock T1 mute on,
+    T2 cutoff at 50, T3 reverb mix at 100; scene 2 locks T1 mute off,
+    T2 cutoff at 127, T3 reverb mix at 0. Sliding the fader morphs
+    all three simultaneously.
+  </p>
+
+  <h2>SCENE A vs SCENE B (the buttons)</h2>
+
+  <p>
+    The Scene A / Scene B buttons at the bottom-right are
+    <em>assigners</em>. They don't trigger scenes — they choose which
+    scene the corresponding fader end maps to. The actual morph
+    happens via the fader.
+  </p>
+
+  <p>
+    Held alone, each turns the trig row into a 16-scene selector for
+    its fader end. Press a trig to assign that scene to that end.
+    With <kbd class="fn">FUNCTION</kbd> they become MUTE buttons —
+    instantly silencing the assigned scene without moving the fader.
+  </p>
+
+  <h2>Crossfader assignments and patterns</h2>
+
+  <p>
+    Scene assignments are part-level. Switching parts changes which
+    scenes are mapped. Switching patterns within the same part
+    preserves the scene assignment but the patterns play different
+    sequencer content — meaning your scene-controlled morph stays
+    the same even as the underlying pattern changes.
+  </p>
+
+  <h2>Recipe — basic build/drop</h2>
+
+  <div class="recipe">
+    <h4>Recipe — energy curve via crossfader</h4>
+    <p>
+      Setup:
+    </p>
+    <ul class="tight">
+      <li>Scene A: T1 (drums) muted, T2 (bass) cutoff at 30, FX2
+          reverb mix at 0, T6 (atmosphere) volume at 100</li>
+      <li>Scene B: T1 (drums) unmuted, T2 (bass) cutoff at 127, FX2
+          reverb mix at 60, T6 (atmosphere) volume at 0</li>
+    </ul>
+    <p>
+      Move the fader from A to B over 16 bars. The track builds:
+      drums fade in, bass opens up, reverb increases, atmosphere
+      drops out. One fader gesture, full energy curve.
+    </p>
+  </div>
+
+  <div class="recipe">
+    <h4>Recipe — A/B variation</h4>
+    <p>
+      Scene A is the "main" mix. Scene B is the "variation" mix —
+      different drum slot, different bass pitch, different FX. Move
+      the fader to instantly transform the pattern. Useful for
+      live A/B section switches without changing patterns.
+    </p>
+  </div>
+
+  <h2>The classic crossfader transition</h2>
+
+  <p>
+    A widely-used technique: prepare two patterns that share a part.
+    Pattern A's scene 1 is the current state; pattern B's scene 1 is
+    the destination state. As you switch from A to B (chained
+    pattern), the fader can slide simultaneously to interpolate.
+    Result: smooth tempo-locked transitions between patterns that
+    don't sound like sudden cuts.
+  </p>
+
+  <div class="callout secret">
+    <span class="callout-label">Hidden · scene 17 — the "current" scene</span>
+    <p>
+      Scenes 1–16 are user-assignable. There's an implicit
+      "scene 17" — the current state of all parameters when no scene
+      is active. Pressing FUNCTION + SCENE A clears the A assignment
+      and the fader becomes A=current/B=current — meaning the fader
+      has no effect. Useful for temporarily disabling crossfader
+      morphing without un-assigning your scenes.
+    </p>
+  </div>
+
+  <h2>Parts and scene scope</h2>
+
+  <p>
+    Each part has its own 16 scenes. Switching parts (within a bank,
+    via the Part menu) loads a different set of scenes. This means a
+    bank's four parts can each have completely different
+    crossfader-driven morphs — switch parts, and your fader gesture
+    means something different.
+  </p>
+
+  <p>
+    Carefully designed parts + scenes + patterns is how OT sets are
+    built. A live performer might have 16 patterns × 4 parts × 16
+    scenes = 1024 distinct addressable musical states per bank. With
+    16 banks per project, the combinatorial space is enormous.
+  </p>
+</section>

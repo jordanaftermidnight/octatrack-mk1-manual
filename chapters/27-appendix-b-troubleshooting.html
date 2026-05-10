@@ -1,0 +1,192 @@
+<section class="chapter" data-running="B · Troubleshooting">
+  <span class="running-title">B · Troubleshooting</span>
+  <div class="chapter-header">
+    <div class="eyebrow">Part XII · Reference appendices</div>
+    <div class="chapter-no">Appendix B</div>
+    <h1 class="chapter-title">Troubleshooting</h1>
+    <p class="lead" style="max-width: 130mm;">
+      Common problems and their fixes. Plus the early startup menu —
+      the OT's diagnostic and recovery shell, accessed by holding
+      trig keys at boot.
+    </p>
+  </div>
+
+  <h2>"My changes disappeared"</h2>
+
+  <p>
+    By far the most common problem. Almost always: an unsaved part.
+  </p>
+
+  <ul class="tight">
+    <li>Did you save the part? FUNCTION + YES on the part page.</li>
+    <li>Did you save the pattern? FUNCTION + YES on the pattern page.</li>
+    <li>Did you save the project? PROJECT → SAVE.</li>
+  </ul>
+
+  <p>
+    Patterns, parts, and projects each have their own save state. All
+    three need committing to disk before power-off, or the changes
+    are lost. The OT does not auto-save.
+  </p>
+
+  <h2>"My CF card is corrupted"</h2>
+
+  <p>
+    Symptoms: project won't load, samples missing, weird errors at
+    boot. Usually caused by power-cycling during a write operation.
+  </p>
+
+  <p>
+    Steps:
+  </p>
+
+  <ol class="tight">
+    <li>Power off the OT cleanly (don't yank power)</li>
+    <li>Remove the CF card and insert it into a card reader on a
+        computer</li>
+    <li>Run the OS-level disk repair (chkdsk on Windows, Disk
+        Utility on macOS, fsck on Linux)</li>
+    <li>If repair succeeds, reinsert and reboot the OT</li>
+    <li>If repair fails, reformat (FAT32) and restore from backup</li>
+  </ol>
+
+  <h2>"I can't get sound out of a Flex track"</h2>
+
+  <p>
+    Diagnostic:
+  </p>
+
+  <ol class="tight">
+    <li>Is a sample assigned? Check the SLOT parameter.</li>
+    <li>Is the track muted? Check track LED on the trig row.</li>
+    <li>Is the AMP VOL > 0?</li>
+    <li>Is the AMP envelope set sensibly? (ATK = 0, HOLD &gt; 0,
+        REL &gt; 0)</li>
+    <li>Are there trigs on the pattern?</li>
+    <li>Is the track routed to MAIN? (Mixer page)</li>
+    <li>Is the FX2 reverb mix at 0 with reverb dry-only? Sometimes
+        you've cranked dry/wet to wet-only.</li>
+    <li>Is the crossfader scene-locked to mute the track?</li>
+  </ol>
+
+  <h2>"My Pickup track won't start recording"</h2>
+
+  <ul class="tight">
+    <li>Is the trig a one-shot (YES + TRIG)? Plain trigs don't
+        trigger Pickup state changes.</li>
+    <li>Is the source set correctly? Check SETUP → SRC.</li>
+    <li>Is there an input signal? Check the AB / CD level meters at
+        the top.</li>
+    <li>Is RTRIG enabled? Auto-retrigger sometimes interferes.</li>
+    <li>Is the buffer already full from a previous capture? Clear
+        with FUNCTION + the one-shot trig.</li>
+  </ul>
+
+  <h2>"Crossfader doesn't do anything"</h2>
+
+  <ul class="tight">
+    <li>Are scenes assigned to A and B? Check SCENE A / SCENE B
+        button LEDs.</li>
+    <li>Are any parameters scene-locked? If neither scene has any
+        locked parameters, the fader has nothing to morph.</li>
+    <li>Are A and B assigned to the same scene? They'd produce
+        identical output across the fader range.</li>
+    <li>Is XVOL the parameter you locked, but VOL is at 0? See
+        chapter 16's XVOL trap.</li>
+  </ul>
+
+  <h2>"Audio is glitchy / dropouts"</h2>
+
+  <ul class="tight">
+    <li>Check Memory Config — too many Static streams from a slow
+        card may cause dropouts. Convert some to Flex.</li>
+    <li>CF card speed: slow cards (sub 120x) struggle with multiple
+        Static tracks. Fast cards (300x+) are recommended.</li>
+    <li>Reformat the card if you suspect file-system fragmentation.</li>
+    <li>Power supply: undervoltage causes intermittent issues. Use
+        the official Elektron PSU, not a generic 12V DC.</li>
+  </ul>
+
+  <h2>"Tempo drifts when slaved"</h2>
+
+  <ul class="tight">
+    <li>Long MIDI THRU chains accumulate jitter. Use a re-clocking
+        splitter for chains over 3 devices.</li>
+    <li>Some master devices send unstable clock when their internal
+        sequencers are doing other work. Check by slaving the OT to
+        a known-good clock source (e.g. a different drum machine).</li>
+    <li>Two Elektron devices benefit from TurboMIDI for tighter
+        sync. Verify both are connected by a single MIDI cable
+        directly.</li>
+  </ul>
+
+  <h2>The Early Startup Menu</h2>
+
+  <p>
+    Hold <kbd>TRIG 1</kbd>, <kbd>TRIG 2</kbd>, <kbd>TRIG 3</kbd>, or
+    <kbd>TRIG 4</kbd> while powering on the OT. Each opens a different
+    diagnostic / recovery shell.
+  </p>
+
+  <h3>TRIG 1 — Test mode</h3>
+
+  <p>
+    Hardware test menu. Tests the LCD, all keys, all knobs, MIDI
+    ports, audio I/O, CF card. Useful when diagnosing physical
+    failures (a dead key, a noisy knob, a misbehaving input). Each
+    test cycles through the relevant hardware; press keys / turn
+    knobs / etc., and the screen confirms whether the OT detects them.
+  </p>
+
+  <h3>TRIG 2 — OS upgrade</h3>
+
+  <p>
+    Boots into a minimal mode that can read OS .syx files from the
+    CF card. Place the firmware file on the card root, hold TRIG 2
+    at boot, follow on-screen prompts. Used for OS upgrades when
+    SysEx-over-USB isn't working.
+  </p>
+
+  <h3>TRIG 3 — File system tools</h3>
+
+  <p>
+    Format CF card, partition diagnostics, file-system repair from
+    within the OT. Useful when the card is misbehaving but you don't
+    have a card reader to hand.
+  </p>
+
+  <h3>TRIG 4 — Boot from CF in disk mode</h3>
+
+  <p>
+    Mounts the OT's CF card as a USB mass-storage device. Plug a USB
+    cable from OT to computer, hold TRIG 4, and the card appears as
+    a removable drive. Used for backing up samples, copying projects,
+    bulk file management without a separate card reader.
+  </p>
+
+  <div class="callout warn">
+    <span class="callout-label">Warning · Disk Mode requires unmount</span>
+    <p>
+      Always safely eject / unmount the OT from the computer's file
+      system before disconnecting USB or rebooting. Yanking the cable
+      mid-write can corrupt the card. The OT does not enforce this on
+      its end — the safety check happens on the computer.
+    </p>
+  </div>
+
+  <h2>Battery replacement</h2>
+
+  <p>
+    The OT MK1 has an internal CR2032 battery for the real-time
+    clock. Lifespan: 5–8 years. When low, the OT loses date/time
+    settings between boots (project timestamps wrong, etc.). The
+    machine still functions but RTC is unreliable.
+  </p>
+
+  <p>
+    Replacement requires opening the unit. Reasonably accessible if
+    you're comfortable with screwdrivers; consult Elektron's service
+    documentation for procedure. The battery is not user-serviceable
+    in any official sense — replacing voids any remaining warranty.
+  </p>
+</section>

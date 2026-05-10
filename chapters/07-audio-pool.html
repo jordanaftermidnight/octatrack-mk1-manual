@@ -1,0 +1,186 @@
+<section class="chapter" data-running="7 · Audio Pool, Static, Flex">
+  <span class="running-title">7 · Audio Pool, Static, Flex</span>
+  <div class="chapter-header">
+    <div class="eyebrow">Part III · Mental model</div>
+    <div class="chapter-no">Chapter 7</div>
+    <h1 class="chapter-title">Audio Pool, Static, Flex</h1>
+    <p class="lead" style="max-width: 130mm;">
+      How samples physically exist on the Octatrack — where they live on
+      disk, when they load into RAM, and the difference between Static and
+      Flex memory. Get this right and the rest of the machine makes
+      sense.
+    </p>
+  </div>
+
+  <h2>Audio Pool</h2>
+
+  <p>
+    Every sample available to a project lives in the <strong>Audio Pool</strong> —
+    a folder on the CF card, scoped to the current set. The Audio Pool is
+    just files: WAV or AIFF, mono or stereo, 16-bit or 24-bit, at any
+    sample rate up to 96 kHz. The Octatrack will resample on load if
+    needed; for cleanest playback, normalise to 44.1 or 48 kHz beforehand.
+  </p>
+
+  <p>
+    Samples are referenced from the project, not embedded in it. Deleting
+    a sample from the Audio Pool while a project references it produces
+    an error message (and a silent track) on next load. The Octatrack
+    does <em>not</em> "save with project" the way a DAW does — your
+    project file is small (a few KB); the audio lives separately in the
+    Pool.
+  </p>
+
+  <p>
+    Maximum samples per Audio Pool: 999. Practical limit: card speed and
+    your patience while it indexes.
+  </p>
+
+  <h2>Static slots vs Flex slots</h2>
+
+  <p>
+    A project holds <strong>two parallel sample-slot lists</strong>: 128
+    Static slots and 128 Flex slots. A track loaded with a Static
+    machine plays from the Static list; a Flex track plays from the Flex
+    list. The two lists are independent — slot 1 in Static and slot 1 in
+    Flex are different samples (or empty).
+  </p>
+
+  <p>
+    The slot list is a project-level construct. It maps a slot number to
+    a file in the Audio Pool, plus per-slot trim points (start/end loop
+    points), gain, and BPM info.
+  </p>
+
+  <h2>The fundamental difference: where the audio lives</h2>
+
+  <div class="cols-2">
+    <div>
+      <h3 style="margin-top: 0;">Static</h3>
+      <p>
+        Audio for a Static slot is <strong>streamed from the CF card</strong>
+        on demand. The Octatrack reads the file as the playhead moves
+        through it. RAM usage is essentially zero. Disk-streaming has
+        constraints:
+      </p>
+      <ul class="tight">
+        <li>Cannot reverse-play (no random-access fast enough)</li>
+        <li>Cannot pitch significantly down (slows playback past
+            disk-read speed)</li>
+        <li>Limited to the file's natural length and direction</li>
+      </ul>
+      <p>
+        Best for: long files (full songs, stems, loops over a few
+        seconds), backing tracks, anything where the file plays linearly
+        once at a time.
+      </p>
+    </div>
+
+    <div>
+      <h3 style="margin-top: 0;">Flex</h3>
+      <p>
+        Audio for a Flex slot is <strong>loaded into RAM</strong> on
+        project load. RAM usage is the file size — a 30-second 44.1 kHz
+        stereo WAV is about 5 MB. With the OT's RAM split between Flex
+        and other pools (configured via Memory Config), you can hold
+        roughly 80 MB of Flex samples by default.
+      </p>
+      <ul class="tight">
+        <li>Reverse-play, pitch up/down, scrubbing — all instant</li>
+        <li>Slice playback — instant jump to slice points</li>
+        <li>Real-time time-stretch (TIMESTRETCH page)</li>
+      </ul>
+      <p>
+        Best for: drum hits, one-shots, short loops, anything that needs
+        playback flexibility, anything you want to slice.
+      </p>
+    </div>
+  </div>
+
+  <h2>Memory configuration</h2>
+
+  <p>
+    The Octatrack's RAM is partitioned at the project level via
+    PROJECT → MEMORY CONFIG. The total available is fixed; you choose
+    how to split it between:
+  </p>
+
+  <ul class="tight">
+    <li><strong>Flex sample memory</strong> — your Flex slots</li>
+    <li><strong>Recorder memory</strong> — capacity of the eight recorder
+        buffers (one per audio track), in mono seconds, in stereo
+        seconds, and at 24-bit or 16-bit</li>
+    <li><strong>Reserve</strong> — what's left for the OS</li>
+  </ul>
+
+  <p>
+    The default split is balanced for general use. If you need long
+    recording buffers (multi-bar live capture), reduce Flex memory and
+    increase recorder memory. If you need many short Flex samples,
+    reverse the trade.
+  </p>
+
+  <div class="callout note">
+    <span class="callout-label">Note · Memory Config requires reboot</span>
+    <p>
+      Changing Memory Config doesn't take effect until the project is
+      saved and reloaded. The OT prompts you for this. Don't change
+      Memory Config mid-performance.
+    </p>
+  </div>
+
+  <h2>When does loading happen?</h2>
+
+  <p>
+    On project load, the OT reads the slot lists and:
+  </p>
+
+  <ul class="tight">
+    <li>Scans the Audio Pool for each referenced file</li>
+    <li>Loads every Flex slot's audio into RAM</li>
+    <li>Indexes each Static slot's file (does not load the audio)</li>
+  </ul>
+
+  <p>
+    A project with 50 small Flex samples loads in seconds. A project with
+    a hundred multi-megabyte Flex samples can take 30–60 seconds. The
+    Card Status LED on the front panel indicates load activity.
+  </p>
+
+  <h2>Practical workflow</h2>
+
+  <div class="recipe">
+    <h4>Recipe — choosing Static or Flex</h4>
+    <p>
+      Quick decision tree:
+    </p>
+    <ol>
+      <li>Sample longer than 30 seconds and plays linearly?
+          → <strong>Static</strong></li>
+      <li>Need to slice it, reverse it, time-stretch it, or pitch it
+          significantly? → <strong>Flex</strong></li>
+      <li>It's a drum hit, one-shot, or short loop?
+          → <strong>Flex</strong></li>
+      <li>It's a backing track, full-length stem, or DJ source?
+          → <strong>Static</strong></li>
+      <li>Both? Load it as both — Static and Flex slots are independent,
+          and many performances assign the same audio file to both lists
+          for different uses.</li>
+    </ol>
+  </div>
+
+  <h2>The Sample Manager</h2>
+
+  <p>
+    PROJECT → SAMPLE MANAGER opens the unified file browser for the
+    Audio Pool. From here you assign samples to slots, audition them,
+    set per-slot trim points, view file metadata, and clean up unused
+    samples.
+  </p>
+
+  <p>
+    The Sample Manager also manages the file-system view of the Audio
+    Pool: rename, move between sub-folders, delete, batch-load. For
+    detailed Audio Pool management workflows, see chapter 27.
+  </p>
+</section>
